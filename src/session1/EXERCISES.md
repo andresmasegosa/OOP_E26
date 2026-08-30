@@ -24,10 +24,17 @@ any number of squares. Teach it.
 - Where: [`E_ChessGame.java`](E_ChessGame.java), and only there. A good place to start
   reading is `isLegalMove` — but it is not the only place you will end up touching.
 - When you are done, the move `movePiece(board, 7, 5, 5, 3)` in `main` must succeed.
-- While playing, did you ever see a piece called `?`? The program does not know the
-  bishop's *name* either. Fix that too.
-- **Count how many places in the file you had to change, and write the number down.**
-  We will repeat this exact measurement on better designs of the same game.
+- Now run it and read the output carefully. It says:
+
+  `White ? moves (7,5) -> (5,3)`
+
+  That `?` comes from `pieceName`, the method that turns a piece letter into a name
+  for the printed messages — and nobody taught it the bishop either. Fix that too.
+- **Write down what this change cost you.** Not lines of code — the *shape* of the
+  change: How many different methods did you end up editing? How many of them were a
+  `switch` that had to learn about bishops? Did anything in the program warn you that
+  they were missing, or did you have to hunt for them one by one? Keep your notes: we
+  will make this exact change again on better designs of the same game, and compare.
 
 ## Exercise 2 — the knights (stretch goal)
 
@@ -38,8 +45,9 @@ Add the knights: `'N'` for White, `'n'` for Black, starting on `(0,1)`, `(0,6)`,
   builds the initial position; you already know from Exercise 1 where the rest hides.
 - A knight moves in an L: two squares along one axis and one along the other.
 - Unlike every other piece, the knight **jumps**: no path check at all.
-- Count the places you had to change, again. Is the number growing or shrinking as the
-  program gets bigger?
+- Record the cost of the change again, the same way as in Exercise 1. Was this change
+  easier or harder than the bishops? What does that tell you about where this program
+  is heading as it grows?
 
 ## Exercise 3 — count the moves
 
