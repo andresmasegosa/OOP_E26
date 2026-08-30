@@ -85,19 +85,21 @@ public class E_ChessGame {
         return board;
     }
 
-    /** Prints the board with row and column numbers around it. */
+    /** Prints the board, with row/column labels and a small legend. */
     static void printBoard(char[][] board) {
         System.out.println();
-        System.out.println("    0 1 2 3 4 5 6 7");
-        System.out.println("  +-----------------+");
+        System.out.println("        0 1 2 3 4 5 6 7   <- col");
+        System.out.println("      +-----------------+");
         for (int row = 0; row < 8; row++) {
-            System.out.print(row + " | ");
+            System.out.print("row " + row + " | ");
             for (int col = 0; col < 8; col++) {
                 System.out.print(board[row][col] + " ");
             }
             System.out.println("|");
         }
-        System.out.println("  +-----------------+");
+        System.out.println("      +-----------------+");
+        System.out.println("      UPPERCASE = White, lowercase = black");
+        System.out.println("      K king, Q queen, R rook, B bishop, . empty square");
     }
 
     /** Is this piece White? (White pieces are the uppercase letters.) */
@@ -276,7 +278,8 @@ public class E_ChessGame {
      */
     static boolean movePiece(char[][] board, int fromRow, int fromCol, int toRow, int toCol) {
         if (!isLegalMove(board, fromRow, fromCol, toRow, toCol)) {
-            System.out.println("Illegal move: (" + fromRow + "," + fromCol + ") -> (" + toRow + "," + toCol + ")");
+            System.out.println("Illegal move: (" + fromRow + "," + fromCol + ") -> (" + toRow + "," + toCol
+                    + "): not how that piece moves, the path is blocked, or the target is your own piece");
             return false;
         }
 
@@ -305,7 +308,10 @@ public class E_ChessGame {
         boolean whiteToMove = true;
 
         System.out.println();
-        System.out.println("Your turn! A move is: fromRow fromCol toRow toCol (or -1 to quit)");
+        System.out.println("Your turn! White plays the UPPERCASE pieces and moves first.");
+        System.out.println("A move is four numbers separated by spaces: fromRow fromCol toRow toCol");
+        System.out.println("For example, typing  7 0 5 0  tries to move the piece on (7,0) to (5,0).");
+        System.out.println("Type -1 to quit.");
 
         while (true) {
             printBoard(board);
