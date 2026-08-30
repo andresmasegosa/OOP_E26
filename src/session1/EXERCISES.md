@@ -70,26 +70,34 @@ Add the knights: `'N'` for White, `'n'` for Black, starting on `(0,1)`, `(0,6)`,
 
 Your chess club wants statistics: how many times has each piece moved?
 
-There are no objects in this program — a piece is just a `char` inside an array. So:
-where do you store each piece's counter?
+This is the first exercise where **the design is yours**. There are no objects in this
+program — a piece is just a `char` inside an array — so the central question is:
+**where do you store each piece's counter?** Think about it and sketch your idea
+*before writing any code*; if you can, compare it with a classmate's first. There is
+more than one workable answer, and they fail in different ways — that is the point.
 
 - Where: [`E_ChessGame.java`](E_ChessGame.java). You will touch at least `movePiece`,
   which is where a move actually happens.
-- Implement it. Hint: you will probably need a second 8x8 array (`int[8][8]`), a
-  *parallel array* that `movePiece` must keep in sync with the board. You must also
-  decide where that array lives: created in `main` and passed to `movePiece` as an
-  extra parameter, or a `static` variable at the top of the class? Both work.
 - When a piece moves, print its counter: `White Queen has now moved 3 times`.
+- Decide what must happen to the counter of a piece that gets captured, and make your
+  code do it.
+- Now answer two questions **using your program**: how many times has the white queen
+  moved so far? And how many times has **each** of the two white rooks moved?
 
 **Discuss:**
 
-1. What must happen to the counter of a piece that gets captured? Does your code do it?
-2. Which option did you pick for the array — extra parameter or `static` variable —
-   and what did it cost you?
-3. The counter is information *about one piece*, yet it lives far away from the
-   piece's other information (its letter, its square). If the club asks for a second
-   statistic tomorrow — say, squares traveled — what do you have to add and keep in
-   sync? **Write the annoying part down in one sentence.**
+1. Compare storage designs with your classmates. To answer about the queen, did you
+   have to *search the board for her*? And the rooks: can your storage tell one rook
+   from the other at all? What would "the first rook" even mean in this program?
+2. Where does your storage live — created in `main` and handed to `movePiece` as a
+   parameter, or a `static` variable at the top of the class? What did that choice
+   cost you?
+3. The counter is information *about one piece*, yet neither the piece's letter nor
+   its square is a way to *hold on to* that piece over time. If the club asks for a
+   second statistic tomorrow — say, squares traveled — what do you have to add and
+   keep in sync? **Write down in one sentence what this program is missing.**
+   (Session 2 gives it a name — and a variable that keeps pointing at the same queen
+   wherever she goes.)
 
 ## Exercise 4 — the sabotage
 
