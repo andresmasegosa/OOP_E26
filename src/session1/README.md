@@ -8,9 +8,10 @@ will keep us busy the whole semester.
 
 ## Before class
 
-1. Get the tools running. Install IntelliJ IDEA (the Community Edition is
-   enough) and a JDK, version 21 or newer. Open this project, run
-   `A_HelloChess`, and check that a board gets printed.
+1. Get the tools running. We use IntelliJ IDEA Ultimate all semester, free for
+   students on the JetBrains student licence; Moodle says how to apply. You also
+   need a JDK, version 21 or newer, and IntelliJ can download one for you. Open
+   this project, run `A_HelloChess`, and check that a board gets printed.
 
 2. Arrive knowing basic Java syntax, at reading level: variables and types
    (`int`, `char`, `boolean`, `String`), `if`/`else`, `switch`, `for` and
