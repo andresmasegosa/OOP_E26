@@ -22,12 +22,3 @@ prepare before class, and an `EXERCISES.md`.
 |---|---|
 | [session1](src/session1/README.md) | Intro to Java, through chess: the game with no objects |
 | session2… | added as the course advances |
-
-## How to open the project
-
-1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/) (the Community
-   Edition is enough) and a JDK, version 21 or newer.
-2. Clone or download this repository and open the folder in IntelliJ.
-3. If the sources are not detected automatically, right-click on `src` and
-   choose *Mark Directory as* → *Sources Root*.
-4. Open `src/session1/A_HelloChess.java` and press the green ▶ next to `main`.

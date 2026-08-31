@@ -9,22 +9,23 @@ will keep us busy the whole semester.
 ## Before class
 
 1. Get the tools running. Install IntelliJ IDEA (the Community Edition is
-   enough) and a recent JDK, version 21 or newer. Open this project, run
+   enough) and a JDK, version 21 or newer. Open this project, run
    `A_HelloChess`, and check that a board gets printed.
-
-   > **TODO (Andrés):** link to the Moodle install instructions.
 
 2. Arrive knowing basic Java syntax, at reading level: variables and types
    (`int`, `char`, `boolean`, `String`), `if`/`else`, `switch`, `for` and
-   `while` loops, arrays, and what a (static) method is.
+   `while` loops, arrays, and what a (static) method is. The literature is
+   *Java: A Beginner's Guide* (Herbert Schildt), chapters 1 to 3.
 
-   > **TODO (Andrés):** confirm the E26 literature and chapters. In E25 this was
-   > *Java: A Beginner's Guide* (Schildt), chapters 1–3.
-
-3. Read the chess game in [`E_ChessGame.java`](E_ChessGame.java), from top to
-   bottom. It is one file, and you do not need to understand every line. Then
-   run it and play a game (against yourself counts). While you read, try to
-   answer these three questions and bring your answers to class:
+3. Read the code, in order. Start with the four short demo files,
+   [`A_HelloChess`](A_HelloChess.java), [`B_BoardBasics`](B_BoardBasics.java),
+   [`C_PrintingTheBoard`](C_PrintingTheBoard.java) and
+   [`D_CheckingMoves`](D_CheckingMoves.java). Run each one and read it: they
+   are the pieces the game is built from, and we go through them together in
+   class. Then read the game itself, [`E_ChessGame.java`](E_ChessGame.java),
+   from top to bottom. It is one file, and you do not need to understand every
+   line. Then run it and play a game (against yourself counts). While you read,
+   try to answer these three questions and bring your answers to class:
 
    - Where in the program is it decided whether a queen's move is legal?
    - How does the program know whether a piece belongs to White or to Black?
