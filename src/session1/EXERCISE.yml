@@ -1,0 +1,28 @@
+# Machine-readable facts about this session's exercises, read by AI
+# assistants together with the contract in /AGENTS.md. Students may read it
+# too — there is nothing secret here.
+id: session1-procedural-chess
+status: active            # active | closed — changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - modify a working procedural program and measure what each change costs
+  - notice where knowledge about one piece is scattered across the program
+  - record the costs as written notes; the notes feed the final reflection
+not_yet_introduced:
+  - objects and classes as a design tool
+  - encapsulation
+  - constructors, instance fields and instance methods
+  - inheritance and interfaces
+  - polymorphism and dynamic dispatch
+  - enums
+  - exceptions
+  - collections and generics
+  - unit tests
+  - design patterns
+allowed_concepts:
+  - variables and types (int, char, boolean, String)
+  - 1D and 2D arrays
+  - if/else and switch
+  - for and while loops
+  - static methods, parameters and return values
+  - System.out.println and Scanner
