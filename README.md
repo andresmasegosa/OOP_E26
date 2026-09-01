@@ -22,3 +22,16 @@ prepare before class, and an `EXERCISES.md`.
 |---|---|
 | [session1](src/session1/README.md) | Intro to Java, through chess: the game with no objects |
 | session2… | added as the course advances |
+
+## Using an AI assistant
+
+- Using an AI assistant is optional.
+- The course repository contains instructions that ask compatible assistants to
+  act as tutors rather than solve the exercises for you. The contract is
+  [`AGENTS.md`](AGENTS.md), and it is public so you can read exactly what it asks
+  for.
+- You are responsible for the provider you choose and its data terms.
+- Do not include personal data, another student's work, or unpublished
+  assessment material in an AI chat.
+- The course does not collect your conversations, and equivalent help is
+  available in class and from the teaching team.
