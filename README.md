@@ -21,7 +21,8 @@ prepare before class, and an `EXERCISES.md`.
 | Session | Contents |
 |---|---|
 | [session1](src/session1/README.md) | Intro to Java, through chess: the game with no objects |
-| session2… | added as the course advances |
+| [session2](src/session2/README.md) | Introduction to OOP: the same game rebuilt on classes, objects and encapsulation |
+| session3… | added as the course advances |
 
 ## Using an AI assistant
 

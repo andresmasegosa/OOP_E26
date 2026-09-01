@@ -1,0 +1,27 @@
+# Machine-readable facts about this session's exercises, read by AI
+# assistants together with the contract in /AGENTS.md. Students may read it
+# too — there is nothing secret here.
+id: session2-classes-encapsulation
+status: active            # active | closed — changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - repeat session 1's changes (the bishop, the counter, the sabotage) on the refactored game and measure the difference
+  - hold a piece through a reference and explain aliasing and identity with it
+  - list the doors of an encapsulated class and say what each one defends
+  - keep the cost-of-change table growing; it feeds session 3
+not_yet_introduced:
+  - inheritance, abstract classes and interfaces
+  - polymorphism and dynamic dispatch
+  - enums
+  - exceptions
+  - collections and generics
+  - unit tests
+  - design patterns
+allowed_concepts:
+  - everything from session 1
+  - classes, objects, fields and instance methods
+  - constructors, constructor overloading and this
+  - references, aliasing, == on references, null, garbage collection
+  - encapsulation, private and public, getters and setters
+  - protected and package visibility, at the level the slides present them
+  - packages, import and fully-qualified names
