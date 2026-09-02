@@ -17,7 +17,10 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  *     variable of play(). Here both are FIELDS: a ChessGame HAS a board and
  *     knows whose turn it is. Compare the method signatures with session
  *     1's — the board parameter is gone from every one of them, because
- *     'this' game already has one.
+ *     'this' game already has one;
+ *   - even the picture of the board is the board's own: printBoard here
+ *     only asks, and ChessBoard.print draws. This class reads your
+ *     keyboard, narrates moves, and knows no chess at all.
  *
  * STATIC OR NOT? This class has no static method at all — not even main,
  * which lives in Demo.java next door. Everything a game does is about ONE
@@ -83,26 +86,9 @@ public class ChessGame {
         board.placePiece(7, 7, new ChessPiece('R'));
     }
 
-    /** Prints the board — the same picture as session 1, to the character. */
+    /** Shows the board. The game asks; the board knows how to draw itself. */
     public void printBoard() {
-        System.out.println();
-        System.out.println("        0 1 2 3 4 5 6 7   <- col");
-        System.out.println("      +-----------------+");
-        for (int row = 0; row < 8; row++) {
-            System.out.print("row " + row + " | ");
-            for (int col = 0; col < 8; col++) {
-                ChessPiece piece = board.getPieceAt(row, col);
-                if (piece == null) {
-                    System.out.print(". ");
-                } else {
-                    System.out.print(piece.getSymbol() + " ");
-                }
-            }
-            System.out.println("|");
-        }
-        System.out.println("      +-----------------+");
-        System.out.println("      UPPERCASE = White, lowercase = black");
-        System.out.println("      K king, Q queen, R rook, B bishop, . empty square");
+        board.print();
     }
 
     /**

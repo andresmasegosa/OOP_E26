@@ -5,10 +5,11 @@ package session2.E_ChessGame;
  *
  * The grid is PRIVATE. That is the answer to session 1's sabotage, where
  * any line of code could write any square. The doors are step D's two,
- * plus one:
+ * plus two:
  *   placePiece — puts a piece on its first square; it can refuse;
  *   getPieceAt — reading, open to everyone;
- *   movePiece  — new: the one legal way a piece changes square.
+ *   movePiece  — new: the one legal way a piece changes square;
+ *   print      — new: the board draws itself, session 1's picture.
  *
  * Compare the checks in movePiece with session 1's isLegalMove/movePiece
  * pair: the same rules — but now there is no way around them.
@@ -94,5 +95,37 @@ public class ChessBoard {
         piece.setRow(toRow);
         piece.setCol(toCol);
         return true;
+    }
+
+    /**
+     * Draws the board — the same picture as session 1, to the character.
+     * The board knows what it looks like, so the board draws it; inside
+     * these walls the array is ours to walk, no door needed.
+     *
+     * One thing to notice for later: this method talks to the console.
+     * Whether a board should know that a console exists is a
+     * responsibilities question (session 4), and session 7 will give us a
+     * concrete reason to change it — what is printed cannot be tested,
+     * what is returned as a String can.
+     */
+    public void print() {
+        System.out.println();
+        System.out.println("        0 1 2 3 4 5 6 7   <- col");
+        System.out.println("      +-----------------+");
+        for (int row = 0; row < 8; row++) {
+            System.out.print("row " + row + " | ");
+            for (int col = 0; col < 8; col++) {
+                ChessPiece piece = pieces[row][col];
+                if (piece == null) {
+                    System.out.print(". ");
+                } else {
+                    System.out.print(piece.getSymbol() + " ");
+                }
+            }
+            System.out.println("|");
+        }
+        System.out.println("      +-----------------+");
+        System.out.println("      UPPERCASE = White, lowercase = black");
+        System.out.println("      K king, Q queen, R rook, B bishop, . empty square");
     }
 }
