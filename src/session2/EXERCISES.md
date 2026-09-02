@@ -3,8 +3,8 @@
 Every chess exercise works in the [`E_ChessGame`](E_ChessGame/) folder. The
 demo folders `A_` to `D_` are there to read and run, never to edit.
 Exercises 1, 2 and 3 are the core of the session; do them in order.
-Exercise 4 is a stretch goal, and the sheet closes with three problems that
-have no chess in them at all.
+Exercise 4 is written work — a design review with almost no code — and
+exercise 5 is a stretch goal.
 
 **You need your session 1 notes on the table.** Exercises 1 to 3 are
 session 1's exercises done *again*, on the new design, and their real
@@ -156,7 +156,114 @@ Discussion:
    `boolean` a loud enough "no"? Keep your answer for session 8, where
    refusals become first-class.
 
-## Exercise 4 — the knights, again (stretch goal)
+## Exercise 4 — the design review: same tools, other shapes
+
+No new feature this time, and almost no code: five questions about the
+design you have spent the session reading. Each one is a choice somebody
+made in `E_ChessGame`, and each one could have been made differently.
+
+Work in pairs, and answer every question in five lines. The shape of the
+answer matters as much as the answer:
+
+1. **The alternative**, in one sentence.
+2. **What it makes better.**
+3. **What it makes worse.** No alternative is free; if you cannot name
+   the cost, you have not yet understood the design you are attacking.
+4. **What you would have to touch** — classes and methods by name, in
+   the same currency as the cost-of-change table.
+5. **Your verdict**: *change it*, *keep it*, or *not with what I know
+   today*.
+
+That last verdict is a real answer and it counts like any other. Some of
+these questions have no good answer with this session's tools; noticing
+that is the point, and what you found missing goes on this week's wish
+list.
+
+One question this exercise does *not* ask: how to make the `switch` in
+`isLegalMove` disappear. That one closes the session, and answering it is
+the whole of session 3.
+
+### Q1 — should `Movements` be part of `ChessBoard`?
+
+`Movements` holds no state, and each of its three methods takes a
+`ChessBoard` as its first parameter. That shape is worth suspecting.
+Read one of them as a method of the board instead —
+`board.isLegalDiagonalMove(fromRow, fromCol, toRow, toCol, maxDistance)`,
+walking the board that is now `this` — and watch a parameter disappear:
+the very disappearance exercise 0 asked you to name. What gets simpler,
+and what have you just taught the board that it does not know today?
+
+Before you answer "but the board knows nothing about chess", read
+`ChessBoard.movePiece` again: it already refuses to capture your own
+piece. Is that a rule of boards, or a rule of chess?
+
+### Q2 — `printBoard`: in `ChessGame`, in `ChessBoard`, or in both?
+
+Today it is in both: `ChessBoard.print()` draws the picture, and
+`ChessGame.printBoard()` is one line that asks it to. Weigh the three
+designs — the drawing only in the game, which then has to walk the
+squares itself; only in the board, so that every caller reaches it
+through `getBoard()`; and today's pair.
+
+Then the sharp version. The delegation is there so that nobody outside
+needs the board — but `getBoard()` is public, and exercise 3 had you use
+it. So what does `printBoard` protect today?
+
+### Q3 — whose business is `getSymbol()`?
+
+`'Q'` is not what a queen *is*; it is how a queen is *drawn* on this
+particular board. The piece stores its type and color and derives the
+letter, and the only code that ever asks is `ChessBoard.print()`. Should
+the translation live with the drawing? Write what `print()` would look
+like if it did, and say what the piece loses.
+
+### Q4 — two places remember where the queen stands
+
+`ChessBoard` knows what stands on every square. Every `ChessPiece` also
+carries its own `row` and `col`. Two copies of one fact, kept in step by
+hand inside `placePiece` and `movePiece` — and you have met that before:
+it is session 1's parallel `int[8][8]`, in better clothes.
+
+Two alternatives, each worth its five lines:
+
+- **Only the board knows.** The piece loses `row`, `col`, `setRow` and
+  `setCol`. What then happens to `isLegalMove`, which reads them?
+- **Only the piece knows.** The board stops being a grid of squares and
+  becomes an array of pieces you have to search. What does `getPieceAt`
+  cost then?
+
+And the question that pays for the exercise: your captured queen from
+exercise 2 still claims to stand on (0,3). Does either design make that
+ghost impossible — or only harder to notice?
+
+### Q5 — how much does `private` really buy?
+
+`placePiece` is `public`. Make it package-private — drop the modifier
+entirely — and compile. Two things happen, and the second one is the
+lesson:
+
+- `setupPieces` still compiles: `ChessGame` shares the package.
+- **Exercise 3's second-queen attack still compiles too**, because
+  `Demo` shares the package as well.
+
+Session 1's sabotage died at the compiler, and yet this door stands open
+to every class in `session2.E_ChessGame`. What would have to change for
+that attack to stop compiling? Notice that it is not a change of
+keyword — so where would `Demo` have to live?
+
+Discussion:
+
+1. Sort your five verdicts into two piles: *taste* (two defensible
+   designs, and this program picked one) and *fault* (today's design does
+   not survive the argument). Bring one of each to the board.
+2. How many verdicts came out "not with what I know today"? Write down
+   what you were missing each time. That list is next week's wish list,
+   and the global reflection below collects it.
+3. Four of these five questions are one question wearing different
+   clothes: **who should be responsible for this?** Write that sentence
+   down — session 4 opens with it.
+
+## Exercise 5 — the knights, again (stretch goal)
 
 Session 1's stretch goal, on the new design: add the knights, `'N'` and
 `'n'`, starting on `(0,1)`, `(0,6)`, `(7,1)` and `(7,6)`. An L-shaped move,
@@ -183,50 +290,6 @@ Discussion:
    constructor to save a switch? What would `setupPieces` look like then?
    (Session 8 dissolves this trade-off: a type will become something that
    is neither a char nor a free-form String.)
-
-## Three problems with no chess in them
-
-Same tools, different world — this is the part that looks most like the
-exam. Create the classes in packages of your own under `session2`, for
-example `session2.transfer`. No scaffolding this time: you write the whole
-file.
-
-### Problem 1 — the bank account
-
-A `BankAccount` has an owner's name and a balance, which starts at 0 when
-the account is opened. Money comes in through `deposit(amount)` and leaves
-through `withdraw(amount)`. House rules: a deposit must be positive, and a
-withdrawal must be positive and never leave the balance below 0. Illegal
-requests change nothing.
-
-Write the class so that **no code anywhere in the program can break the
-rules**, and prove it with a `main` that attacks: a negative deposit, an
-overdraw, and a direct write to the balance (that last attack should not
-even compile — keep it as a comment with the error message next to it).
-
-Check yourself: after `deposit(500)`, `withdraw(200)`, `deposit(-100)`,
-`withdraw(400)`, the balance prints `300`.
-
-### Problem 2 — two notes that share a name
-
-A music app and a to-do app collide in one program. Write a `Note` class
-for music (a pitch like `"A4"`, a duration in beats) and a `Note` class
-for tasks (a text, a done flag) — same class name, two different packages.
-Then write one `main`, in a third package, that creates and prints one of
-each. You will need an `import` for one of them and a fully-qualified name
-for the other; write one line of comment explaining why the same trick
-cannot work for both.
-
-### Problem 3 — the playlist
-
-A `Song` has a title, an artist and a duration in seconds; all fixed at
-birth, readable, never writable. A `Playlist` has a name and up to 100
-songs (an array and a count — we meet real collections in session 6), an
-`add(Song song)` method, a `totalSeconds()` and a `longestSong()`.
-
-Then the aliasing question: create ONE `Song` and add it to TWO playlists.
-How many Song objects exist? Prove your answer from `main` with `==`, and
-explain it with the word *reference*.
 
 ## Global reflection — the wish list, revisited
 

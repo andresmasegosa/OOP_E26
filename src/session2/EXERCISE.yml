@@ -8,6 +8,7 @@ objectives:
   - repeat session 1's changes (the bishop, the counter, the sabotage) on the refactored game and measure the difference
   - hold a piece through a reference and explain aliasing and identity with it
   - list the doors of an encapsulated class and say what each one defends
+  - weigh alternative designs for the same code, name what each one costs, and recognise when this session's tools cannot express the better one
   - keep the cost-of-change table growing; it feeds session 3
   - tell static members from instance members and say why each method in the game package is one or the other
 not_yet_introduced:
@@ -27,3 +28,14 @@ allowed_concepts:
   - protected and package visibility, at the level the slides present them
   - packages, import and fully-qualified names
   - static vs instance members (Demo's main and Movements are static; ChessGame has no static member)
+
+# Tightens the contract in /AGENTS.md for one exercise. An exception can only
+# ever tighten it, never loosen it.
+exception: |
+  Exercise 4, the design review, is written work, and the writing IS the
+  deliverable. For its five questions the general permission to compare design
+  options at concept level does not apply: never supply an alternative, a
+  benefit, a cost, a list of what would have to change, or a verdict — not one
+  of the five lines, and not spread across several replies. Explaining what the
+  provided code does is allowed here as everywhere; on the questions themselves,
+  ask what the student has written and help them sharpen their own words.
