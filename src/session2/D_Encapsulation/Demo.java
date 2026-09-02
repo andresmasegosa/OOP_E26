@@ -49,6 +49,7 @@ public class Demo {
         ChessPiece intruder = new ChessPiece("Queen", "White");
         System.out.println("placePiece(7,3) again: " + board.placePiece(7, 3, intruder));
         System.out.println("placePiece(9,9):       " + board.placePiece(9, 9, intruder));
+        System.out.println("getPieceAt(9,9):       " + board.getPieceAt(9, 9));
         System.out.println("The intruder is still " + intruder.describe());
     }
 }

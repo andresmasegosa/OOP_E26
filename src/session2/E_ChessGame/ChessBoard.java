@@ -17,9 +17,28 @@ public class ChessBoard {
 
     private ChessPiece[][] pieces = new ChessPiece[8][8];
 
-    /** The piece standing on (row, col), or null for an empty square. */
+    /**
+     * The piece standing on (row, col), or null for an empty square — and
+     * null, too, for a square that does not exist. Off the board there is
+     * no square at all, and null is also what an empty square answers; we
+     * accept that blur for now (session 8 gives "no such square" a voice
+     * of its own). What it buys today: nobody who asks the board has to
+     * check the bounds first. The board knows its own size.
+     */
     public ChessPiece getPieceAt(int row, int col) {
+        if (!isOnBoard(row, col)) {
+            return null;
+        }
         return pieces[row][col];
+    }
+
+    /**
+     * Does this square exist? The ONE place in the program that knows the
+     * board is 8x8. Static: it is about coordinates, not about what this
+     * board holds.
+     */
+    private static boolean isOnBoard(int row, int col) {
+        return row >= 0 && row <= 7 && col >= 0 && col <= 7;
     }
 
     /**
@@ -29,7 +48,7 @@ public class ChessBoard {
      * is under way is exercise 3's question.
      */
     public boolean placePiece(int row, int col, ChessPiece piece) {
-        if (row < 0 || row > 7 || col < 0 || col > 7) {
+        if (!isOnBoard(row, col)) {
             return false;               // no such square
         }
         if (pieces[row][col] != null) {
@@ -50,8 +69,11 @@ public class ChessBoard {
         if (piece == null) {
             return false;               // there is no piece to move
         }
-        if (toRow < 0 || toRow > 7 || toCol < 0 || toCol > 7) {
-            return false;               // both squares must exist
+        if (!isOnBoard(piece.getRow(), piece.getCol())) {
+            return false;               // a piece that stands nowhere cannot move
+        }
+        if (!isOnBoard(toRow, toCol)) {
+            return false;               // both squares must exist — as in session 1
         }
 
         // You may capture an enemy piece, but never one of your own.

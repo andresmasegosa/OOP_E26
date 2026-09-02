@@ -113,17 +113,14 @@ public class ChessGame {
      * does. The scripted game in main moves both sides freely.)
      */
     public boolean movePiece(int fromRow, int fromCol, int toRow, int toCol) {
-        ChessPiece piece = null;
-        if (fromRow >= 0 && fromRow <= 7 && fromCol >= 0 && fromCol <= 7) {
-            piece = board.getPieceAt(fromRow, fromCol);
-        }
+        // No bounds to check here: the board answers null for a square that
+        // does not exist, and null is refused by movePiece like any other
+        // missing piece.
+        ChessPiece piece = board.getPieceAt(fromRow, fromCol);
 
         // Look at the target BEFORE moving: if an enemy stands there, this
         // move is a capture, and we want to name the victim.
-        ChessPiece target = null;
-        if (toRow >= 0 && toRow <= 7 && toCol >= 0 && toCol <= 7) {
-            target = board.getPieceAt(toRow, toCol);
-        }
+        ChessPiece target = board.getPieceAt(toRow, toCol);
 
         if (!board.movePiece(piece, toRow, toCol)) {
             System.out.println("Illegal move: (" + fromRow + "," + fromCol + ") -> (" + toRow + "," + toCol
@@ -173,10 +170,10 @@ public class ChessGame {
             int toRow = scanner.nextInt();
             int toCol = scanner.nextInt();
 
-            if (fromRow < 0 || fromRow > 7 || fromCol < 0 || fromCol > 7
-                    || board.getPieceAt(fromRow, fromCol) == null) {
+            ChessPiece chosen = board.getPieceAt(fromRow, fromCol);   // null off the board too
+            if (chosen == null) {
                 System.out.println("There is no piece on (" + fromRow + "," + fromCol + ")");
-            } else if (board.getPieceAt(fromRow, fromCol).isWhite() != whiteToMove) {
+            } else if (chosen.isWhite() != whiteToMove) {
                 System.out.println("That piece is not yours!");
             } else if (movePiece(fromRow, fromCol, toRow, toCol)) {
                 whiteToMove = !whiteToMove;   // the move was made: other player's turn

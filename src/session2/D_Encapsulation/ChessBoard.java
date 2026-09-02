@@ -24,7 +24,7 @@ public class ChessBoard {
      * the whole point of being a method instead of a public array.
      */
     public boolean placePiece(int row, int col, ChessPiece piece) {
-        if (row < 0 || row > 7 || col < 0 || col > 7) {
+        if (!isOnBoard(row, col)) {
             return false;               // no such square
         }
         if (pieces[row][col] != null) {
@@ -36,8 +36,20 @@ public class ChessBoard {
         return true;
     }
 
-    /** Reading is harmless: anyone may look at any square. */
+    /**
+     * Reading is harmless: anyone may look at any square — even one that
+     * does not exist, and get null back instead of a crash. The board is
+     * the one place that knows it is 8x8; nobody asking it has to.
+     */
     public ChessPiece getPieceAt(int row, int col) {
+        if (!isOnBoard(row, col)) {
+            return null;
+        }
         return pieces[row][col];
+    }
+
+    /** Does this square exist? Static: about coordinates, not about this board. */
+    private static boolean isOnBoard(int row, int col) {
+        return row >= 0 && row <= 7 && col >= 0 && col <= 7;
     }
 }
