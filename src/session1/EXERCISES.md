@@ -79,6 +79,10 @@ Discussion:
 
 Your chess club wants statistics: how many times has each piece moved?
 
+Each *individual* piece has its own counter. The two white rooks are two
+pieces, so they are two counters, and the same goes for the two bishops.
+That is where the difficulty of this exercise lives, so read it twice.
+
 This is the first exercise where the design is yours. There are no objects in
 this program, a piece is just a `char` inside an array, so the central
 question is where you store each piece's counter. Think about it and sketch
@@ -92,9 +96,16 @@ Work in [`E_ChessGame.java`](E_ChessGame.java). You will touch at least
 - When a piece moves, print its counter: `White Queen has now moved 3 times`.
 - Decide what must happen to the counter of a piece that gets captured, and
   make your code do it.
-- Then answer two questions using your program: how many times has the white
-  queen moved so far? And how many times has each of the two white rooks
-  moved?
+- Then answer two questions by reading the output of the scripted game: how
+  many times has the white queen moved so far? And how many times has each
+  of the two white rooks moved? The printed messages are enough; you do not
+  need to print a summary at the end. If you want one anyway, put it in a
+  method of its own, and count it as part of the cost.
+
+Stuck on where to start? Before you code, ask your sketch two questions.
+What happens to the counter when its piece moves to another square? And
+what happens to it when its piece is captured? Remember that all `movePiece`
+knows is the board and four numbers.
 
 Discussion:
 
