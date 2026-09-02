@@ -61,27 +61,26 @@ public class ChessGame {
 
     /** The initial position — the same twelve pieces as session 1. */
     private void setupPieces() {
-        // Each 'new' creates a piece AND registers it on the board (the
-        // constructor does that). We do not even keep the variables: the
-        // board holds a reference to every piece, and that keeps them
-        // alive. Exercise 2 will want some of these back — you will have
-        // to hold on to them.
+        // Step D's protocol, twelve times: a piece is born off the board,
+        // and the board places it. We keep no variables: the board holds a
+        // reference to every piece, and that keeps them alive. Exercise 2
+        // will want some of these back — you will have to hold on to them.
 
         // Black pieces (lowercase), top of the board.
-        new ChessPiece(board, 'r', 0, 0);
-        new ChessPiece(board, 'b', 0, 2);
-        new ChessPiece(board, 'q', 0, 3);
-        new ChessPiece(board, 'k', 0, 4);
-        new ChessPiece(board, 'b', 0, 5);
-        new ChessPiece(board, 'r', 0, 7);
+        board.placePiece(0, 0, new ChessPiece('r'));
+        board.placePiece(0, 2, new ChessPiece('b'));
+        board.placePiece(0, 3, new ChessPiece('q'));
+        board.placePiece(0, 4, new ChessPiece('k'));
+        board.placePiece(0, 5, new ChessPiece('b'));
+        board.placePiece(0, 7, new ChessPiece('r'));
 
         // White pieces (uppercase), bottom of the board.
-        new ChessPiece(board, 'R', 7, 0);
-        new ChessPiece(board, 'B', 7, 2);
-        new ChessPiece(board, 'Q', 7, 3);
-        new ChessPiece(board, 'K', 7, 4);
-        new ChessPiece(board, 'B', 7, 5);
-        new ChessPiece(board, 'R', 7, 7);
+        board.placePiece(7, 0, new ChessPiece('R'));
+        board.placePiece(7, 2, new ChessPiece('B'));
+        board.placePiece(7, 3, new ChessPiece('Q'));
+        board.placePiece(7, 4, new ChessPiece('K'));
+        board.placePiece(7, 5, new ChessPiece('B'));
+        board.placePiece(7, 7, new ChessPiece('R'));
     }
 
     /** Prints the board — the same picture as session 1, to the character. */

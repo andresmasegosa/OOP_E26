@@ -11,33 +11,34 @@ package session2.E_ChessGame;
  *     the type. Remember this switch. It is the last of its kind in the
  *     program, and session 3 is about making it disappear.
  *
- * A piece also knows WHICH board it stands on (the board field), and
- * creating a piece registers it on that board: one statement, one whole
- * piece, already standing on its square.
+ * This is step D's ChessPiece with behaviour added, and the same protocol:
+ * a piece is born off the board, at (-1,-1), and the BOARD places it. A
+ * piece does not even know which board it stands on. When the board wants
+ * to know whether a move is legal it hands itself over — see
+ * isLegalMove(board, toRow, toCol) — because walking the path between two
+ * squares needs a board, and the board is the one asking.
  */
 public class ChessPiece {
 
     private String type;    // "King", "Queen", "Rook" or "Bishop"
     private String color;   // "White" or "Black"
-    private int row = -1;   // (-1,-1) until a board accepts the piece
+    private int row = -1;   // (-1,-1) until a board places the piece — as in step D
     private int col = -1;
-    private ChessBoard board;
 
-    public ChessPiece(ChessBoard board, String type, String color, int row, int col) {
-        this.board = board;
+    /** Step D's constructor, unchanged: what the piece is, not where. */
+    public ChessPiece(String type, String color) {
         this.type = type;
         this.color = color;
-        board.placePiece(row, col, this);   // 'this' is the piece being built
     }
 
     /**
      * An overloaded constructor that speaks session 1's language: 'Q' is
-     * the white queen, 'q' the black one. Its first line CHAINS to the
+     * the white queen, 'q' the black one. Its only line CHAINS to the
      * constructor above with this(...): translate the letter, then build
      * the piece the normal way.
      */
-    public ChessPiece(ChessBoard board, char letter, int row, int col) {
-        this(board, typeFromLetter(letter), colorFromLetter(letter), row, col);
+    public ChessPiece(char letter) {
+        this(typeFromLetter(letter), colorFromLetter(letter));
     }
 
     /** Session 1's pieceName, repurposed: from a letter to a type name. */
@@ -116,14 +117,16 @@ public class ChessPiece {
     }
 
     /**
-     * May this piece move to (toRow, toCol)? Each type has its own rule,
-     * so we switch on the type — exactly like session 1's isLegalMove did.
-     * The refactor moved the switch HOME, into the piece; it did not kill
-     * it. Whether it can be killed is session 3's question.
+     * May this piece move to (toRow, toCol) on that board? Each type has
+     * its own rule, so we switch on the type — exactly like session 1's
+     * isLegalMove did. The refactor moved the switch HOME, into the piece;
+     * it did not kill it. Whether it can be killed is session 3's question.
      *
-     * The Movements helpers also check that no piece blocks the path.
+     * The board is a parameter, not a field: the piece does not need to
+     * know its board, only to answer a question about it. The Movements
+     * helpers walk the path on that board and check that nothing blocks it.
      */
-    public boolean isLegalMove(int toRow, int toCol) {
+    public boolean isLegalMove(ChessBoard board, int toRow, int toCol) {
         switch (type) {
             case "King":
                 return Movements.isLegalHorizontalMove(board, row, col, toRow, toCol, 1)
@@ -143,9 +146,9 @@ public class ChessPiece {
         }
     }
 
-    // Only the board relocates pieces. These doors are protected — open to
-    // this package (that is: the board) and, from session 3 on, to
-    // subclasses. Not to the rest of the program.
+    // Only the board relocates pieces — as in step D. These doors are
+    // protected: open to this package (that is: the board) and, from
+    // session 3 on, to subclasses. Not to the rest of the program.
     protected void setRow(int row) {
         this.row = row;
     }

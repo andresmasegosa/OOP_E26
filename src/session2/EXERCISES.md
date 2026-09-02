@@ -121,12 +121,13 @@ The saboteur lines are waiting in `main`, search for `EXERCISE 3`.
   scripted game and run:
 
   ```java
-  new ChessPiece(game.getBoard(), 'Q', 4, 4);
+  game.getBoard().placePiece(4, 4, new ChessPiece('Q'));
   ```
 
-  A second white queen, and every check passed politely. Which invariants
-  survived? Which chess-sense rule ("pieces are not created mid-game")
-  did not — and which class was supposed to enforce it?
+  A second white queen. `placePiece` checked that the square exists and
+  is empty — and nothing else. Which invariants survived? Which
+  chess-sense rule ("pieces are not created mid-game") did not — and
+  which class was supposed to enforce it?
 - One more, subtler: in `main`, call `setRow(3)` on a piece you hold. It
   compiles. `setRow` is `protected` — so why does *your* code reach it?
   (Look at the package `Demo` lives in. The full visibility table is
@@ -150,10 +151,10 @@ Discussion:
    (Hint: it controls *who* can change state. Does it control whether a
    change *makes sense*?)
 2. `placePiece` validates its square and refuses politely, by returning
-   `false` — and the constructor that called it ignores the answer, so a
-   refused piece simply exists off every board. Is a `boolean` a loud
-   enough "no"? Keep your answer for session 8, where refusals become
-   first-class.
+   `false` — and `setupPieces` never looks at the answer, so a refused
+   piece would simply exist off every board and nobody would know. Is a
+   `boolean` a loud enough "no"? Keep your answer for session 8, where
+   refusals become first-class.
 
 ## Exercise 4 — the knights, again (stretch goal)
 

@@ -44,7 +44,7 @@ public class Demo {
         //
         // Try the equivalent now — uncomment and compile:
         //
-        // game.getBoard().pieces[4][4] = new ChessPiece(game.getBoard(), 'Q', 4, 4);
+        // game.getBoard().pieces[4][4] = new ChessPiece('Q');
         //
         // It does not compile: "pieces has private access in ChessBoard".
         // That is your one-sentence answer from session 1, exercise 4,
