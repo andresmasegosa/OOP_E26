@@ -26,4 +26,4 @@ allowed_concepts:
   - encapsulation, private and public, getters and setters
   - protected and package visibility, at the level the slides present them
   - packages, import and fully-qualified names
-  - static vs instance members (main and Movements are static; the game's methods are not)
+  - static vs instance members (Demo's main and Movements are static; ChessGame has no static member)

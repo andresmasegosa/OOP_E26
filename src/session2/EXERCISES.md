@@ -16,7 +16,7 @@ with a global reflection. Write your notes as you go.
 
 Run the four demos, `A_` to `D_`, predicting every printed line before you
 run it. Then, in the `main` method of
-[`ChessGame.java`](E_ChessGame/ChessGame.java):
+[`Demo.java`](E_ChessGame/Demo.java), which is where the game is started:
 
 - Add two moves of your own to the scripted game, one legal and one
   illegal. Predict the output before you run.
@@ -27,10 +27,10 @@ Discussion:
 1. Put session 1's `E_ChessGame` next to `ChessGame`. One parameter
    disappeared from every method. Which one, and where did it go? And
    what happened to `whiteToMove`?
-2. `ChessGame` has one `static` method and four that are not;
-   `Movements` has three `static` methods and nothing else. Explain each
-   choice in one sentence. What could `main` not do if it were an
-   instance method?
+2. `ChessGame` has no `static` method at all; `Demo` is one `static`
+   method and nothing else; `Movements` has three `static` methods and
+   nothing else. Explain each choice in one sentence. What could `main`
+   not do if it were an instance method of `ChessGame`?
 
 ## Exercise 1 — wake up the bishops. Again.
 
@@ -129,7 +129,7 @@ The saboteur lines are waiting in `main`, search for `EXERCISE 3`.
   did not — and which class was supposed to enforce it?
 - One more, subtler: in `main`, call `setRow(3)` on a piece you hold. It
   compiles. `setRow` is `protected` — so why does *your* code reach it?
-  (Look at the package `ChessGame` lives in. The full visibility table is
+  (Look at the package `Demo` lives in. The full visibility table is
   on the slides; the lesson is that a package is a trust boundary, and
   exercise code living inside the package lives inside the trust.)
 - And the door you have been using all along: `getBoard()` hands out the

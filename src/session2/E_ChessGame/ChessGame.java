@@ -19,16 +19,13 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  *     1's — the board parameter is gone from every one of them, because
  *     'this' game already has one.
  *
- * STATIC OR NOT? Read the modifiers in this file and in Movements.java.
- *   - main is static: it runs before any ChessGame exists, and its job is
- *     to create one. A static method belongs to the class, not to an
- *     object, so it has no 'this' and no fields to work on.
- *   - Every other method here is an instance method: it works on THIS
- *     game's board and THIS game's turn.
- *   - Movements is all static, and ChessPiece.typeFromLetter is static:
- *     pure computations that need no object — geometry, a translation.
- *   The rule: static when there is no object the code belongs to;
- *   instance when the code is about one object's state.
+ * STATIC OR NOT? This class has no static method at all — not even main,
+ * which lives in Demo.java next door. Everything a game does is about ONE
+ * game, its board and its turn, so every method here is an instance
+ * method. Demo's main is static because it runs before any ChessGame
+ * exists; Movements is static because it is geometry with no state. The
+ * rule: static when there is no object the code belongs to; instance when
+ * the code is about one object's state.
  *
  * THE RULES (mini-chess, unchanged)
  *   Only kings, queens, rooks and bishops. No pawns, no knights, no check,
@@ -51,41 +48,6 @@ public class ChessGame {
     public ChessGame() {
         this.board = new ChessBoard();
         setupPieces();
-    }
-
-    public static void main(String[] args) {
-        ChessGame game = new ChessGame();
-        game.printBoard();
-
-        // --- The same short scripted game as session 1 -------------------
-        // Coordinates are (row, col): see the numbers around the board.
-        // Session 1 wrote movePiece(board, 7, 3, 4, 3). The board is gone
-        // from the call: it is the game's own.
-
-        game.movePiece(7, 3, 4, 3);   // White queen straight up: legal
-        game.movePiece(0, 0, 2, 2);   // Black rook diagonally: illegal
-        game.movePiece(7, 0, 7, 2);   // White rook onto its own bishop: illegal
-        game.movePiece(4, 3, 0, 3);   // The white queen captures the black queen!
-        game.movePiece(0, 4, 0, 3);   // ...and the black king takes revenge.
-        game.movePiece(7, 5, 5, 3);   // White bishop: still nobody taught it. Exercise 1!
-
-        game.printBoard();
-
-        // --- EXERCISE 3: the sabotage, revisited --------------------------
-        // Session 1's saboteur wrote straight onto the array:
-        //
-        //     board[4][4] = 'Q';
-        //
-        // Try the equivalent now — uncomment and compile:
-        //
-        // game.getBoard().pieces[4][4] = new ChessPiece(game.getBoard(), 'Q', 4, 4);
-        //
-        // It does not compile: "pieces has private access in ChessBoard".
-        // That is your one-sentence answer from session 1, exercise 4,
-        // enforced by the compiler. Whether EVERY door is as well guarded
-        // is another question — EXERCISES.md, exercise 3.
-
-        game.play();
     }
 
     /**

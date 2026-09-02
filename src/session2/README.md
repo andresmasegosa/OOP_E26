@@ -40,7 +40,8 @@ piece, and the board stops being writable by anyone who feels like it.
      in `Demo`, compile, and read both error messages out loud.
 
 4. Then read the game itself, [`E_ChessGame`](E_ChessGame/), in this order:
-   `ChessPiece`, `ChessBoard`, `Movements`, `ChessGame`. Run it and play.
+   `ChessPiece`, `ChessBoard`, `Movements`, `ChessGame`, and last `Demo`,
+   which starts it. Run `Demo` and play.
    Three questions to bring:
 
    - Where is it decided whether a queen's move is legal — and how does
@@ -48,8 +49,8 @@ piece, and the board stops being writable by anyone who feels like it.
    - Who can write on the board's array now? List every way in.
    - The bishops still do not move. Before touching any code: how many
      places do you *expect* to change this time?
-   - `ChessGame` has one `static` method and four that are not, and
-     `Movements` has only `static` ones. Bring a guess why.
+   - `ChessGame` has no `static` method at all, `Demo` has nothing but
+     one, and `Movements` has only `static` ones. Bring a guess why.
 
 Nothing needs to be fixed before class. If something confuses you, write the
 question down and bring it.
@@ -68,7 +69,7 @@ question down and bring it.
 | `B_ReferencesAndAliasing/` | what a variable really holds; aliasing, `==`, the heap |
 | `C_Constructors/` | born whole: constructors, overloading, `this` |
 | `D_Encapsulation/` | `private`, getters, doors that refuse: the sabotage dies |
-| `E_ChessGame/` | the whole game rebuilt: `ChessPiece` + `ChessBoard` + `Movements`, and `ChessGame` as an object that has a board and knows whose turn it is |
+| `E_ChessGame/` | the whole game rebuilt: `ChessPiece` + `ChessBoard` + `Movements`, and `ChessGame` as an object that has a board and knows whose turn it is; `Demo` starts it |
 
 ## Conventions used by the game
 
@@ -77,5 +78,5 @@ question down and bring it.
   and bishops.
 - A piece is now an **object**. The letters (`'Q'`, `'q'`, …) survive only
   as what a piece prints on the board — see `ChessPiece.getSymbol()`.
-- Run `ChessGame` and it behaves exactly like session 1's `E_ChessGame`,
+- Run `Demo` and the game behaves exactly like session 1's `E_ChessGame`,
   message for message. That is the point: same game, different bones.
