@@ -22,12 +22,22 @@ run it. Then, in the `main` method of
   illegal. Predict the output before you run.
 - Play a full game with a classmate until one king falls.
 
+Discussion:
+
+1. Put session 1's `E_ChessGame` next to `ChessGame`. One parameter
+   disappeared from every method. Which one, and where did it go? And
+   what happened to `whiteToMove`?
+2. `ChessGame` has one `static` method and four that are not;
+   `Movements` has three `static` methods and nothing else. Explain each
+   choice in one sentence. What could `main` not do if it were an
+   instance method?
+
 ## Exercise 1 — wake up the bishops. Again.
 
 Same job as last week: the bishops are on the board and the program does
 not know how they move. Teach it — diagonally, any number of squares.
 
-You are done when the move `movePiece(board, 7, 5, 5, 3)` in `main`
+You are done when the move `game.movePiece(7, 5, 5, 3)` in `main`
 succeeds. Start by deciding where the change belongs; your reading of
 `E_ChessGame` should already have given you a suspect.
 
@@ -73,12 +83,12 @@ time."* This design has what was missing.
 - Now answer the club's questions, in `main`, *without searching the
   board*: how many times has the white queen moved in the scripted game?
   And each of the two white rooks, separately? You do not need to touch
-  `setupBoard`: ask the board for the pieces before the game starts —
-  `board.getPieceAt(7, 3)` hands you the queen herself — and hold on to
-  what it gives you.
+  `setupPieces`: ask the game for its board, and the board for the pieces,
+  before the game starts — `game.getBoard().getPieceAt(7, 3)` hands you
+  the queen herself — and hold on to what it gives you.
 - One of your references is now a **ghost**: the white queen is captured
   in move 5 of the script. Ask her anyway. What do `getMoveCount()`,
-  `getRow()` and `getCol()` say? And what does `board.getPieceAt(0, 3)`
+  `getRow()` and `getCol()` say? And what does `game.getBoard().getPieceAt(0, 3)`
   say about who stands there?
 
 Discussion:
@@ -111,7 +121,7 @@ The saboteur lines are waiting in `main`, search for `EXERCISE 3`.
   scripted game and run:
 
   ```java
-  new ChessPiece(board, 'Q', 4, 4);
+  new ChessPiece(game.getBoard(), 'Q', 4, 4);
   ```
 
   A second white queen, and every check passed politely. Which invariants
@@ -122,6 +132,17 @@ The saboteur lines are waiting in `main`, search for `EXERCISE 3`.
   (Look at the package `ChessGame` lives in. The full visibility table is
   on the slides; the lesson is that a package is a trust boundary, and
   exercise code living inside the package lives inside the trust.)
+- And the door you have been using all along: `getBoard()` hands out the
+  board itself, its own doors included. In `main`, move a Black piece
+  through it while it is still White's turn:
+
+  ```java
+  game.getBoard().movePiece(game.getBoard().getPieceAt(0, 7), 3, 7);
+  ```
+
+  It moves. "White moves first" is a rule of this program — which
+  class enforces it today, and which class did you just walk around?
+  Whose rule *should* it be?
 
 Discussion:
 
@@ -146,7 +167,7 @@ reading on.
 
 You should find *more* places than the bishop needed — and, depending on
 your session 1 solution, possibly more than the knight cost you last week.
-Look at where they are: `setupBoard`, the movement switch, and **two**
+Look at where they are: `setupPieces`, the movement switch, and **two**
 letter translations (`typeFromLetter`, `getSymbol`) where session 1 had
 one (`pieceName`).
 
@@ -158,7 +179,7 @@ Discussion:
    not make cheap?
 2. The letter translations exist because a piece type is a `String` that
    the board world writes as a `char`. Would you drop the char
-   constructor to save a switch? What would `setupBoard` look like then?
+   constructor to save a switch? What would `setupPieces` look like then?
    (Session 8 dissolves this trade-off: a type will become something that
    is neither a char nor a free-form String.)
 

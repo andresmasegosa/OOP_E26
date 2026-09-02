@@ -48,6 +48,8 @@ piece, and the board stops being writable by anyone who feels like it.
    - Who can write on the board's array now? List every way in.
    - The bishops still do not move. Before touching any code: how many
      places do you *expect* to change this time?
+   - `ChessGame` has one `static` method and four that are not, and
+     `Movements` has only `static` ones. Bring a guess why.
 
 Nothing needs to be fixed before class. If something confuses you, write the
 question down and bring it.
@@ -66,7 +68,7 @@ question down and bring it.
 | `B_ReferencesAndAliasing/` | what a variable really holds; aliasing, `==`, the heap |
 | `C_Constructors/` | born whole: constructors, overloading, `this` |
 | `D_Encapsulation/` | `private`, getters, doors that refuse: the sabotage dies |
-| `E_ChessGame/` | the whole game rebuilt: `ChessPiece` + `ChessBoard` + `Movements` + `ChessGame` |
+| `E_ChessGame/` | the whole game rebuilt: `ChessPiece` + `ChessBoard` + `Movements`, and `ChessGame` as an object that has a board and knows whose turn it is |
 
 ## Conventions used by the game
 

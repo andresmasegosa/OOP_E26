@@ -12,9 +12,23 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  *   - the board's array is PRIVATE, and the only door through which a
  *     piece changes square is ChessBoard.movePiece — session 1's sabotage
  *     no longer compiles;
- *   - this class holds no chess knowledge at all: it prints, it reads
- *     your keyboard, and it asks the board and the pieces for everything
- *     else.
+ *   - the game itself is an object too. In session 1 every method took the
+ *     board as a parameter and "whose turn is it" lived in a local
+ *     variable of play(). Here both are FIELDS: a ChessGame HAS a board and
+ *     knows whose turn it is. Compare the method signatures with session
+ *     1's — the board parameter is gone from every one of them, because
+ *     'this' game already has one.
+ *
+ * STATIC OR NOT? Read the modifiers in this file and in Movements.java.
+ *   - main is static: it runs before any ChessGame exists, and its job is
+ *     to create one. A static method belongs to the class, not to an
+ *     object, so it has no 'this' and no fields to work on.
+ *   - Every other method here is an instance method: it works on THIS
+ *     game's board and THIS game's turn.
+ *   - Movements is all static, and ChessPiece.typeFromLetter is static:
+ *     pure computations that need no object — geometry, a translation.
+ *   The rule: static when there is no object the code belongs to;
+ *   instance when the code is about one object's state.
  *
  * THE RULES (mini-chess, unchanged)
  *   Only kings, queens, rooks and bishops. No pawns, no knights, no check,
@@ -26,22 +40,36 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  */
 public class ChessGame {
 
+    private ChessBoard board;             // the game HAS a board: no longer a parameter
+    private boolean whiteToMove = true;   // whose turn: no longer a local variable of play()
+
+    /**
+     * A game is born whole: with its board and all twelve pieces on it. A
+     * ChessGame without a board makes no sense, so the constructor does not
+     * let one exist.
+     */
+    public ChessGame() {
+        this.board = new ChessBoard();
+        setupPieces();
+    }
+
     public static void main(String[] args) {
-        ChessBoard board = new ChessBoard();
-        setupBoard(board);
-        printBoard(board);
+        ChessGame game = new ChessGame();
+        game.printBoard();
 
         // --- The same short scripted game as session 1 -------------------
         // Coordinates are (row, col): see the numbers around the board.
+        // Session 1 wrote movePiece(board, 7, 3, 4, 3). The board is gone
+        // from the call: it is the game's own.
 
-        movePiece(board, 7, 3, 4, 3);   // White queen straight up: legal
-        movePiece(board, 0, 0, 2, 2);   // Black rook diagonally: illegal
-        movePiece(board, 7, 0, 7, 2);   // White rook onto its own bishop: illegal
-        movePiece(board, 4, 3, 0, 3);   // The white queen captures the black queen!
-        movePiece(board, 0, 4, 0, 3);   // ...and the black king takes revenge.
-        movePiece(board, 7, 5, 5, 3);   // White bishop: still nobody taught it. Exercise 1!
+        game.movePiece(7, 3, 4, 3);   // White queen straight up: legal
+        game.movePiece(0, 0, 2, 2);   // Black rook diagonally: illegal
+        game.movePiece(7, 0, 7, 2);   // White rook onto its own bishop: illegal
+        game.movePiece(4, 3, 0, 3);   // The white queen captures the black queen!
+        game.movePiece(0, 4, 0, 3);   // ...and the black king takes revenge.
+        game.movePiece(7, 5, 5, 3);   // White bishop: still nobody taught it. Exercise 1!
 
-        printBoard(board);
+        game.printBoard();
 
         // --- EXERCISE 3: the sabotage, revisited --------------------------
         // Session 1's saboteur wrote straight onto the array:
@@ -50,18 +78,27 @@ public class ChessGame {
         //
         // Try the equivalent now — uncomment and compile:
         //
-        // board.pieces[4][4] = new ChessPiece(board, 'Q', 4, 4);
+        // game.getBoard().pieces[4][4] = new ChessPiece(game.getBoard(), 'Q', 4, 4);
         //
         // It does not compile: "pieces has private access in ChessBoard".
         // That is your one-sentence answer from session 1, exercise 4,
         // enforced by the compiler. Whether EVERY door is as well guarded
         // is another question — EXERCISES.md, exercise 3.
 
-        play(board);
+        game.play();
+    }
+
+    /**
+     * The board this game is played on. Reading it is harmless — and yet
+     * this door hands out the board itself, with its own doors attached.
+     * Exercise 3 asks what that lets an outsider do.
+     */
+    public ChessBoard getBoard() {
+        return board;
     }
 
     /** The initial position — the same twelve pieces as session 1. */
-    static void setupBoard(ChessBoard board) {
+    private void setupPieces() {
         // Each 'new' creates a piece AND registers it on the board (the
         // constructor does that). We do not even keep the variables: the
         // board holds a reference to every piece, and that keeps them
@@ -86,7 +123,7 @@ public class ChessGame {
     }
 
     /** Prints the board — the same picture as session 1, to the character. */
-    static void printBoard(ChessBoard board) {
+    public void printBoard() {
         System.out.println();
         System.out.println("        0 1 2 3 4 5 6 7   <- col");
         System.out.println("      +-----------------+");
@@ -111,9 +148,10 @@ public class ChessGame {
      * Tries a move given as squares, session 1 style, and narrates what
      * happened in session 1's exact words. Notice how little this method
      * knows: the board decides, the pieces know their rules, and this
-     * method just talks.
+     * method just talks. (It does not check whose turn it is — play()
+     * does. The scripted game in main moves both sides freely.)
      */
-    static boolean movePiece(ChessBoard board, int fromRow, int fromCol, int toRow, int toCol) {
+    public boolean movePiece(int fromRow, int fromCol, int toRow, int toCol) {
         ChessPiece piece = null;
         if (fromRow >= 0 && fromRow <= 7 && fromCol >= 0 && fromCol <= 7) {
             piece = board.getPieceAt(fromRow, fromCol);
@@ -145,12 +183,11 @@ public class ChessGame {
     /**
      * Play from the keyboard — session 1's loop, almost line for line.
      * The differences are in what the words mean now: "the piece on a
-     * square" is an object, and asking whether it is White means asking
-     * the piece itself.
+     * square" is an object, asking whether it is White means asking the
+     * piece itself, and whose turn it is is a field of this game.
      */
-    static void play(ChessBoard board) {
+    public void play() {
         Scanner scanner = new Scanner(System.in);
-        boolean whiteToMove = true;
 
         System.out.println();
         System.out.println("Your turn! White plays the UPPERCASE pieces and moves first.");
@@ -159,7 +196,7 @@ public class ChessGame {
         System.out.println("Type -1 to quit.");
 
         while (true) {
-            printBoard(board);
+            printBoard();
             if (whiteToMove) {
                 System.out.print("White > ");
             } else {
@@ -180,7 +217,7 @@ public class ChessGame {
                 System.out.println("There is no piece on (" + fromRow + "," + fromCol + ")");
             } else if (board.getPieceAt(fromRow, fromCol).isWhite() != whiteToMove) {
                 System.out.println("That piece is not yours!");
-            } else if (movePiece(board, fromRow, fromCol, toRow, toCol)) {
+            } else if (movePiece(fromRow, fromCol, toRow, toCol)) {
                 whiteToMove = !whiteToMove;   // the move was made: other player's turn
             }
         }
