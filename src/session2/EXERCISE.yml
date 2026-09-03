@@ -19,6 +19,13 @@ not_yet_introduced:
   - collections and generics
   - unit tests
   - design patterns
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise0: "two extra moves added to Demo's main, one legal and one illegal, with the output predicted before running; the two Discussion answers (the parameter that disappeared, and why each of ChessGame, Demo and Movements is instance or static) are written down"
+  exercise1: "game.movePiece(7, 5, 5, 3) in main succeeds and the output reads `White Bishop moves (7,5) -> (5,3)`; the first two rows of the cost-of-change table (places touched, of which switches, did anything warn you) are filled in from the session 1 notes and from this attempt; the student has looked for session 1's second fix (pieceName) and noted what they found"
+  exercise2: "ChessPiece has a private moveCount, a getter, and exactly one place where it grows, called by the board through a door whose visibility was chosen on purpose; every legal move prints `White Queen has now moved 3 times`-style lines with that piece's own counter; main answers the club's questions through references taken before the game starts (game.getBoard().getPieceAt(...)), never by searching the board; the ghost queen's getMoveCount(), getRow() and getCol() and what getPieceAt(0, 3) returns are recorded in the notes"
+  exercise3: "the sabotage is uncommented and the compiler's error is copied into the notes; every public and protected member of ChessBoard and ChessPiece is listed with a yes/no on whether it can break an invariant; the second-queen line, the setRow(3) call and the out-of-turn Black move have each been run and their outcome noted; the two Discussion answers are written down"
+  exercise4: "five written answers, one per question Q1 to Q5, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the sorting into taste and fault, and the list of what was missing, are written down"
+  exercise5: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the places touched are counted, split into rule versus name-and-letter, and compared with the session 1 notes"
 allowed_concepts:
   - everything from session 1
   - classes, objects, fields and instance methods
