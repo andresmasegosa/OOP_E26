@@ -1,4 +1,4 @@
-package session2.A_ClassesAndObjects; // This line, at last, gets explained this session. See README.md.
+package session2.A_ClassesAndObjects; // Packages are this week's pre-class reading (JBG chapter 8), not a topic of the session. See README.md.
 
 /**
  * Session 2, step A — the first class of the course.
