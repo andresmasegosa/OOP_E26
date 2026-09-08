@@ -41,8 +41,10 @@ piece, and the board stops being writable by anyone who feels like it.
 
 4. Then read the game itself, [`E_ChessGame`](E_ChessGame/), in this order:
    `ChessPiece`, `ChessBoard`, `Movements`, `ChessGame`, and last `Demo`,
-   which starts it. Run `Demo` and play.
-   Three questions to bring:
+   which starts it. Every folder of this session has a class called `Demo`;
+   from here on, and in `EXERCISES.md`, `Demo` on its own means this one,
+   `E_ChessGame/Demo`. Run it and play: the game tells you on every turn how
+   to type a move. Four questions to bring:
 
    - Where is it decided whether a queen's move is legal — and how does
      your answer differ from last week's?
@@ -78,5 +80,9 @@ question down and bring it.
   and bishops.
 - A piece is now an **object**. The letters (`'Q'`, `'q'`, …) survive only
   as what a piece prints on the board — see `ChessPiece.getSymbol()`.
-- Run `Demo` and the game behaves exactly like session 1's `E_ChessGame`,
-  message for message. That is the point: same game, different bones.
+- Run `E_ChessGame/Demo` and the scripted game prints exactly session 1's
+  lines, message for message. That is the point: same game, different bones.
+  The one visible change is the keyboard loop in `ChessGame.play`: it now
+  says how to type a move on every turn and forgives a typo, where session
+  1's loop stopped dead on one. That is provided code, not a topic of the
+  session.

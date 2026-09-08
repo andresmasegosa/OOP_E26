@@ -5,9 +5,9 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
 /**
  * Session 2 — the same chess game as session 1, rebuilt on classes.
  *
- * Same board, same rules, same missing bishops. Play it: it behaves
- * exactly like session 1's E_ChessGame, to the letter. What changed is
- * everything you cannot see from the outside:
+ * Same board, same rules, same missing bishops. Run Demo: the scripted game
+ * prints exactly session 1's lines. What changed is everything you cannot
+ * see from the outside:
  *   - a piece is an OBJECT that carries its own type, color and square;
  *   - the board's array is PRIVATE, and the only door through which a
  *     piece changes square is ChessBoard.movePiece — session 1's sabotage
@@ -21,6 +21,12 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  *   - even the picture of the board is the board's own: printBoard here
  *     only asks, and ChessBoard.print draws. This class reads your
  *     keyboard, narrates moves, and knows no chess at all.
+ *
+ * One thing DID change on the surface, on purpose: the keyboard loop in
+ * play() now says how to type a move on every turn and forgives a typo,
+ * where session 1's loop stopped dead on one. There is nothing
+ * object-oriented about that change; it is there because a game you cannot
+ * play is no fun.
  *
  * STATIC OR NOT? This class has no static method at all — not even main,
  * which lives in Demo.java next door. Everything a game does is about ONE
@@ -95,8 +101,9 @@ public class ChessGame {
      * Tries a move given as squares, session 1 style, and narrates what
      * happened in session 1's exact words. Notice how little this method
      * knows: the board decides, the pieces know their rules, and this
-     * method just talks. (It does not check whose turn it is — play()
-     * does. The scripted game in main moves both sides freely.)
+     * method just talks. (It does not check whose turn it is — the
+     * keyboard game does, in takeTurn. The scripted game in Demo's main
+     * moves both sides freely.)
      */
     public boolean movePiece(int fromRow, int fromCol, int toRow, int toCol) {
         // No bounds to check here: the board answers null for a square that
@@ -125,45 +132,92 @@ public class ChessGame {
     }
 
     /**
-     * Play from the keyboard — session 1's loop, almost line for line.
-     * The differences are in what the words mean now: "the piece on a
-     * square" is an object, asking whether it is White means asking the
-     * piece itself, and whose turn it is is a field of this game.
+     * Play from the keyboard. White and Black take turns, and a move is
+     * typed as one line of four numbers: the square of the piece, then the
+     * square it goes to — fromRow fromCol toRow toCol, for example 7 3 4 3.
+     *
+     * This is session 1's loop with two changes on the surface: it repeats
+     * how to type a move on every turn, and a mistyped line gets a message
+     * instead of a crash. Under the surface everything changed: "the piece
+     * on a square" is an object, asking whether it is White means asking
+     * the piece itself, and whose turn it is is a field of this game.
+     *
+     * Scanner is the same tool as in session 1. Reading a whole line
+     * (nextLine) and then looking at it before taking numbers out of it
+     * (hasNextInt) is what makes a typo forgivable — nothing about classes
+     * or objects in that, so do not look for the session in here.
      */
     public void play() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner keyboard = new Scanner(System.in);
 
         System.out.println();
         System.out.println("Your turn! White plays the UPPERCASE pieces and moves first.");
-        System.out.println("A move is four numbers separated by spaces: fromRow fromCol toRow toCol");
-        System.out.println("For example, typing  7 0 5 0  tries to move the piece on (7,0) to (5,0).");
-        System.out.println("Type -1 to quit.");
 
         while (true) {
             printBoard();
-            if (whiteToMove) {
-                System.out.print("White > ");
-            } else {
-                System.out.print("Black > ");
-            }
 
-            int fromRow = scanner.nextInt();
-            if (fromRow == -1) {
+            String player;
+            if (whiteToMove) {
+                player = "White";
+            } else {
+                player = "Black";
+            }
+            System.out.println(player + " to move. Type the square of the piece and the square it goes to,");
+            System.out.println("as four numbers: fromRow fromCol toRow toCol   (for example: 7 3 4 3). Type q to quit.");
+            System.out.print(player + " > ");
+
+            if (!keyboard.hasNextLine()) {      // the input ended (Ctrl-D, or a file ran out)
+                System.out.println();
                 System.out.println("Thanks for playing!");
                 return;
             }
-            int fromCol = scanner.nextInt();
-            int toRow = scanner.nextInt();
-            int toCol = scanner.nextInt();
-
-            ChessPiece chosen = board.getPieceAt(fromRow, fromCol);   // null off the board too
-            if (chosen == null) {
-                System.out.println("There is no piece on (" + fromRow + "," + fromCol + ")");
-            } else if (chosen.isWhite() != whiteToMove) {
-                System.out.println("That piece is not yours!");
-            } else if (movePiece(fromRow, fromCol, toRow, toCol)) {
-                whiteToMove = !whiteToMove;   // the move was made: other player's turn
+            String line = keyboard.nextLine().trim();
+            if (line.equals("q") || line.equals("quit")) {
+                System.out.println("Thanks for playing!");
+                return;
             }
+
+            // Be forgiving about punctuation: "7,3 4,3" and "(7,3) -> (4,3)",
+            // which is how the game itself writes a move, both mean 7 3 4 3.
+            String cleaned = line.replace(",", " ").replace("(", " ").replace(")", " ").replace("->", " ");
+
+            // Pull the four numbers out of the line. A second Scanner reads
+            // the line the way the first one reads the keyboard, and
+            // hasNextInt() lets us look before we take: a typo produces a
+            // message, not a crash.
+            Scanner numbers = new Scanner(cleaned);
+            int[] squares = new int[4];
+            int found = 0;
+            while (found < 4 && numbers.hasNextInt()) {
+                squares[found] = numbers.nextInt();
+                found++;
+            }
+
+            if (found < 4 || numbers.hasNext()) {
+                System.out.println("Sorry, I did not understand \"" + line + "\"."
+                        + " A move is four numbers between 0 and 7, for example: 7 3 4 3");
+            } else {
+                takeTurn(squares[0], squares[1], squares[2], squares[3]);
+            }
+        }
+    }
+
+    /**
+     * One turn of the keyboard game: there must be a piece on the first
+     * square, it must belong to the player whose turn it is, and then the
+     * move is tried; if it was made, the turn passes. This is where "White
+     * moves first" is enforced — the board knows nothing about turns.
+     * Exercise 3 asks what that allows.
+     */
+    private void takeTurn(int fromRow, int fromCol, int toRow, int toCol) {
+        ChessPiece chosen = board.getPieceAt(fromRow, fromCol);   // null off the board too
+        if (chosen == null) {
+            System.out.println("There is no piece on (" + fromRow + "," + fromCol + ")");
+        } else if (chosen.isWhite() != whiteToMove) {
+            System.out.println("That piece is not yours! The " + chosen.getColor() + " " + chosen.getType()
+                    + " on (" + fromRow + "," + fromCol + ") belongs to the other player.");
+        } else if (movePiece(fromRow, fromCol, toRow, toCol)) {
+            whiteToMove = !whiteToMove;   // the move was made: other player's turn
         }
     }
 }

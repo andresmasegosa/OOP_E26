@@ -9,7 +9,7 @@ objectives:
   - hold a piece through a reference and explain aliasing and identity with it
   - list the doors of an encapsulated class and say what each one defends
   - weigh alternative designs for the same code, name what each one costs, and recognise when this session's tools cannot express the better one
-  - keep the cost-of-change table growing; it feeds session 3
+  - keep the cost-of-change lines growing (a comment at the top of Demo.main); they feed session 3
   - tell static members from instance members and say why each method in the game package is one or the other
 not_yet_introduced:
   - inheritance, abstract classes and interfaces
@@ -20,12 +20,12 @@ not_yet_introduced:
   - unit tests
   - design patterns
 done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
-  exercise0: "two extra moves added to Demo's main, one legal and one illegal, with the output predicted before running; the two Discussion answers (the parameter that disappeared, and why each of ChessGame, Demo and Movements is instance or static) are written down"
-  exercise1: "game.movePiece(7, 5, 5, 3) in main succeeds and the output reads `White Bishop moves (7,5) -> (5,3)`; the first two rows of the cost-of-change table (places touched, of which switches, did anything warn you) are filled in from the session 1 notes and from this attempt; the student has looked for session 1's second fix (pieceName) and noted what they found"
-  exercise2: "ChessPiece has a private moveCount, a getter, and exactly one place where it grows, called by the board through a door whose visibility was chosen on purpose; every legal move prints `White Queen has now moved 3 times`-style lines with that piece's own counter; main answers the club's questions through references taken before the game starts (game.getBoard().getPieceAt(...)), never by searching the board; the ghost queen's getMoveCount(), getRow() and getCol() and what getPieceAt(0, 3) returns are recorded in the notes"
-  exercise3: "the sabotage is uncommented and the compiler's error is copied into the notes; every public and protected member of ChessBoard and ChessPiece is listed with a yes/no on whether it can break an invariant; the second-queen line, the setRow(3) call and the out-of-turn Black move have each been run and their outcome noted; the two Discussion answers are written down"
+  exercise0: "two extra moves added to the scripted game in E_ChessGame/Demo.main (the Demo that starts the game, not one of the four demo folders), one legal and one illegal, each with its printed line predicted before running; the two Discussion answers are written down: what the board and whiteToMove became in ChessGame (fields, where session 1 had a parameter and a local variable), and why each of ChessGame, Demo and Movements is instance or static"
+  exercise1: "game.movePiece(7, 5, 5, 3) in E_ChessGame/Demo.main succeeds and the output reads `White Bishop moves (7,5) -> (5,3)`; the cost of the change is written as a comment at the top of Demo.main — places touched, of which switches, whether anything warned — one line for this attempt and one line for session 1 taken from the notes; the student has looked for session 1's second fix (pieceName) and noted what they found"
+  exercise2: "ChessPiece has a private moveCount, a public getter, and exactly one method through which it grows, called from ChessBoard.movePiece only, with a visibility chosen on purpose and a comment saying why; every move that is made prints a `White Queen has now moved 3 times`-style line with that piece's own counter, from ChessGame.movePiece; Demo.main answers the club's questions through references taken before the scripted game (game.getBoard().getPieceAt(...)), never by searching the board; the captured white queen's getMoveCount(), getRow() and getCol() and what getPieceAt(0, 3) returns are recorded in the notes"
+  exercise3: "the sabotage line in Demo.main is uncommented once and the compiler's error is copied into the notes; every public and protected member of ChessBoard and ChessPiece is listed with a yes/no on whether it can break an invariant; the second-queen line, the setRow(3) call and the out-of-turn Black move have each been run from Demo.main and their outcome noted; the two Discussion answers are written down"
   exercise4: "five written answers, one per question Q1 to Q5, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the sorting into taste and fault, and the list of what was missing, are written down"
-  exercise5: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the places touched are counted, split into rule versus name-and-letter, and compared with the session 1 notes"
+  exercise5: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the places touched are written as a cost line under the bishop's in the comment in Demo.main, split into rule versus name-and-letter, and compared with the session 1 notes"
 allowed_concepts:
   - everything from session 1
   - classes, objects, fields and instance methods
@@ -35,6 +35,7 @@ allowed_concepts:
   - protected and package visibility, at the level the slides present them
   - packages, import and fully-qualified names
   - static vs instance members (Demo's main and Movements are static; ChessGame has no static member)
+  - Scanner as provided code: ChessGame.play reads a whole line with nextLine and checks it with hasNextInt; it is not a topic of the session
 
 # Tightens the contract in /AGENTS.md for one exercise. An exception can only
 # ever tighten it, never loosen it.

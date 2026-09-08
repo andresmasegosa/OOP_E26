@@ -1,9 +1,16 @@
 package session2.E_ChessGame;
 
 /**
- * Starts a game. This class is main and nothing else — the same shape as
+ * Starts the game. This class is main and nothing else — the same shape as
  * the Demo in every other folder of this session: a static entry point
  * whose only job is to create objects and set them going.
+ *
+ * WHICH DEMO? Every folder of this session has a class called Demo, and
+ * they are five different classes; Java tells them apart by their package,
+ * and this one is session2.E_ChessGame.Demo. It is the one that starts the
+ * chess game, and it is the one EXERCISES.md means whenever it says "Demo"
+ * or "Demo.main" — all the code you write this session goes into the main
+ * method below.
  *
  * STATIC OR NOT? Three classes, three answers:
  *   - ChessGame has no static method at all. Everything a game does is
@@ -23,6 +30,9 @@ public class Demo {
         ChessGame game = new ChessGame();
         game.printBoard();
 
+        // --- EXERCISE 2 wants references to some pieces taken HERE, before
+        //     the scripted game moves them. See EXERCISES.md, exercise 2.
+
         // --- The same short scripted game as session 1 -------------------
         // Coordinates are (row, col): see the numbers around the board.
         // Session 1 wrote movePiece(board, 7, 3, 4, 3). The board is gone
@@ -34,6 +44,9 @@ public class Demo {
         game.movePiece(4, 3, 0, 3);   // The white queen captures the black queen!
         game.movePiece(0, 4, 0, 3);   // ...and the black king takes revenge.
         game.movePiece(7, 5, 5, 3);   // White bishop: still nobody taught it. Exercise 1!
+
+        // --- EXERCISE 0: add your two moves here, one legal and one
+        //     illegal, and write down what each will print BEFORE you run.
 
         game.printBoard();
 
@@ -51,6 +64,8 @@ public class Demo {
         // enforced by the compiler. Whether EVERY door is as well guarded
         // is another question — EXERCISES.md, exercise 3.
 
+        // Now it is your turn at the keyboard: play() explains how to type
+        // a move, and asks again if it does not understand you.
         game.play();
     }
 }
