@@ -5,10 +5,8 @@ package session3.E_ChessGame;
  *
  * Open session2/E_ChessGame/ChessBoard.java next to this file and compare
  * the two. Apart from the package line and two comments, not one line is
- * different. ChessPiece became an abstract class with a subclass per type of
- * piece, and the board did not notice, because it never asked a piece what
- * type it is. It calls piece.isLegalMove(this, toRow, toCol) on whatever
- * piece it holds, and the class of that object answers.
+ * different, although ChessPiece is now an abstract class with a subclass per
+ * type of piece. Exercise 0 asks why the board did not have to change.
  *
  * The board keeps session 2's four doors, placePiece, getPieceAt, movePiece
  * and print, and its three invariants. Pieces stand on real squares, there

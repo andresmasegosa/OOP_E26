@@ -11,7 +11,7 @@ The game is eight classes, one per file. `ChessPiece` is abstract. It holds what
 has, the type, the color and the square it stands on, and it declares `ChessPiece.isLegalMove`
 without a body. `King`, `Queen` and `Rook` extend `ChessPiece`, and each one writes its own
 `isLegalMove`. `ChessBoard`, `Movements` and `ChessGame` come from session 2. `ChessBoard` and
-`Movements` did not change at all. `ChessGame` changed in one method, `ChessGame.setupPieces`,
+`Movements` did not change a line of code. `ChessGame` changed in one method, `ChessGame.setupPieces`,
 which now asks `ChessPiece.fromLetter` for each piece. `Demo` has one method, `main`, and
 nothing else.
 
@@ -105,7 +105,7 @@ Then write down what the change cost you. Copy your two cost lines from the top 
 Count as you did last week. Places touched is the number of methods you edited, and a new class
 counts as one place. Of which switches is how many of them were a `switch` that had to learn
 about bishops. For did anything warn me, say for which places the compiler told you and for
-which it did not.
+which it did not. If something only showed up when you ran the program, write that down too.
 
 Discussion:
 
@@ -113,8 +113,9 @@ Discussion:
    went up, look for the reason in your session 2 notes. When you started exercise 1 of
    session 2, which parts of the bishop were already written, and which part was missing?
 2. Before you added the new `case`, what did `ChessPiece.fromLetter('b')` return? The compiler
-   warned you about the rule. Did anything warn you about the letter? Keep the answer for
-   exercise 4.
+   warned you about the rule before the program ever ran. Did anything warn you about the
+   letter, and when? If you placed the bishops in `ChessGame.setupPieces` before you added the
+   `case`, and ran, you have already seen the answer. Keep it for exercise 4.
 3. Session 2 also had a stretch goal that added a type of piece the program did not have at
    all, the knight. Is this bishop more like session 2's bishop or like session 2's knight?
 
@@ -168,6 +169,8 @@ Create a new package next to `E_ChessGame`, called `cheats`. In IntelliJ that is
 `session3.E_ChessGame`, so they are not trusted the way `Demo` is. (Chapter 8, "Packages and
 Member Access" and "Understanding Protected Members", from last week's reading.)
 
+The first attack overrides a method.
+
 - In `session3.cheats`, write a class `CheatingRook` that extends `Rook` and overrides
   `isLegalMove` so that it always returns `true`. It needs an `import` for each class of
   `E_ChessGame` it uses.
@@ -177,37 +180,49 @@ Member Access" and "Understanding Protected Members", from last week's reading.)
 - Stop it without touching `CheatingRook.java`. Find the word you can add to `Rook.java` so that
   `CheatingRook` no longer compiles, and copy the compiler's message. The word works in two
   different places of `Rook.java`. Try both, and copy both messages. (Chapter 7, "Using final".)
+- Before you go on, take the word out of `Rook.java` again, delete `CheatingRook.java`, and
+  remove its lines from `Demo.main`. While one class of the project does not compile, IntelliJ
+  runs nothing, `Demo` included.
 
 The second attack does not override anything. It calls.
 
 - In `session3.cheats`, write a class `CheatingKing` that extends `King` and adds one public
   method, `teleport(int row, int col)`, which calls `setRow(row)` and `setCol(col)`. It
   compiles, because both methods are `protected` and `CheatingKing` is a subclass.
-- In `Demo.main`, replace the rook of the first attack with a white `CheatingKing` on `(4,4)`,
-  call `teleport(0, 7)` on it, then `game.movePiece(4, 4, 1, 7)`, and print the board with
-  `game.printBoard()`. Look at the squares `(4,4)`, `(1,7)` and `(0,7)`. Which invariant of the
-  board broke? The three invariants are written at the top of `ChessBoard.java`. Then read
-  `ChessBoard.movePiece` and find the line that trusted the piece.
-- `final` cannot stop this attack. Find what does. Change the visibility of `ChessPiece.setRow`
-  and `ChessPiece.setCol` so that `ChessBoard` can still call them and `CheatingKing` cannot,
-  and copy the compiler's message. Is it the message you expected? (Chapter 8, "Packages and
-  Member Access", Table 8-1.)
+- In `Demo.main`, put a white `CheatingKing` on `(4,4)`, call `teleport(0, 7)` on it, then
+  `game.movePiece(4, 4, 1, 7)`, and print the board with `game.printBoard()`. Look at the
+  squares `(4,4)`, `(1,7)` and `(0,7)`. Which invariant of the board broke? The three
+  invariants are written at the top of `ChessBoard.java`. Then read `ChessBoard.movePiece` and
+  find the line that trusted the piece.
+- Add a second method to `CheatingKing`, one that takes a `ChessPiece` as a parameter and calls
+  `setRow` on that piece instead of on itself, and compile. `CheatingKing` is a subclass and
+  `setRow` is `protected`, and the compiler refuses all the same. Copy the message, and then
+  delete that second method. (Chapter 8, "Understanding Protected Members".)
+- Try `final` against this attack. Put it on `ChessPiece.setRow`, compile, and run `Demo`. Then
+  take it off, put it on the class `King`, and compile again. Write down which of the two stopped
+  `CheatingKing`, copy the message, and take `final` off again. (Chapter 7, "Using final".)
+- A saboteur who finds `King` closed writes a `CheatingQueen` instead. Find the change that stops
+  every teleporting subclass outside the package, whatever piece it extends. Change the
+  visibility of `ChessPiece.setRow` and `ChessPiece.setCol` so that `ChessBoard` can still call
+  them and `CheatingKing` cannot, and copy the compiler's message. Is it the message you
+  expected? (Chapter 8, "Packages and Member Access", Table 8-1.)
 
-When you are done, comment out or delete the two cheating classes and the lines you added to
-`Demo.main`, so that the project compiles again.
+When you are done, delete `CheatingKing.java` and the lines you added to `Demo.main`, so that the
+project compiles again. Leave `ChessPiece.setRow` and `ChessPiece.setCol` with the visibility you
+chose.
 
 Discussion:
 
-1. `final` stopped the first attack and not the second. Say in one sentence what `final`
-   forbids, and what it does not forbid. Then say in one sentence what `protected` opens, and to
-   whom.
+1. `final` stopped `CheatingRook` from two places in `Rook.java`, and it stopped `CheatingKing`
+   from only one of the two places you tried. Say in one sentence what `final` forbids on a class
+   and what it forbids on a method. Then say why neither would stop a `CheatingQueen` that
+   teleports.
 2. `CheatingRook` extended `Rook`, and you made that impossible. Could a saboteur extend
    `ChessPiece` directly instead? Try it in `session3.cheats` if you want. What in
    `ChessPiece.java` would you have to change to stop that? Look at its constructor.
-3. Before you changed the visibility, add a second method to `CheatingKing` that takes a
-   `ChessPiece` as a parameter and calls `setRow` on it, and compile. `CheatingKing` is a
-   subclass and `setRow` was `protected`. The compiler's answer surprises most people. Explain
-   it in one sentence.
+3. The second method you wrote and deleted called `setRow` on a `ChessPiece` it was given, and
+   the compiler refused, although `CheatingKing` is a subclass and `setRow` was `protected`. Say
+   in one sentence what `protected` lets a subclass in another package do, and what it does not.
 
 ## Exercise 4 — the design review
 
@@ -236,7 +251,8 @@ A queen moves like a rook, and diagonally as well. With `Queen extends Rook`, `Q
 could call `super.isLegalMove(board, toRow, toCol)` for the straight lines and add only the
 diagonals. (Chapter 7, "Using super to Access Superclass Members".) Weigh it. The sentence "a
 queen is a rook" becomes true in the program. Where would that be false in chess? Think of every
-place where the program holds a `Rook`. And what happens to your fix of exercise 3?
+place where the program holds a `Rook`. And what would a `final` on `Rook`, like the one you tried in
+exercise 3, do to this design?
 
 ### Q3 — where should letters be turned into pieces?
 

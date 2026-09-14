@@ -28,7 +28,7 @@ public abstract class ChessPiece {
     /**
      * Nobody can write new ChessPiece(...) any more, because the class is
      * abstract. This constructor still runs, every time a subclass calls
-     * super(type, color) on the first line of its own constructor.
+     * super(type, color) from its own constructor.
      */
     public ChessPiece(String type, String color) {
         this.type = type;
@@ -36,11 +36,10 @@ public abstract class ChessPiece {
     }
 
     /**
-     * Session 2 created pieces with new ChessPiece('Q'). That constructor
-     * cannot exist in an abstract class, so the letter is translated here,
-     * into an object of the right subclass. The method is static because
-     * there is no piece yet to call it on. A letter with no class behind it
-     * gives null.
+     * Session 2 created pieces with new ChessPiece('Q'). ChessPiece is abstract
+     * now, so nobody can write new ChessPiece(...) at all, and this method
+     * turns a letter into an object of the right subclass instead. A letter
+     * with no class behind it gives null.
      */
     public static ChessPiece fromLetter(char letter) {
         String color;
@@ -57,7 +56,7 @@ public abstract class ChessPiece {
             case 'R':
                 return new Rook(color);
             default:
-                return null;   // no class for this letter, and nothing warns (the bishops, exercise 1)
+                return null;   // a letter with no class behind it (the bishops, exercise 1)
         }
     }
 
@@ -118,9 +117,8 @@ public abstract class ChessPiece {
      */
     public abstract boolean isLegalMove(ChessBoard board, int toRow, int toCol);
 
-    // Only the board relocates pieces, as in session 2. Protected opens these
-    // two doors to the classes of this package, the board among them, and to
-    // every subclass, wherever it lives. Exercise 3 is about that last part.
+    // Only the board relocates pieces, as in session 2. Exercise 3 is about who
+    // else can call these two.
     protected void setRow(int row) {
         this.row = row;
     }

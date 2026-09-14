@@ -1,8 +1,8 @@
 # Session 3 — Inheritance and abstract classes: a class for every piece
 
-Last week the game was rebuilt on classes, and one `switch` survived, the one in
-`ChessPiece.isLegalMove`. It had a case for every type of piece and a `default` that stayed
-silent when a piece was forgotten. You ended the session with a wish, that forgetting a type of
+Last week the game was rebuilt on classes, and the rules of the pieces still lived in one
+`switch`, the one in `ChessPiece.isLegalMove`, with a case for every type of piece and a
+`default` that stayed silent when a piece was forgotten. You ended the session with a wish, that forgetting a type of
 piece should be a compile-time error. This session grants it.
 
 The tools are called inheritance and abstract classes. The game is the same one, with the same
@@ -63,7 +63,7 @@ bring it.
 ## Conventions used by the game
 
 - The board, the coordinates and the rules are session 2's. Squares are `(row, col)` from `0`
-  to `7`, row 0 is at the top, and the game is mini-chess with kings, queens, rooks and bishops.
+  to `7`, row 0 is at the top, and the game is mini-chess with kings, queens, rooks and, once exercise 1 is done, bishops.
 - A piece is an object of a subclass of `ChessPiece`. The letters survive in two places,
   `ChessPiece.fromLetter`, which turns `'Q'` into a white `Queen`, and the picture of the board.
 - The scripted game in `Demo.main` is session 2's with one move changed. Move 3 sent a rook onto

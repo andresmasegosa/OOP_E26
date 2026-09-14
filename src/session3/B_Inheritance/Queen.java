@@ -8,7 +8,7 @@ package session3.B_Inheritance;
 public class Queen extends ChessPiece {
 
     public Queen(String color, int row, int col) {
-        super(color);   // the first line, and it builds the ChessPiece part of the object first
+        super(color);   // runs ChessPiece's constructor, so the ChessPiece part exists before the lines below
         setRow(row);    // protected in ChessPiece, and a subclass may call it
         setCol(col);
         System.out.println("  the Queen constructor runs");
