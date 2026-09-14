@@ -24,6 +24,9 @@ prepare before class, and an `EXERCISES.md`.
 | [session2](src/session2/README.md) | Introduction to OOP: the same game rebuilt on classes, objects and encapsulation |
 | session3… | added as the course advances |
 
+The graded assignments are packages under `src/` as well, starting with
+[assignment1](src/assignment1/README.md).
+
 ## Using an AI assistant
 
 - Using an AI assistant is optional.

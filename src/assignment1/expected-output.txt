@@ -1,0 +1,29 @@
+September in the flat
+Freja moves in (14 m2)
+Ali moves in (12 m2)
+Mathilde moves in (10 m2)
+Jonas moves in (14 m2)
+Freja paid 10000 kr: Rent (split by room size)
+Mathilde paid 480 kr: Groceries (split equally)
+Jonas paid 320 kr: Internet (split equally)
+Ali paid 450 kr: Concert ticket for Jonas (for one flatmate)
+Mathilde paid 1720 kr: Paying Freja back (for one flatmate)
+Mathilde moves out
+Sofie moves in (10 m2)
+Sofie paid 200 kr: Cleaning supplies (split equally)
+Jonas cannot move out with a balance of -3180 kr
+
+Balances (+ the others owe you money, - you owe the others)
+  Freja: 5230 kr
+  Ali: -2200 kr
+  Jonas: -3180 kr
+  Sofie: 150 kr
+  Total: 0 kr (always 0 when the accounts are right)
+
+History
+  Freja paid 10000 kr: Rent (split by room size)
+  Mathilde paid 480 kr: Groceries (split equally)
+  Jonas paid 320 kr: Internet (split equally)
+  Ali paid 450 kr: Concert ticket for Jonas (for one flatmate)
+  Mathilde paid 1720 kr: Paying Freja back (for one flatmate)
+  Sofie paid 200 kr: Cleaning supplies (split equally)
