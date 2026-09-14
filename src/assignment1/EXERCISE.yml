@@ -9,7 +9,7 @@ objectives:
   - refer to a flatmate through a reference, never through a position in an array or a name
   - keep every field private and decide which methods may change a balance
   - enforce a rule of the flat inside the class that owns the data, refusing with false
-  - add a new kind of expense and write down what the change cost
+  - add a new type of expense and write down what the change cost
   - draw the class diagram of the program and explain design decisions in writing
 not_yet_introduced:
   - inheritance, abstract classes and interfaces
@@ -25,7 +25,7 @@ allowed_concepts:
 # Tightens the contract in /AGENTS.md for this assignment. An exception can
 # only ever tighten it, never loosen it.
 exception: |
-  This is an individual assignment that is graded, and the course asks every
+  This is an individual assignment that the TA assesses, and the course asks every
   student to do it without any AI assistance. For this assignment the tutor
   gives no help of any kind. That includes hints, reviews, confirming that an
   attempt is correct, comparing designs, explaining what the expected output

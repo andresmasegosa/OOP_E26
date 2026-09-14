@@ -22,7 +22,7 @@ package assignment1;
  *
  * THE EXPENSES
  *   When a flatmate pays for something, addExpense records it in the history
- *   arrays and changes the balances. Each kind of expense has a letter.
+ *   arrays and changes the balances. Each type of expense has a letter.
  *     'E'  split equally between everybody who lives in the flat
  *     'P'  for one flatmate, who owes the whole amount
  *     'R'  the rent, split by the size of each room
@@ -64,7 +64,7 @@ public class FlatShare {
         addExpense('E', "Jonas", 320, "Internet", null);
         addExpense('P', "Ali", 450, "Concert ticket for Jonas", "Jonas");
 
-        // Mathilde pays Freja back and moves out. Sofie moves into the free room.
+        // Mathilde pays Freja back and moves out. Then Sofie moves in.
         addExpense('P', "Mathilde", 1720, "Paying Freja back", "Freja");
         moveOut("Mathilde");
         moveIn("Sofie", 10);
@@ -122,8 +122,8 @@ public class FlatShare {
      * A flatmate paid for something. The expense goes into the history, and
      * then the balances change. The balance of the payer goes up by the whole
      * amount, and the balance of everyone who shares the expense goes down by
-     * their part. How the parts are worked out depends on the kind of expense.
-     * forWhom is only used by the kind 'P', and the other kinds pass null.
+     * their part. How the parts are worked out depends on the type of expense.
+     * forWhom is only used by the type 'P', and the other types pass null.
      */
     static void addExpense(char type, String payerName, int amount, String description, String forWhom) {
         int payer = findFlatmate(payerName);
@@ -143,7 +143,7 @@ public class FlatShare {
                 chargeOneFlatmate(payer, findFlatmate(forWhom), amount);
                 break;
             default:
-                // A kind of expense nobody has taught this program to split.
+                // A type of expense nobody has taught this program to split.
                 // The rent, 'R', ends up here. See README.md.
                 break;
         }
@@ -164,7 +164,7 @@ public class FlatShare {
         balances[flatmate] = balances[flatmate] - amount;
     }
 
-    /** How an expense of this kind is split, for the printed lines. */
+    /** How an expense of this type is split, for the printed lines. */
     static String typeName(char type) {
         switch (type) {
             case 'E':
