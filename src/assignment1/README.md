@@ -29,13 +29,13 @@ Nothing from this exercise is handed in, but exercise 2 needs it.
 
 Now write the program again, with objects. Leave `FlatShare.java` as it is.
 
-- Write four classes in the folder `assignment1`, next to `FlatShare.java`, and start each file with `package assignment1;`. `Flatmate` is one person who lives in the flat. `Expense` is one payment. `Flat` keeps the flatmates and the history of expenses, in arrays. `Main` has the method `main` and nothing else, and `Main.main` tells the same month as `FlatShare.main`.
+- Write four classes in the folder `assignment1`, next to `FlatShare.java`, and start each file with `package assignment1;`. `Flatmate` is one person who lives in the flat. `Expense` is one payment. `Flat` keeps the flatmates and the history of expenses, in arrays. Arrays for 6 flatmates and 20 expenses, as in `FlatShare`, are big enough. `Main` has the method `main` and nothing else, and `Main.main` tells the same month as `FlatShare.main`.
 - Inside the classes the design is yours. You decide what each class stores and what each class does, as long as you follow these four rules.
 
 1. Every field of every class is private. (Chapter 6, "Controlling Access to Class Members".)
 2. An expense keeps a reference to the `Flatmate` who paid it, not a position in an array and not a name. After Mathilde moves out, the history must still say that Mathilde paid for the groceries. (Chapter 4, "Reference Variables and Assignment".)
-3. Adding an expense to the flat is the only public way to change a balance. `Main` never changes a balance on its own.
-4. A flatmate whose balance is not 0 cannot move out. The method that moves a flatmate out prints the line you see for Jonas in `expected-output.txt` and returns `false`, like `ChessBoard.placePiece` in session 2 when it refuses a piece.
+3. Adding an expense to the flat is the only public way to change a balance. A `public` setter for a balance breaks this rule, even if only `Flat` calls it. `Main` never changes a balance on its own.
+4. A flatmate whose balance is not 0 cannot move out. The method that moves a flatmate out prints the line you see for Jonas in `expected-output.txt` and returns `false`. `ChessBoard.placePiece` in session 2 also returns `false` when it refuses a piece.
 
 - Last, copy the sabotage line `balances[0] = balances[0] + 500;` from `FlatShare.main` into `Main.main` and rewrite it for your design, so that it writes directly into a private field of one of your classes. Compile it, and leave it commented out with the error message of the compiler copied under it.
 
@@ -63,7 +63,7 @@ You hand in two files on Moodle, by Sunday 20 September at 23:59. Moodle does no
 - A zip of your folder `assignment1`, with `FlatShare.java` and your four classes.
 - A PDF of one page with your class diagram and your answers to the three questions below.
 
-Draw the class diagram with one box per class. The name of the class goes on top. Under the name go the fields, and under the fields go the constructors and methods. Put `+` in front of what is public, `-` in front of what is private, `#` in front of what is protected, and nothing in front of what has no modifier. Draw an arrow from a class to every class it keeps in a field. The box of `ChessPiece` from session 2, shortened, looks like this.
+Draw the class diagram with one box for each of your four classes. The name of the class goes on top. Under the name go the fields, and under the fields go the constructors and methods. Put `+` in front of what is public, `-` in front of what is private, `#` in front of what is protected, and nothing in front of what has no modifier. Draw an arrow from a class to each of your classes that it keeps in a field, also when the field is an array. The box of `ChessPiece` from session 2, shortened, looks like this.
 
 ```
 ChessPiece
@@ -79,7 +79,7 @@ You can draw it by hand and take a photo, or use any drawing tool.
 
 Answer each question in a few sentences.
 
-1. Which methods in your design can change a balance, and from which class is each of them called? Why can `Main` not repeat the sabotage of `FlatShare`?
+1. Which methods in your design can change a balance, and from which class is each of them called? Can `Main` repeat the sabotage of `FlatShare` in your design? Why, or why not?
 2. The history of `FlatShare` says that Sofie paid for the groceries, before Sofie even lived in the flat. Why does that happen, and what in your design prevents it?
 3. Look at your two cost lines. Did anything tell you where the rent had to go? What would you want the compiler to do when a type of expense is forgotten in a `switch`?
 
@@ -90,6 +90,6 @@ Mads looks at four things.
 - Your program prints exactly what is in `expected-output.txt`.
 - Your four classes follow the four rules of exercise 2.
 - The sabotage line is in `Main.main`, commented out, with its error message.
-- Your class diagram matches your code, and your answers explain your reasons.
+- Your class diagram matches your code, and your cost lines and answers explain your reasons.
 
-For each of the four, the feedback tells you in words what went well and what to improve. You do not get a mark or a grade for this assignment.
+For each of the four, the feedback says in words whether it is done, partly done or not done, and why. You do not get a mark or a grade for this assignment.
