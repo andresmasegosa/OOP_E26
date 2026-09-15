@@ -10,10 +10,9 @@ package session3.E_ChessGame;
  * King, Queen and Rook. isLegalMove is abstract, so a new type of piece
  * without a rule does not compile.
  *
- * Two switches are still here, and both are here on purpose. getSymbol
- * switches on the type to find the letter the board draws, and exercise 2 is
- * about it. fromLetter switches on a letter to decide which subclass to
- * create, and exercise 4 asks where it should live.
+ * Two switches are still here. getSymbol switches on the type to find the
+ * letter the board draws, as in session 2. fromLetter switches on a letter to
+ * decide which subclass to create, and exercise 3 asks where it should live.
  *
  * Session 2's protocol has not changed. A piece is born off the board, at
  * (-1,-1), and the board places it.
@@ -83,7 +82,7 @@ public abstract class ChessPiece {
     /**
      * The char for printing the board, as in session 2. The piece stores its
      * type as a String and works the letter out from it, with a switch on the
-     * type. Exercise 2 is about this method.
+     * type.
      */
     public char getSymbol() {
         char symbol;
@@ -117,8 +116,9 @@ public abstract class ChessPiece {
      */
     public abstract boolean isLegalMove(ChessBoard board, int toRow, int toCol);
 
-    // Only the board relocates pieces, as in session 2. Exercise 3 is about who
-    // else can call these two.
+    // Only the board relocates pieces, as in session 2. Protected opens these
+    // two to the classes of this package, the board among them, and to
+    // subclasses.
     protected void setRow(int row) {
         this.row = row;
     }

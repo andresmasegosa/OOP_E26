@@ -9,8 +9,8 @@ objectives:
   - share what every piece has through extends and super, and say what a subclass inherits and what it does not
   - override a method, and use @Override so that the compiler catches a misspelled one
   - declare an abstract class and abstract methods, and read the compiler errors that make them useful
-  - remove a fact stored twice, the class and the type String, together with the switch that came with it
-  - explain what protected opens to a subclass in another package, and what final forbids and what it does not
+  - add a type of piece as a subclass, and reuse a superclass's rule through super.isLegalMove
+  - weigh design choices about the hierarchy in writing, naming what each one costs
   - keep the cost-of-change lines growing with a line for session 3, in the comment at the top of Demo.main
 not_yet_introduced:
   - interfaces
@@ -22,12 +22,10 @@ not_yet_introduced:
   - unit tests
   - design patterns
 done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
-  exercise0: "the four demo folders A_ to D_ have been run with every printed line predicted beforehand and, for each isLegalMove call, the class whose method runs; every commented line the demo files point at has been uncommented or edited once, its compiler error compared with the one written next to it, and put back, except in C_Overriding/King.java, where @Override is added and the name fix stays; E_ChessGame/Demo has been run and the two differences from session 2 are written down, the missing bishops and the piece with the wrong name; the two Discussion answers are written down"
+  exercise0: "the four demo folders A_ to D_ have been run with every printed line predicted beforehand and, for each isLegalMove call, the class whose method runs; every commented line the demo files point at has been uncommented or edited once, its compiler error compared with the one written next to it, and put back, except in C_Overriding/King.java, where @Override is added and the name fix stays; E_ChessGame/Demo has been run and the one difference from session 2, the missing bishops, is written down with a guess at why; the two Discussion answers are written down"
   exercise1: "E_ChessGame/Bishop.java extends ChessPiece, overrides isLegalMove with @Override and has a constructor that calls super; ChessPiece.fromLetter creates a Bishop for B and b; ChessGame.setupPieces places the four bishops on (0,2), (0,5), (7,2) and (7,5); game.movePiece(7, 5, 5, 3) in Demo.main prints `White Bishop moves (7,5) -> (5,3)`; the two compiler errors, the empty class and then the missing constructor, are copied into the notes; a session 3 cost line sits at the top of Demo.main under the two lines from session 2 and says for which places the compiler warned and whether anything showed up only when the program ran; the three Discussion answers are written down"
-  exercise2: "the piece with the wrong name has been traced to its cause and fixed; ChessPiece has no field type and its constructor takes no type; ChessPiece.getSymbol has no switch; every subclass gives its own name and letter through methods declared abstract in ChessPiece; the lowercase rule for black pieces is written once; the scripted game prints the right names and the board draws Q and q for the queens; the three Discussion answers are written down"
-  exercise3: "a package session3.cheats has held CheatingRook, which extends Rook and returns true from isLegalMove, and its capture from (4,4) has been seen and noted; the word that stops it has been tried in both places of Rook.java, both compiler messages are copied, and the word has been taken out again; CheatingKing extends King and teleports itself, and after teleport(0, 7) and game.movePiece(4, 4, 1, 7) the broken invariant is named from the printed board and the line of ChessBoard.movePiece that trusted the piece is found; the message for calling setRow on a ChessPiece received as a parameter is copied; the same word has been tried on ChessPiece.setRow and on the class King, and the one that stopped CheatingKing is noted with its message; the visibility of the two setters has been chosen so that ChessBoard still compiles and CheatingKing does not, with the message copied; the cheats are gone and the project compiles again; the three Discussion answers are written down"
-  exercise4: "three written answers, one per question Q1 to Q3, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the wish sentence and the list of what was missing are written down"
-  exercise5: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the knight's cost line is written under the bishop's; Amazon extends Queen, uses super.isLegalMove for the queen's part and shares the L with Knight without copying it; an Amazon has been tried on a ChessBoard of its own in Demo.main; the two Discussion answers are written down"
+  exercise2: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the knight's cost line is written under the bishop's; Amazon extends Queen, uses super.isLegalMove for the queen's part and shares the L with Knight without copying it; an Amazon has been tried on a ChessBoard of its own in Demo.main; the two Discussion answers are written down"
+  exercise3: "three written answers, one per question Q1 to Q3, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the wish sentence and the list of what was missing are written down"
 allowed_concepts:
   - everything from sessions 1 and 2
   - inheritance with extends, superclasses and subclasses
@@ -37,21 +35,14 @@ allowed_concepts:
   - method overriding, the @Override annotation, and dynamic dispatch through a variable of the superclass type
   - why the compiler refuses a call to a method that the declared type of a variable does not have, at the level of the demos
   - abstract classes and abstract methods
-  - protected and package visibility across packages, for subclasses
-  - final on classes and on methods
+  - protected members as used by subclasses, and final on classes and on methods, as chapter 7 presents them
   - Object as the class every class extends, only as far as step A uses it
   - ChessPiece.fromLetter as provided code, a static method that creates an object of the right subclass
 
-# Tightens the contract in /AGENTS.md for two exercises. An exception can only
+# Tightens the contract in /AGENTS.md for one exercise. An exception can only
 # ever tighten it, never loosen it.
 exception: |
-  Exercise 2 starts from a mistake planted on purpose in the provided code of
-  E_ChessGame. Do not point it out, and do not hint at where it is, unless the
-  student is working on exercise 2 and has shown the symptom in their own
-  output. Until then, explaining the provided code means explaining what it
-  does, never where it is wrong.
-
-  Exercise 4, the design review, is written work, and the writing IS the
+  Exercise 3, the design review, is written work, and the writing IS the
   deliverable. For its three questions the general permission to compare
   design options at concept level does not apply: never supply an
   alternative, a benefit, a cost, a list of what would have to change, or a

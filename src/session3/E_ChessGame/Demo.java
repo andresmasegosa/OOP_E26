@@ -10,6 +10,8 @@ public class Demo {
     public static void main(String[] args) {
         // --- EXERCISE 1: your three cost lines go here, at the top of main.
 
+        // --- EXERCISE 2 (stretch): try your Amazon here, on a ChessBoard of her own.
+
         ChessGame game = new ChessGame();
         game.printBoard();
 
@@ -26,10 +28,6 @@ public class Demo {
         game.movePiece(7, 5, 5, 3);   // White bishop: there is none on (7,5). Exercise 1!
 
         game.printBoard();
-
-        // --- EXERCISE 3: the saboteur, now a subclass ------------------------
-        // Your cheating piece goes on the board here, before play() starts.
-        // See EXERCISES.md, exercise 3.
 
         // Now it is your turn at the keyboard.
         game.play();

@@ -12,9 +12,8 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  * abstract now, so setupPieces asks ChessPiece.fromLetter for an object of
  * the right subclass.
  *
- * Run Demo and read the output carefully, because two things differ from
+ * Run Demo and read the output carefully, because one thing differs from
  * session 2. The bishops are not on the board at all, which is exercise 1.
- * And the output names one of the pieces wrongly, which is exercise 2.
  *
  * THE RULES (mini-chess, unchanged)
  *   Only kings, queens, rooks and bishops. No pawns, no knights, no check,
@@ -38,7 +37,7 @@ public class ChessGame {
     /**
      * The board this game is played on. Reading it is harmless — and yet
      * this door hands out the board itself, with its own doors attached.
-     * Exercise 3 asks what that lets an outsider do.
+     * Session 2's exercise 3 asked what that lets an outsider do.
      */
     public ChessBoard getBoard() {
         return board;

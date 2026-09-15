@@ -7,7 +7,7 @@ package session3.E_ChessGame;
 public class Queen extends ChessPiece {
 
     public Queen(String color) {
-        super("King", color);
+        super("Queen", color);
     }
 
     @Override

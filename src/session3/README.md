@@ -38,8 +38,8 @@ different classes. They share everything a piece has, and each one keeps its own
 
    - Where is it decided whether a queen's move is legal, and how does your answer differ from
      last week's?
-   - The output of `Demo` has two things wrong with it, on purpose. Find them and write them
-     down, and do not fix them. Exercises 1 and 2 are about them.
+   - The bishops are missing from the board, on purpose. Before you read exercise 1, write
+     down why you think they are.
 
 Nothing needs to be fixed before class. If something confuses you, write the question down and
 bring it.
