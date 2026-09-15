@@ -68,7 +68,7 @@ bring it.
   through `ChessPiece.getRow` and `ChessPiece.getCol`. The demo folders `B_` and `C_` declare the
   same fields `protected`, so that their `Queen.isLegalMove` can read `row` and `col` directly.
   Both compile. The game keeps session 2's choice.
-- A piece is an object of a subclass of `ChessPiece`, created by name: `new Queen("White")`.
+- A piece is an object of a subclass of `ChessPiece`, created by name, as in `new Queen("White")`.
   Each piece also answers with the letter it is drawn with, `ChessPiece.getLetter`. The only
   letters written anywhere else are the legend under the board, in `ChessBoard.print`.
 - The scripted game in `Demo.main` is session 2's with one move changed and one added. Move 3
