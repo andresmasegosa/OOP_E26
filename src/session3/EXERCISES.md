@@ -2,9 +2,9 @@
 
 Every exercise works in the folder [`E_ChessGame`](E_ChessGame/). The demo folders `A_` to `D_` are there to
 read and run. A few lines in them are meant to be uncommented or edited to see a compiler error,
-and each file says which ones. Exercise 1 is the core of the session.
-Exercise 2 is a stretch goal. Exercise 3 is written work, a design review with almost no code, and
-it closes the session. If time runs short, skip exercise 2, not exercise 3.
+and each file says which ones. Exercises 1 and 3 are the core of
+the session. Exercise 2 is a stretch goal. Leave at least forty minutes for exercise 3, and skip
+exercise 2 if you have to.
 
 The game is eight classes, one per file. `ChessPiece` is abstract. It holds what every piece
 has, the type, the color and the square it stands on, and it declares `ChessPiece.isLegalMove`
@@ -48,9 +48,10 @@ back as it was.
   `D_AbstractClasses/Bishop.java`.
 
 Then open `E_ChessGame/Demo.java`. Its `main` creates a `ChessGame`, plays the scripted game of
-six moves and calls `game.play()`. Run it and read the output line by line. One thing in it
-differs from session 2. The bishops are missing from the board. Write down why you think that is,
-and do not fix it yet. Exercise 1 is about it.
+six moves and calls `game.play()`. Run it and read the output line by line. Two things in it
+differ from session 2. The bishops are missing from the board, and move 3 of the script is a
+different move, because it used to need a bishop. Write down why you think the bishops are
+missing, and do not fix it yet. Exercise 1 is about it.
 
 Discussion. Bring both answered in writing.
 

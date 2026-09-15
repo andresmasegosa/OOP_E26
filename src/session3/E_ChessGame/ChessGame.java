@@ -49,8 +49,7 @@ public class ChessGame {
      * turns each letter into a Rook, a Queen or a King.
      */
     private void setupPieces() {
-        // There are no bishops. No class exists yet to make them from, so
-        // there is nothing to place. Putting them back is exercise 1.
+        // There are no bishops. Exercise 1 is about them.
 
         // Black pieces (lowercase), top of the board.
         board.placePiece(0, 0, ChessPiece.fromLetter('r'));

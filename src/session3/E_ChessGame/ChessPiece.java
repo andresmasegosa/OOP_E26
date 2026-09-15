@@ -37,8 +37,8 @@ public abstract class ChessPiece {
     /**
      * Session 2 created pieces with new ChessPiece('Q'). ChessPiece is abstract
      * now, so nobody can write new ChessPiece(...) at all, and this method
-     * turns a letter into an object of the right subclass instead. A letter
-     * with no class behind it gives null.
+     * turns a letter into an object of the right subclass instead. Any other
+     * letter gives null.
      */
     public static ChessPiece fromLetter(char letter) {
         String color;
@@ -55,7 +55,7 @@ public abstract class ChessPiece {
             case 'R':
                 return new Rook(color);
             default:
-                return null;   // a letter with no class behind it (the bishops, exercise 1)
+                return null;   // any other letter (see exercise 1)
         }
     }
 

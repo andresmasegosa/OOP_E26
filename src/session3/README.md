@@ -3,7 +3,8 @@
 Last week the game was rebuilt on classes, and the rules of the pieces still lived in one
 `switch`, the one in `ChessPiece.isLegalMove`, with a case for every type of piece and a
 `default` that stayed silent when a piece was forgotten. You ended the session with a wish, that forgetting a type of
-piece should be a compile-time error. This session grants it.
+piece should be a compile-time error. This session grants it for the rule of
+each piece.
 
 The tools are called inheritance and abstract classes. The game is the same one, with the same
 board and the same rules. What changes is that a king, a queen and a rook are now objects of
@@ -12,7 +13,7 @@ different classes. They share everything a piece has, and each one keeps its own
 ## Before class
 
 1. Read chapter 7 of *Java: A Beginner's Guide* (Herbert Schildt), the whole chapter. It is
-   the chapter on inheritance. Its last sections, on abstract classes and on `final`, are used in
+   the chapter on inheritance. Its section on abstract classes, near the end, is used in
    this session too.
 
 2. Bring your notes from sessions 1 and 2, and above all the two cost lines at the top of
