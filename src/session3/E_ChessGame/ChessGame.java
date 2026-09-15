@@ -25,9 +25,9 @@ public class ChessGame {
     private boolean whiteToMove = true;   // whose turn: no longer a local variable of play()
 
     /**
-     * A game is born whole: with its board and all twelve pieces on it. A
-     * ChessGame without a board makes no sense, so the constructor does not
-     * let one exist.
+     * A game is born whole, with its board and the eight pieces of this
+     * week's position on it. A ChessGame without a board makes no sense, so
+     * the constructor does not let one exist.
      */
     public ChessGame() {
         this.board = new ChessBoard();

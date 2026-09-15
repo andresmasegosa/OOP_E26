@@ -9,7 +9,8 @@ objectives:
   - share what every piece has through extends and super, and say what a subclass inherits and what it does not
   - override a method, and use @Override so that the compiler catches a misspelled one
   - extend an abstract class and implement its abstract method, and read the compiler errors that make abstract classes useful
-  - add a type of piece as a subclass, and reuse a superclass's rule through super.isLegalMove
+  - add a type of piece as a subclass, with a constructor that calls super(...), as exercise 1 does with the bishop
+  - reuse a superclass's rule through super.isLegalMove, in exercise 2 only, which the sheet marks a stretch goal
   - weigh design choices about the hierarchy in writing, naming what each one costs
   - keep the cost-of-change lines growing with a line for session 3, in the comment at the top of Demo.main
 not_yet_introduced:

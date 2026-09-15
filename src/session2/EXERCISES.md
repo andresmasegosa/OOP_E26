@@ -437,5 +437,5 @@ All notes on the table, session 1's included.
    the program still say `default:` and stay silent?
 3. Write the wish for next week in one sentence. What should a design do so
    that forgetting a piece type is a compile-time error and not a quiet
-   `false`? Bring the sentence to session 3. Building four competing answers
-   to it is the whole session.
+   `false`? Bring the sentence to session 3. It builds the answer one design
+   at a time.
