@@ -81,7 +81,7 @@ Work in this order.
   Abstract Classes".)
 - Write `Bishop.isLegalMove`, with `@Override` above it. `Queen.isLegalMove` and
   `Rook.isLegalMove` show the shape, and `Movements` has the helper you need. Compile again.
-  There is a second error, and it names a different method: `ChessPiece` declares two abstract
+  There is a second error, and it names a different method. `ChessPiece` declares two abstract
   methods, not one. Write that one too, the way `Rook` does it, and compile again.
 - Now there is a third error, about a constructor. Copy it and write the constructor that fixes
   it, again the way `Rook` does it. (Chapter 7, "Constructors and Inheritance" and "Using super
@@ -104,7 +104,7 @@ Then write down what the change cost you. Copy your two cost lines from the top 
 //   places touched: ...   of which switches: ...   did anything warn me: ...
 ```
 
-The line has three numbers. Fill them in like this.
+The line has three entries. Fill them in like this.
 
 - Places touched is the number of methods you edited, plus one for every new class. Last week a
   place was a method you edited and nothing more, because nothing new was created. This week the
@@ -134,9 +134,8 @@ Black by itself, as it does for every piece. A knight moves in an L, two squares
 and one along the other, and it jumps, so there is no path to check.
 
 Then run the game and read the legend under the board, the last line that `ChessBoard.print`
-writes. It does not name the knight, and nothing sent you there. Add the knight to it or leave it
-out, and either way count that line in the knight's cost line as a place the compiler did not
-find.
+writes. It does not name the knight, and nothing sent you there. Add the knight to it. That line
+is one more place, and the compiler did not find it, so count it in the knight's cost line.
 
 Write the cost line of the knight under the bishop's. If you did session 2's stretch goal,
 compare it with the knight's line from then. Which places did the compiler find for you, and

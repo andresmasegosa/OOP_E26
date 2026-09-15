@@ -55,14 +55,15 @@ bring it.
 | Folder | What it shows |
 |---|---|
 | `A_OneClassPerPiece/` | a class per type of piece and no switch, and the board that cannot hold them |
-| `B_Inheritance/` | `extends` and `super`, what a subclass inherits and what it does not, and overriding: the board asks every piece the same question |
+| `B_Inheritance/` | `extends` and `super`, what a subclass inherits and what it does not, and overriding, where the board asks every piece the same question |
 | `C_AbstractClasses/` | an abstract class and an abstract method, and the two compiler errors that make them useful |
 | `E_ChessGame/` | the game, with `ChessPiece` abstract and a subclass each for the king, the queen and the rook; `Demo` starts it |
 
 ## Conventions used by the game
 
 - The board, the coordinates and the rules are session 2's. Squares are `(row, col)` from `0`
-  to `7`, row 0 is at the top, and the game is mini-chess with kings, queens, rooks and, once exercise 1 is done, bishops.
+  to `7`, row 0 is at the top, and the game is mini-chess with kings, queens, rooks and, once exercise 1 is done, bishops,
+  and knights once exercise 2 adds them.
 - `ChessPiece`'s fields are `private`, as in session 2, so `Queen.isLegalMove` reads the square
   through `ChessPiece.getRow` and `ChessPiece.getCol`. The demo folders `B_` and `C_` declare the
   same fields `protected`, so that their `Queen.isLegalMove` can read `row` and `col` directly.
