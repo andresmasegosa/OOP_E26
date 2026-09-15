@@ -63,6 +63,10 @@ bring it.
 
 - The board, the coordinates and the rules are session 2's. Squares are `(row, col)` from `0`
   to `7`, row 0 is at the top, and the game is mini-chess with kings, queens, rooks and, once exercise 1 is done, bishops.
+- `ChessPiece`'s fields are `private`, as in session 2, so `Queen.isLegalMove` reads the square
+  through `ChessPiece.getRow` and `ChessPiece.getCol`. The demo folders `B_` and `C_` declare the
+  same fields `protected`, so that their `Queen.isLegalMove` can read `row` and `col` directly.
+  Both compile. The game keeps session 2's choice.
 - A piece is an object of a subclass of `ChessPiece`, created by name: `new Queen("White")`.
   Each piece also answers with the letter it is drawn with, `ChessPiece.getLetter`. The only
   letters written anywhere else are the legend under the board, in `ChessBoard.print`.

@@ -101,10 +101,17 @@ Then write down what the change cost you. Copy your two cost lines from the top 
 //   places touched: ...   of which switches: ...   did anything warn me: ...
 ```
 
-Count as you did last week. Places touched is the number of methods you edited, and a new class
-counts as one place. Of which switches is how many of them were a `switch` that had to learn
-about bishops. For did anything warn me, say for which places the compiler told you and for
-which it did not. If something only showed up when you ran the program, write that down too.
+The line has three numbers. Fill them in like this.
+
+- Places touched is the number of methods you edited, plus one for every new class. Today
+  `ChessGame.setupPieces` is one place, and `Bishop.java` is one more, whatever you wrote inside
+  it.
+- Of which switches is how many of those places were a `switch` that needed a new `case` for the
+  bishop. Last week the answer was 1. Look through the places you touched today and count.
+- Did anything warn me is one answer per place. Write whether the compiler stopped you before the
+  program ran, or whether you found that place by reading the code. If a mistake only showed up
+  when the program ran, for example the `Illegal move` line of the sixth move because you forgot
+  to place the bishops, write that down as well, and say that the compiler did not see it.
 
 Discussion:
 
@@ -116,9 +123,10 @@ Discussion:
 
 ## Exercise 2 — the knights and the Amazon (stretch goal)
 
-Add the knights, `'N'` for White and `'n'` for Black, on `(0,1)`, `(0,6)`, `(7,1)` and `(7,6)`.
-A knight moves in an L, two squares along one axis and one along the other, and it jumps, so
-there is no path to check.
+Add the knights on `(0,1)`, `(0,6)`, `(7,1)` and `(7,6)`. Their letter is `N`. You write only
+the uppercase letter, in `Knight.getLetter`, because `ChessPiece.getSymbol` lowercases it for
+Black by itself, as it does for every piece. A knight moves in an L, two squares along one axis
+and one along the other, and it jumps, so there is no path to check.
 
 Write the cost line of the knight under the bishop's. If you did session 2's stretch goal,
 compare it with the knight's line from then. Which places did the compiler find for you, and
@@ -127,8 +135,17 @@ which did you have to find yourself?
 Then the Amazon, a piece from chess variants that moves like a queen and like a knight. Write
 `Amazon extends Queen`, and in `Amazon.isLegalMove` call `super.isLegalMove(board, toRow, toCol)`
 for the queen's part. You need the knight's L a second time. Do not copy it. Find a place where
-`Knight` and `Amazon` can both use it. You do not have to put an Amazon in the game. Try her on a
-`ChessBoard` of her own, in `Demo.main`, before the scripted game.
+`Knight` and `Amazon` can both use it.
+
+Her name needs one more step. `Amazon`'s constructor has to call a constructor of `Queen`, and
+`Queen(String color)` passes the word `"Queen"` up to `ChessPiece`, so an Amazon built through it
+is called Queen and is drawn as `Q`. Give `Queen` a second constructor,
+`protected Queen(String type, String color)`, that passes both words up, and call that one from
+`Amazon` with `"Amazon"`. It is `protected` because only a subclass has a reason to use it.
+Write `Amazon.getLetter` too, with `'A'`. (Chapter 6, "Overloading Constructors".)
+
+You do not have to put an Amazon in the game. Try her on a `ChessBoard` of her own, in
+`Demo.main`, before the scripted game, and print her type and her symbol.
 
 Discussion:
 

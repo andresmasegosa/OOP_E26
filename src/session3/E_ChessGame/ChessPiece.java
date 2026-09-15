@@ -5,7 +5,11 @@ package session3.E_ChessGame;
  *
  * ChessPiece is abstract. It keeps what every piece shares, and that is
  * almost all of session 2's ChessPiece, the type and the color, the square,
- * the getters and the protected setters. What it lost is the switch in
+ * the getters and the protected setters. The fields are private here, as in
+ * session 2, so King, Queen and Rook read their square through getRow and
+ * getCol. The demo steps B_ and C_ declared the same fields protected, so
+ * that a subclass could read row and col directly. Both compile, and the
+ * game keeps session 2's choice. What it lost is the switch in
  * isLegalMove. The rule of each type of piece lives in its own subclass,
  * King, Queen and Rook. isLegalMove is abstract, so a new type of piece
  * without a rule does not compile. It also lost the constructor that took a
