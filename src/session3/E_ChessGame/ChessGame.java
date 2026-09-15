@@ -15,8 +15,9 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  * session 2. The bishops are not on the board at all, which is exercise 1.
  *
  * THE RULES (mini-chess, unchanged)
- *   Only kings, queens, rooks and bishops. No pawns, no knights, no check,
- *   no castling. You capture by moving onto an enemy piece.
+ *   Only kings, queens, rooks and bishops, and knights once exercise 2 adds
+ *   them. No pawns, no check, no castling. You capture by moving onto an
+ *   enemy piece.
  */
 public class ChessGame {
 

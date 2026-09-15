@@ -1,7 +1,7 @@
 package session3.C_AbstractClasses;
 
 // A bishop that extends ChessPiece and forgets its rule. The class is
-// commented out so that the project compiles. Uncomment the five lines of
+// commented out so that the project compiles. Uncomment the seven lines of
 // the class below and compile.
 //
 //   error: Bishop is not abstract and does not override abstract method
@@ -13,5 +13,7 @@ package session3.C_AbstractClasses;
 // public class Bishop extends ChessPiece {
 //     public Bishop(String color, int row, int col) {
 //         super("Bishop", color);
+//         setRow(row);
+//         setCol(col);
 //     }
 // }

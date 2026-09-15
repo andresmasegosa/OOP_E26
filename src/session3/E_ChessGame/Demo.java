@@ -16,16 +16,18 @@ public class Demo {
         game.printBoard();
 
         // --- The scripted game ---------------------------------------------
-        // The short game of sessions 1 and 2, with one change. Move 3 used to
-        // send a rook onto its own bishop, and there are no bishops yet, so
-        // here the other rook goes onto its own king.
+        // The short game of sessions 1 and 2, with one move changed and one
+        // added. Move 3 used to send a rook onto its own bishop, and there are
+        // no bishops yet, so here the black king goes onto its own queen. The
+        // seventh move sends a bishop straight up, which no bishop may do.
 
         game.movePiece(7, 3, 4, 3);   // White queen straight up: legal
         game.movePiece(0, 0, 2, 2);   // Black rook diagonally: illegal
-        game.movePiece(7, 7, 7, 4);   // White rook onto its own king: illegal
+        game.movePiece(0, 4, 0, 3);   // Black king onto its own queen: illegal
         game.movePiece(4, 3, 0, 3);   // The white queen captures the black queen
         game.movePiece(0, 4, 0, 3);   // and the black king takes revenge.
         game.movePiece(7, 5, 5, 3);   // White bishop: there is none on (7,5). Exercise 1!
+        game.movePiece(7, 2, 5, 2);   // White bishop straight up: illegal, with or without a bishop
 
         game.printBoard();
 

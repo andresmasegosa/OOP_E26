@@ -21,8 +21,8 @@ different classes. They share everything a piece has, and each one keeps its own
    third line.
 
 3. Read the demo folders in order, `A_` to `C_`. Run each `Demo` and read the classes next to
-   it. Each folder is one step of the story, and we walk the same path together in class. One
-   question per step, to bring answered.
+   it. Each folder is one step of the story, and we walk the same path together in class. A
+   question or two per step, to bring answered.
 
    - [`A_OneClassPerPiece`](A_OneClassPerPiece/): every piece has its own class and there is no
      `switch`. Why can the board not hold the pieces?
@@ -70,5 +70,8 @@ bring it.
 - A piece is an object of a subclass of `ChessPiece`, created by name: `new Queen("White")`.
   Each piece also answers with the letter it is drawn with, `ChessPiece.getLetter`. The only
   letters written anywhere else are the legend under the board, in `ChessBoard.print`.
-- The scripted game in `Demo.main` is session 2's with one move changed. Move 3 sent a rook onto
-  its own bishop, and there are no bishops yet, so here the other rook goes onto its own king.
+- The scripted game in `Demo.main` is session 2's with one move changed and one added. Move 3
+  sent a rook onto its own bishop, and there are no bishops yet, so here the black king goes onto
+  its own queen, refused for the same reason. The seventh move sends a bishop straight up from
+  `(7,2)`. It is refused today because the square is empty, and it stays refused once exercise 1
+  is done, because no bishop moves that way.

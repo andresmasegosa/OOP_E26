@@ -1,9 +1,9 @@
 # Session 3 — Exercises
 
-Every exercise works in the folder [`E_ChessGame`](E_ChessGame/). The demo folders `A_` to `C_` are there to
-read and run. A few lines in them are commented out so that you can uncomment one and see a
-compiler error,
-and each file says which ones. Exercises 1 and 3 are the core of
+The code you write in exercises 1 and 2 goes in the folder [`E_ChessGame`](E_ChessGame/). The
+demo folders `A_` to `C_` are there to read and run. Exercise 0 takes you through them, and
+exercise 3 asks about two of them. A few lines in them are commented out so that you can
+uncomment one and see a compiler error, and each file says which ones. Exercises 1 and 3 are the core of
 the session. Exercise 2 is a stretch goal. Leave at least forty minutes for exercise 3, and skip
 exercise 2 if you have to.
 
@@ -46,10 +46,11 @@ back as it was.
   `C_AbstractClasses/Bishop.java`.
 
 Then open `E_ChessGame/Demo.java`. Its `main` creates a `ChessGame`, plays the scripted game of
-six moves and calls `game.play()`. Run it and read the output line by line. Two things in it
-differ from session 2. The bishops are missing from the board, and move 3 of the script is a
-different move, because it used to need a bishop. Write down why you think the bishops are
-missing, and do not fix it yet. Exercise 1 is about it.
+seven moves and calls `game.play()`. Run it and read the output line by line. Three things in it
+differ from session 2. The bishops are missing from the board. Move 3 of the script is a
+different move, because it used to need a bishop. And there is a seventh move, a bishop going
+straight up from `(7,2)`, which is refused today because that square is empty. Write down why
+you think the bishops are missing, and do not fix it yet. Exercise 1 is about it.
 
 Discussion. Bring both answered in writing.
 
@@ -86,12 +87,14 @@ Work in this order.
   it, again the way `Rook` does it. (Chapter 7, "Constructors and Inheritance" and "Using super
   to Call Superclass Constructors".) Three errors, one after the other, and each one names
   exactly what is missing.
-- Put the bishops back on the board: place the four in `ChessGame.setupPieces`, on `(0,2)`,
+- Put the bishops back on the board. Place the four in `ChessGame.setupPieces`, on `(0,2)`,
   `(0,5)`, `(7,2)` and `(7,5)`, the squares they had in session 2.
 
 You are done when the sixth move of the scripted game in `Demo.main`,
 `game.movePiece(7, 5, 5, 3)`, succeeds and the program prints `White Bishop moves (7,5) -> (5,3)`
-instead of the `Illegal move` line.
+instead of the `Illegal move` line, and the seventh move, `game.movePiece(7, 2, 5, 2)`, a bishop
+going straight up, still prints an `Illegal move` line. A rule that says yes to every square
+passes the sixth move too. The seventh is there to catch it.
 
 Then write down what the change cost you. Copy your two cost lines from the top of session 2's
 `Demo.main` to the top of this `Demo.main`, and add a third.
@@ -103,9 +106,10 @@ Then write down what the change cost you. Copy your two cost lines from the top 
 
 The line has three numbers. Fill them in like this.
 
-- Places touched is the number of methods you edited, plus one for every new class. Today
-  `ChessGame.setupPieces` is one place, and `Bishop.java` is one more, whatever you wrote inside
-  it.
+- Places touched is the number of methods you edited, plus one for every new class. Last week a
+  place was a method you edited and nothing more, because nothing new was created. This week the
+  bishop is a class of her own, so the rule gains that clause. Today `ChessGame.setupPieces` is
+  one place, and `Bishop.java` is one more, whatever you wrote inside it.
 - Of which switches is how many of those places were a `switch` that needed a new `case` for the
   bishop. Last week the answer was 1. Look through the places you touched today and count.
 - Did anything warn me is one answer per place. Write whether the compiler stopped you before the
@@ -116,7 +120,8 @@ The line has three numbers. Fill them in like this.
 Discussion:
 
 1. Put the three lines next to each other. Did the number of places go down this time? If it
-   went up, look for the reason in your session 2 notes. When you started exercise 1 of
+   went up, part of the reason is the ruler, which counts a new class this week and had nothing
+   to count last week. The rest is in your session 2 notes. When you started exercise 1 of
    session 2, which parts of the bishop were already written, and which part was missing?
 2. Session 2 also had a stretch goal that added a type of piece the program did not have at
    all, the knight. Is this bishop more like session 2's bishop or like session 2's knight?
@@ -127,6 +132,11 @@ Add the knights on `(0,1)`, `(0,6)`, `(7,1)` and `(7,6)`. Their letter is `N`. Y
 the uppercase letter, in `Knight.getLetter`, because `ChessPiece.getSymbol` lowercases it for
 Black by itself, as it does for every piece. A knight moves in an L, two squares along one axis
 and one along the other, and it jumps, so there is no path to check.
+
+Then run the game and read the legend under the board, the last line that `ChessBoard.print`
+writes. It does not name the knight, and nothing sent you there. Add the knight to it or leave it
+out, and either way count that line in the knight's cost line as a place the compiler did not
+find.
 
 Write the cost line of the knight under the bishop's. If you did session 2's stretch goal,
 compare it with the knight's line from then. Which places did the compiler find for you, and
