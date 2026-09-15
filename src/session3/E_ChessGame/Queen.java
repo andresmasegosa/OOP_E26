@@ -16,4 +16,9 @@ public class Queen extends ChessPiece {
                 || Movements.isLegalVerticalMove(board, getRow(), getCol(), toRow, toCol, 7)
                 || Movements.isLegalDiagonalMove(board, getRow(), getCol(), toRow, toCol, 7);
     }
+
+    @Override
+    protected char getLetter() {
+        return 'Q';
+    }
 }

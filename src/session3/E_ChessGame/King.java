@@ -16,4 +16,9 @@ public class King extends ChessPiece {
                 || Movements.isLegalVerticalMove(board, getRow(), getCol(), toRow, toCol, 1)
                 || Movements.isLegalDiagonalMove(board, getRow(), getCol(), toRow, toCol, 1);
     }
+
+    @Override
+    protected char getLetter() {
+        return 'K';
+    }
 }

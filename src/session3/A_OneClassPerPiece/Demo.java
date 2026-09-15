@@ -38,6 +38,6 @@ public class Demo {
         // The square holds the queen, but the type of the square is Object,
         // and Object has no method isLegalMove. The board could store the
         // pieces and could not ask them anything. It needs a type that every
-        // piece has and that declares isLegalMove. Step B starts building it.
+        // piece has and that declares isLegalMove. Step B builds it.
     }
 }

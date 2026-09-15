@@ -8,9 +8,11 @@ package session3.A_OneClassPerPiece;
  * per type of piece. A Queen knows how a queen moves and a Rook knows how a
  * rook moves, so no code has to ask a piece what type it is.
  *
- * This step has no board. The rules here only look at the shape of the move
- * and do not check the squares in between. The full rules come back in
- * E_ChessGame.
+ * The rule itself is not the lesson of this session, so it is not written
+ * here: it asks Movements, session 1's helper class, exactly as the game does
+ * in E_ChessGame. This step has no board, so this Movements checks only the
+ * shape of the move and not the squares in between. The full ones come back
+ * with the board, in E_ChessGame.
  */
 public class Queen {
 
@@ -30,11 +32,8 @@ public class Queen {
 
     /** Along a row, along a column or along a diagonal, any distance. */
     public boolean isLegalMove(int toRow, int toCol) {
-        int rowDistance = Math.abs(toRow - row);
-        int colDistance = Math.abs(toCol - col);
-        if (rowDistance == 0 && colDistance == 0) {
-            return false;   // not moving at all
-        }
-        return rowDistance == 0 || colDistance == 0 || rowDistance == colDistance;
+        return Movements.isLegalHorizontalMove(row, col, toRow, toCol, 7)
+                || Movements.isLegalVerticalMove(row, col, toRow, toCol, 7)
+                || Movements.isLegalDiagonalMove(row, col, toRow, toCol, 7);
     }
 }

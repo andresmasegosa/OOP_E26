@@ -1,10 +1,12 @@
-package session3.D_AbstractClasses;
+package session3.C_AbstractClasses;
 
 /**
- * Session 3, step D. A class nobody can create, and a method every subclass
+ * Session 3, step C. A class nobody can create, and a method every subclass
  * must write.
  *
- * Two things changed since step C, and both are the word abstract. The class
+ * Two things changed since step B that matter, and both are the word abstract.
+ * (A third is cosmetic: the constructor's println is gone, having done its job
+ * in step B.) The class
  * is abstract, so nobody can create a plain ChessPiece any more, only a
  * Queen, a Rook or a King. And isLegalMove is abstract. It has no body, and
  * every class that extends ChessPiece has to write one, or that class does
@@ -18,10 +20,10 @@ package session3.D_AbstractClasses;
  */
 public abstract class ChessPiece {
 
-    private String type;
-    private String color;
-    private int row = -1;
-    private int col = -1;
+    protected String type;
+    protected String color;
+    protected int row = -1;
+    protected int col = -1;
 
     public ChessPiece(String type, String color) {
         this.type = type;

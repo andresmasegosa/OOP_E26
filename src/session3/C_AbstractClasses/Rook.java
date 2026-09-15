@@ -1,13 +1,12 @@
-package session3.B_Inheritance;
+package session3.C_AbstractClasses;
 
-/** A Rook is a ChessPiece too. Compare with Queen.java. Only the rule differs. */
+/** The rook. The rule is step B's; only the constructor's println is gone. */
 public class Rook extends ChessPiece {
 
     public Rook(String color, int row, int col) {
         super("Rook", color);
         setRow(row);
         setCol(col);
-        System.out.println("  the Rook constructor runs");
     }
 
     @Override

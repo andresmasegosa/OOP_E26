@@ -9,8 +9,7 @@ import java.util.Scanner;   // our first import: Scanner lives in the package ja
  * Almost nothing in this file changed. The board, the turn, the narration of
  * a move and the keyboard loop are session 2's. What changed is where the
  * pieces come from. Session 2 wrote new ChessPiece('Q'), and ChessPiece is
- * abstract now, so setupPieces asks ChessPiece.fromLetter for an object of
- * the right subclass.
+ * abstract now, so setupPieces creates a Rook, a Queen or a King directly.
  *
  * Run Demo and read the output carefully, because one thing differs from
  * session 2. The bishops are not on the board at all, which is exercise 1.
@@ -45,23 +44,24 @@ public class ChessGame {
 
     /**
      * The initial position of session 2, without the bishops. Session 2 wrote
-     * new ChessPiece('r'). ChessPiece is abstract now, so ChessPiece.fromLetter
-     * turns each letter into a Rook, a Queen or a King.
+     * new ChessPiece('r'), one constructor for every type of piece. ChessPiece
+     * is abstract now, so the game creates the piece it wants directly, and the
+     * compiler checks every class name on these eight lines.
      */
     private void setupPieces() {
         // There are no bishops. Exercise 1 is about them.
 
-        // Black pieces (lowercase), top of the board.
-        board.placePiece(0, 0, ChessPiece.fromLetter('r'));
-        board.placePiece(0, 3, ChessPiece.fromLetter('q'));
-        board.placePiece(0, 4, ChessPiece.fromLetter('k'));
-        board.placePiece(0, 7, ChessPiece.fromLetter('r'));
+        // Black pieces, top of the board.
+        board.placePiece(0, 0, new Rook("Black"));
+        board.placePiece(0, 3, new Queen("Black"));
+        board.placePiece(0, 4, new King("Black"));
+        board.placePiece(0, 7, new Rook("Black"));
 
-        // White pieces (uppercase), bottom of the board.
-        board.placePiece(7, 0, ChessPiece.fromLetter('R'));
-        board.placePiece(7, 3, ChessPiece.fromLetter('Q'));
-        board.placePiece(7, 4, ChessPiece.fromLetter('K'));
-        board.placePiece(7, 7, ChessPiece.fromLetter('R'));
+        // White pieces, bottom of the board.
+        board.placePiece(7, 0, new Rook("White"));
+        board.placePiece(7, 3, new Queen("White"));
+        board.placePiece(7, 4, new King("White"));
+        board.placePiece(7, 7, new Rook("White"));
     }
 
     /** Shows the board. The game asks; the board knows how to draw itself. */

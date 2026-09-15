@@ -8,11 +8,13 @@ package session3.E_ChessGame;
  * the getters and the protected setters. What it lost is the switch in
  * isLegalMove. The rule of each type of piece lives in its own subclass,
  * King, Queen and Rook. isLegalMove is abstract, so a new type of piece
- * without a rule does not compile.
+ * without a rule does not compile. It also lost the constructor that took a
+ * letter: nobody can write new ChessPiece(...) any more, so ChessGame names
+ * the class it wants.
  *
- * Two switches are still here. getSymbol switches on the type to find the
- * letter the board draws, as in session 2. fromLetter switches on a letter to
- * decide which subclass to create, and exercise 3 asks where it should live.
+ * Two methods are abstract now, not one: the rule of the piece and the
+ * letter it is drawn with. Session 2 found the letter with a switch on the
+ * type; here the subclass answers, and there is no switch left in this class.
  *
  * Session 2's protocol has not changed. A piece is born off the board, at
  * (-1,-1), and the board places it.
@@ -32,31 +34,6 @@ public abstract class ChessPiece {
     public ChessPiece(String type, String color) {
         this.type = type;
         this.color = color;
-    }
-
-    /**
-     * Session 2 created pieces with new ChessPiece('Q'). ChessPiece is abstract
-     * now, so nobody can write new ChessPiece(...) at all, and this method
-     * turns a letter into an object of the right subclass instead. Any other
-     * letter gives null.
-     */
-    public static ChessPiece fromLetter(char letter) {
-        String color;
-        if (Character.isUpperCase(letter)) {
-            color = "White";
-        } else {
-            color = "Black";
-        }
-        switch (Character.toUpperCase(letter)) {
-            case 'K':
-                return new King(color);
-            case 'Q':
-                return new Queen(color);
-            case 'R':
-                return new Rook(color);
-            default:
-                return null;   // any other letter (see exercise 1)
-        }
     }
 
     public String getType() {
@@ -80,29 +57,20 @@ public abstract class ChessPiece {
     }
 
     /**
-     * The char for printing the board, as in session 2. The piece stores its
-     * type as a String and works the letter out from it, with a switch on the
-     * type.
+     * The letter this piece is drawn with, in uppercase. Session 2 worked it
+     * out with a switch on the type. Here every subclass answers for itself,
+     * exactly as it does for its rule, and a type of piece that forgets its
+     * letter does not compile either.
+     */
+    protected abstract char getLetter();
+
+    /**
+     * The char for printing the board, as in session 2: the piece's own
+     * letter, lowercase for Black. This part is the same for every piece, so
+     * it stays here and only getLetter is left to the subclass.
      */
     public char getSymbol() {
-        char symbol;
-        switch (type) {
-            case "King":
-                symbol = 'K';
-                break;
-            case "Queen":
-                symbol = 'Q';
-                break;
-            case "Rook":
-                symbol = 'R';
-                break;
-            case "Bishop":
-                symbol = 'B';
-                break;
-            default:
-                symbol = '?';
-                break;
-        }
+        char symbol = getLetter();
         if (!isWhite()) {
             symbol = Character.toLowerCase(symbol);
         }

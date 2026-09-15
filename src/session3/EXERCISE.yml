@@ -7,7 +7,8 @@ type: practice            # demonstration | practice | assessed
 objectives:
   - say which class's method runs when a ChessPiece variable holds a King, a Queen or a Rook, and why
   - share what every piece has through extends and super, and say what a subclass inherits and what it does not
-  - override a method, and use @Override so that the compiler catches a misspelled one
+  - override a method, and write @Override above it
+  - a superclass with more than one abstract method, each subclass answering both
   - extend an abstract class and implement its abstract method, and read the compiler errors that make abstract classes useful
   - add a type of piece as a subclass, with a constructor that calls super(...), as exercise 1 does with the bishop
   - reuse a superclass's rule through super.isLegalMove, in exercise 2 only, which the sheet marks a stretch goal
@@ -23,10 +24,10 @@ not_yet_introduced:
   - unit tests
   - design patterns
 done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
-  exercise0: "the four demo folders A_ to D_ have been run with every printed line predicted beforehand and, for each isLegalMove call, the class whose method runs; every commented line the demo files point at has been uncommented or edited once, its compiler error compared with the one written next to it, and put back, except in C_Overriding/King.java, where @Override is added and the name fix stays; E_ChessGame/Demo has been run and the two differences from session 2, the missing bishops and the changed move 3, are written down, with a guess at why the bishops are missing; the two Discussion answers are written down"
-  exercise1: "E_ChessGame/Bishop.java extends ChessPiece, overrides isLegalMove with @Override and has a constructor that calls super; ChessPiece.fromLetter creates a Bishop for B and b; ChessGame.setupPieces places the four bishops on (0,2), (0,5), (7,2) and (7,5); game.movePiece(7, 5, 5, 3) in Demo.main prints `White Bishop moves (7,5) -> (5,3)`; the two compiler errors, the empty class and then the missing constructor, are copied into the notes; a session 3 cost line sits at the top of Demo.main under the two lines from session 2 and says for which places the compiler warned and whether anything showed up only when the program ran; the three Discussion answers are written down"
-  exercise2: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, print as Knight and draw as N and n; the knight's cost line is written under the bishop's; Amazon extends Queen, uses super.isLegalMove for the queen's part and shares the L with Knight without copying it; an Amazon has been tried on a ChessBoard of its own in Demo.main; the two Discussion answers are written down"
-  exercise3: "three written answers, one per question Q1 to Q3, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the wish sentence and the list of what was missing are written down"
+  exercise0: "the three demo folders A_ to C_ have been run with every printed line predicted beforehand and, for each isLegalMove call, the class whose method runs; every commented line the demo files point at has been uncommented once, its compiler error compared with the one written next to it, and put back; E_ChessGame/Demo has been run and the two differences from session 2, the missing bishops and the changed move 3, are written down, with a guess at why the bishops are missing; the two Discussion answers are written down"
+  exercise1: "E_ChessGame/Bishop.java extends ChessPiece, overrides both abstract methods, isLegalMove and getLetter, with @Override, and has a constructor that calls super; ChessGame.setupPieces places the four bishops on (0,2), (0,5), (7,2) and (7,5); game.movePiece(7, 5, 5, 3) in Demo.main prints `White Bishop moves (7,5) -> (5,3)`; the three compiler errors, the missing rule, then the missing letter, then the missing constructor, are copied into the notes; a session 3 cost line sits at the top of Demo.main under the two lines from session 2 and says for which places the compiler warned and whether anything showed up only when the program ran; the two Discussion answers are written down"
+  exercise2: "knights start on (0,1), (0,6), (7,1) and (7,6), move only in an L, jump over pieces, and are drawn with the letters the sheet gives, N and n; the knight's cost line is written under the bishop's; Amazon extends Queen, uses super.isLegalMove for the queen's part and shares the L with Knight without copying it; an Amazon has been tried on a ChessBoard of its own in Demo.main; the two Discussion answers are written down"
+  exercise3: "two written answers, one per question Q1 and Q2, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; the wish sentence and the list of what was missing are written down"
 allowed_concepts:
   - everything from sessions 1 and 2
   - inheritance with extends, superclasses and subclasses
@@ -36,15 +37,14 @@ allowed_concepts:
   - method overriding, the @Override annotation, and dynamic dispatch through a variable of the superclass type
   - why the compiler refuses a call to a method that the declared type of a variable does not have, at the level of the demos
   - abstract classes and abstract methods
-  - protected members called by a subclass, as in step B_ and chapter 8, and final on classes and methods, as in chapter 7; no exercise of this session practises either
+  - protected members read and called by a subclass, as in step B_ and chapter 8, and final on classes and methods, as in chapter 7; no exercise of this session practises either
   - Object as the class every class extends, only as far as step A uses it
-  - ChessPiece.fromLetter as provided code, a static method that creates an object of the right subclass
 
 # Tightens the contract in /AGENTS.md for one exercise. An exception can only
 # ever tighten it, never loosen it.
 exception: |
   Exercise 3, the design review, is written work, and the writing IS the
-  deliverable. For its three questions the general permission to compare
+  deliverable. For its two questions the general permission to compare
   design options at concept level does not apply: never supply an
   alternative, a benefit, a cost, a list of what would have to change, or a
   verdict, not one of the five lines, and not spread across several replies.

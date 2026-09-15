@@ -1,7 +1,7 @@
-package session3.D_AbstractClasses;
+package session3.C_AbstractClasses;
 
 /**
- * Step C's demo, run against the abstract ChessPiece. The lines that matter
+ * Step B's demo, run against the abstract ChessPiece. The lines that matter
  * most are the ones that no longer compile.
  */
 public class Demo {
@@ -15,7 +15,7 @@ public class Demo {
         System.out.println("Rook from (7,0) to (4,0):  " + rook.isLegalMove(4, 0));
         System.out.println("King from (7,4) to (6,4):  " + king.isLegalMove(6, 4));
 
-        // Step B's board, asked the same question as in step C. The array
+        // Step B's board, asked the same question. The array
         // still has type ChessPiece, and every object in it is something
         // more specific.
         ChessPiece[][] squares = new ChessPiece[8][8];
@@ -25,12 +25,13 @@ public class Demo {
         for (int col = 0; col < 8; col++) {
             ChessPiece piece = squares[7][col];
             if (piece != null) {
-                System.out.println("The " + piece.getType() + " on (7," + col + ") may move one square up: "
-                        + piece.isLegalMove(6, col));
+                System.out.println("The " + piece.getType() + " on (7," + col + "): up 3? "
+                        + piece.isLegalMove(4, col)
+                        + "   diagonal 1? " + piece.isLegalMove(6, col + 1));
             }
         }
 
-        // Step C ended with a piece nobody had taught. Uncomment and compile.
+        // Step B ended with a piece nobody had taught. Uncomment and compile.
         //
         // ChessPiece mystery = new ChessPiece("Bishop", "White");
         //

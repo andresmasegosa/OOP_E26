@@ -22,11 +22,7 @@ public class Rook {
 
     /** Along a row or along a column, any distance. */
     public boolean isLegalMove(int toRow, int toCol) {
-        int rowDistance = Math.abs(toRow - row);
-        int colDistance = Math.abs(toCol - col);
-        if (rowDistance == 0 && colDistance == 0) {
-            return false;   // not moving at all
-        }
-        return rowDistance == 0 || colDistance == 0;
+        return Movements.isLegalHorizontalMove(row, col, toRow, toCol, 7)
+                || Movements.isLegalVerticalMove(row, col, toRow, toCol, 7);
     }
 }

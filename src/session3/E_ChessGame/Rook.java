@@ -15,4 +15,9 @@ public class Rook extends ChessPiece {
         return Movements.isLegalHorizontalMove(board, getRow(), getCol(), toRow, toCol, 7)
                 || Movements.isLegalVerticalMove(board, getRow(), getCol(), toRow, toCol, 7);
     }
+
+    @Override
+    protected char getLetter() {
+        return 'R';
+    }
 }
