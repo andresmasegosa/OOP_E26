@@ -10,7 +10,6 @@ is, and this session is about what can be built on it. A way of moving that belo
 in particular, so that a piece can hold two of them. And a player the game has never heard of,
 so that the game does not care whether a person or a program is on the other side.
 
-Session 3 taught which code runs. This session teaches which methods you are allowed to call.
 
 ## Before class
 

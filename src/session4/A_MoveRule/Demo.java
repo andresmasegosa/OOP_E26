@@ -51,7 +51,7 @@ public class Demo {
         System.out.println("static methods in a class called Movements, which no longer exists.");
         System.out.println("Here it is objects, and a piece holds the ones it may use.");
 
-        // --- Two lines that do not compile ---------------------------------
+        // --- One line that does not compile ---------------------------------
         //
         // An interface has no constructor, because it has no code to run.
         // Uncomment and compile.
@@ -59,20 +59,6 @@ public class Demo {
         // MoveRule anyRule = new MoveRule();
         //
         // error: MoveRule is abstract; cannot be instantiated
-        //
-        // The object in the variable `diagonal` IS a Diagonal, and Diagonal
-        // could have a method of its own that MoveRule does not declare.
-        // Uncomment and compile.
-        //
-        // System.out.println(diagonal.getMaxDistance());
-        //
-        // error: cannot find symbol
-        //   symbol:   method getMaxDistance()
-        //   location: variable diagonal of type MoveRule
-        //
-        // Read the last line. What you may call is decided by the type of
-        // the variable, not by the object in it. Step B turns that from a
-        // nuisance into the point.
         //
         // --- What is left for you ------------------------------------------
         //

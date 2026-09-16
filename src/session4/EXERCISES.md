@@ -1,7 +1,7 @@
 # Session 4 — Exercises
 
 Every exercise works in the folder [`C_ChessGame`](C_ChessGame/). The demo folders
-[`A_MoveRule`](A_MoveRule/) and [`B_Player`](B_Player/) are there to read and run. Three lines in
+[`A_MoveRule`](A_MoveRule/) and [`B_Player`](B_Player/) are there to read and run. Two lines in
 them are meant to be uncommented to see a compiler error, and each file says which ones and what
 the error is. Exercises 1 and 3 are the core of the session. Leave at least forty minutes for
 exercise 3.
@@ -34,10 +34,10 @@ Run the two demos in order, `A_MoveRule/Demo` and `B_Player/Demo`. Before you ru
 its `main` and write down what every `println` will print.
 
 Each demo folder also has lines to uncomment, with the compiler error they produce written next to
-them. There are three. Do each one, compile, check that you get that error, and then put the line
+them. There are two. Do each one, compile, check that you get that error, and then put the line
 back as it was.
 
-- `A_MoveRule/Demo.java`, the two commented lines at the end of `main`.
+- `A_MoveRule/Demo.java`, the commented line at the end of `main`.
 - `B_Player/Demo.java`, the commented line at the end of `main`.
 - `B_Player/Demo.java` also has a line that is not an error. Swap `RandomPlayer` for
   `KeyboardPlayer` as the comment says, run it, and put it back.
@@ -49,15 +49,9 @@ as much of it as you need and stop it if you want. Several moves are refused alo
 moves that the piece's own rules allow, so write down where the refused ones came from, and which
 class knows the rule that refused them.
 
-Discussion. Bring both answered in writing.
+Discussion. Bring it answered in writing.
 
-1. In `A_MoveRule/Demo.java` the variable `diagonal` holds a `Diagonal`, and
-   `diagonal.getMaxDistance()` does not compile even though `Diagonal` has that method. In
-   session 3, a variable of type `ChessPiece` held a `Queen` and `piece.isLegalMove(...)` ran the
-   queen's code. Both facts are about a variable whose type is more general than its object. Say
-   which of the two is decided while compiling and which while the program runs. (Chapter 8,
-   "Using Interface References", and chapter 7, "Superclass References and Subclass Objects".)
-2. Open `session3/E_ChessGame/ChessBoard.java` and this session's side by side. Apart from the
+1. Open `session3/E_ChessGame/ChessBoard.java` and this session's side by side. Apart from the
    package line they are the same file, although every piece on that board was rewritten. Then
    look for `Movements.java` in this session; it is not there. Session 3's had three static
    methods. Say where each of them is now, by class name, and say in one sentence what a rule

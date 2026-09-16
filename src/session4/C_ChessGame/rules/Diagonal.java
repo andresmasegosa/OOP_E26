@@ -15,10 +15,6 @@ public class Diagonal implements MoveRule {
         this.maxDistance = maxDistance;
     }
 
-    public int getMaxDistance() {
-        return maxDistance;
-    }
-
     @Override
     public boolean allows(ChessBoard board, int fromRow, int fromCol, int toRow, int toCol) {
         int rowDistance = Math.abs(toRow - fromRow);
