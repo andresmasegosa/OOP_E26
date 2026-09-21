@@ -1,0 +1,57 @@
+# Machine-readable facts about this session's exercises, read by AI
+# assistants together with the contract in /AGENTS.md. Students may read it
+# too. There is nothing secret here.
+id: session5-interfaces-and-design
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - declare an interface and implement it, and read the compiler error when the promise is not kept
+  - read the javadoc of an interface as its contract, and write code against somebody else's contract
+  - give a class behaviour by holding objects instead of by inheriting it, as ChessPiece holds MoveRule objects
+  - decide, for a new piece, whether it is a case for inheritance or for composition, and say why
+  - implement an interface the course's own code already calls, as exercise 2 does with Player
+  - extend a provided class and fall back on it with super, as exercise 2 does with RandomPlayer
+  - place a responsibility in one class and defend the choice in writing, with a class diagram that marks interfaces and abstract classes
+  - keep the cost-of-change lines growing with a line for session 5, in the comment at the top of Demo.main
+not_yet_introduced:
+  - instanceof and pattern matching
+  - sealed classes and permits
+  - default and static methods in interfaces
+  - lambdas and functional interfaces
+  - enums
+  - exceptions
+  - collections and generics
+  - unit tests
+  - design patterns and their names
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise0: "the two demo folders A_MoveRule and B_Player have been run with every printed line predicted beforehand; the two commented lines that do not compile have each been uncommented once, compiled, their error compared with the one written beside them and then put back (one in A_MoveRule/Demo, one in B_Player/Demo); the one-line swap from RandomPlayer to KeyboardPlayer in B_Player/Demo has been made and undone; C_ChessGame/Demo has been run and the refusals in the machine game are accounted for; the Discussion answer is written down"
+  exercise1: "C_ChessGame/rules/LShape.java implements MoveRule and jumps, with no path to check and no use of the board; Knight extends ChessPiece, adds an LShape, answers N to getLetter and starts on (0,1), (0,6), (7,1) and (7,6); the two compiler errors met on the way, the missing letter and the missing constructor, are copied into the notes, and so is what happens to a piece whose constructor forgets addRule; Chancellor, Archbishop and Amazon each add their rules and none of them writes the L a second time; an Amazon has been tried on a board of her own in Demo.main; the session 5 cost line sits at the top of Demo.main under the three earlier ones and compares this Amazon with the one built by inheritance in session 3; the two Discussion answers are written down"
+  exercise2: "C_ChessGame/players/GreedyPlayer.java extends RandomPlayer, prefers a legal capture of the most valuable enemy piece it can reach, falls back on super.chooseMove when there is none, and is used as one of the two arguments of new ChessGame(...) in Demo.main so that a game runs against it; before the code, a written answer to the three javadoc questions, whether chooseMove may return null, who checks that the move is legal, and what happens when it is not; the notes say how the piece values were decided and what the program does when the player proposes a capture of its own piece; the three Discussion answers are written down"
+  exercise3: "four written answers, one per question Q1 to Q4, each in the five-line shape (alternative, what it makes better, what it makes worse, what to touch by name, verdict); a verdict of 'not with what I know today' is complete; a class diagram of C_ChessGame that marks every interface and every abstract class and shows which class implements which, which extends which and which holds which; the wish sentence for the sessions after next is written down"
+allowed_concepts:
+  - everything from sessions 1, 2 and 3
+  - interfaces, implements, and a class implementing more than one interface
+  - every member of an interface being public, and an interface having no constructor and no instance fields
+  - "@Override on a method that implements an interface method"
+  - an interface as a parameter type, a return type and a field type
+  - "composition: a field whose type is an interface, and an array of them"
+  - a subclass of a provided class calling super.method(...) as a fallback, as exercise 2 does
+  - java.util.Random, as used by the provided RandomPlayer
+  - arrays of objects and a count, as in session 1
+  - a subpackage, and the import line it makes necessary, at the level session 2 read in chapter 8
+exception: |
+  Exercise 3, the design review, is written work, and the writing IS the
+  deliverable. For its four questions the general permission to compare
+  design options at concept level does not apply: never supply an
+  alternative, a benefit, a cost, a list of what would have to change, or a
+  verdict, not one of the five lines, and not spread across several replies.
+  The class diagram it asks for is part of the same deliverable: do not draw
+  it, and do not list the classes, the interfaces or the arrows that belong
+  in it. Explaining what the provided code does is allowed here as
+  everywhere; on the questions themselves, ask what the student has written
+  and help them sharpen their own words.
+
+  Exercise 2 asks three questions about the javadoc of Player.chooseMove
+  before any code is written. Reading that javadoc aloud with the student is
+  allowed. Answering the three questions for them is not: they are written
+  work of the same kind as exercise 3.

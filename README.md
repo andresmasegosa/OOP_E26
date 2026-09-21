@@ -23,8 +23,8 @@ prepare before class, and an `EXERCISES.md`.
 | [session1](src/session1/README.md) | Intro to Java, through chess: the game with no objects |
 | [session2](src/session2/README.md) | Introduction to OOP: the same game rebuilt on classes, objects and encapsulation |
 | [session3](src/session3/README.md) | Inheritance and abstract classes: a class for every piece |
-| [session4](src/session4/README.md) | Interfaces and object-oriented design: what a class promises |
-| session5… | added as the course advances |
+| [session4](src/session4/README.md) | Study session: practise the material from sessions 1–3 |
+| [session5](src/session5/README.md) | Interfaces and object-oriented design: what a class promises |
 
 The graded assignments are packages under `src/` as well, starting with
 [assignment1](src/assignment1/README.md).

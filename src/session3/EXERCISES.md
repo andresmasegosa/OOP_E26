@@ -195,7 +195,7 @@ Discussion:
 
 1. Q2 ends in a wish. A queen moves like a rook and like a bishop, and a class can extend only
    one class. Write down, in one sentence, what you would want the language to let you do.
-   Session 4 starts from that sentence.
+   Session 5 starts from that sentence.
 2. Which verdicts came out "not with what I know today"? Write down what was missing each time.
 
 ## Global reflection — three cost lines
@@ -209,4 +209,4 @@ All notes on the table, those of sessions 1 and 2 included.
 3. Write two wishes for next week, one sentence each. The first is about a piece that moves like
    two pieces without copying code. The second is about the game. What would have to change in
    `ChessGame` so that you could play against the computer instead of a classmate? Bring both
-   sentences to session 4.
+   sentences to session 5.

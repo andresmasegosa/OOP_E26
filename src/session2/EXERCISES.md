@@ -212,7 +212,7 @@ Discussion:
 3. The board has forgotten the captured queen, your variable has not, and she
    still says she is on `(0,3)`. Nobody told her. Decide what should happen
    to the object of a captured piece, write it in one sentence and keep it.
-   Who should tell her, the board, the game or the piece, is session 4's
+   Who should tell her, the board, the game or the piece, is session 5's
    business.
 
 ## Exercise 3 — the sabotage, and every other door
@@ -387,7 +387,7 @@ Discussion:
    you were missing each time. That list is next week's wish list, and the
    global reflection below collects it.
 3. Four of these five questions are really the same question, who should be
-   responsible for this. Write that sentence down. Session 4 opens with it.
+   responsible for this. Write that sentence down. Session 5 opens with it.
 
 ## Exercise 5 — the knights, again (stretch goal)
 

@@ -101,7 +101,7 @@ public class ChessBoard {
      *
      * One thing to notice for later: this method talks to the console.
      * Whether a board should know that a console exists is a
-     * responsibilities question (session 4), and session 7 will give us a
+     * responsibilities question (session 5), and session 7 will give us a
      * concrete reason to change it — what is printed cannot be tested,
      * what is returned as a String can.
      */

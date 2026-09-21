@@ -12,7 +12,7 @@ package session3.C_AbstractClasses;
  *
  * They are static: they belong to no piece in particular, they are pure
  * geometry. Where rules like these should live — in a helper class, in the
- * pieces, or in the board — is a real design question, and session 4 takes it
+ * pieces, or in the board — is a real design question, and session 5 takes it
  * up properly.
  */
 public class Movements {

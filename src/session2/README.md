@@ -16,7 +16,7 @@ piece, and the board stops being writable by anyone who feels like it.
    (classes, objects and methods) and chapter 6 (a closer look at methods
    and classes — constructors, overloading, access control). From chapter 8,
    read only the part about packages; the interfaces part belongs to
-   session 4. If arrays still feel shaky, chapter 5 covers them — session 1
+   session 5. If arrays still feel shaky, chapter 5 covers them — session 1
    already leaned on them.
 
 2. **Bring your session 1 notes.** The cost counts from exercises 1 to 3,

@@ -9,7 +9,7 @@ package session2.E_ChessGame;
  * They are static: they belong to no piece in particular, they are pure
  * geometry. Whether rules like these should live in their own helper
  * class, in the pieces, or in the board is a real design question — we
- * take it up properly in session 4.
+ * take it up properly in session 5.
  */
 public class Movements {
 
