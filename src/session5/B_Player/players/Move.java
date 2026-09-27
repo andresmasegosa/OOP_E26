@@ -48,7 +48,7 @@ public class Move {
      * The move written the way the game writes it, "(7,3) -> (4,3)". Every
      * class inherits toString from Object, and printing an object calls it;
      * this one overrides it so that a Move prints as a move instead of as
-     * session5.A_Player.Move@1b6d3586. (Chapter 7, "The Object Class".)
+     * session5.B_Player.players.Move@1b6d3586. (Chapter 7, "The Object Class".)
      */
     @Override
     public String toString() {

@@ -59,12 +59,11 @@ public class Demo {
         // MoveRule anyRule = new MoveRule();
         //
         // error: MoveRule is abstract; cannot be instantiated
+
+        // --- EXERCISE A --------------------------------------------------
         //
-        // --- What is left for you ------------------------------------------
-        //
-        // There is no LShape in this folder, and no Knight. Exercise 1 is to
-        // write the rule once and then count what a Chancellor, an
-        // Archbishop and an Amazon cost. Before you start, write down your
-        // guess: how many new classes, and how many lines in each.
+        // There is no LShape in this folder, and no Knight. Exercise A, in
+        // EXERCISES.md next to this file, is to write the two. You can try
+        // your knight here, on this board.
     }
 }

@@ -65,9 +65,10 @@ public class ChessBoard {
             return false;               // both squares must exist
         }
 
-        // You may capture an enemy piece, but never one of your own. This
-        // rule is the board's, and no MoveRule knows about it. Exercise 1
-        // makes you meet that on purpose.
+        // You may capture an enemy piece, but never one of your own. Since
+        // session 5, ChessPiece.isLegalMove refuses that too, before it asks
+        // the rules. The board keeps its own check, as it has since session 2,
+        // and exercise 2 asks whether both are needed.
         ChessPiece target = pieces[toRow][toCol];
         if (target != null && target.isWhite() == piece.isWhite()) {
             return false;

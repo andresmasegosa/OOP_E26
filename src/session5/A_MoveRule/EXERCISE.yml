@@ -1,0 +1,28 @@
+# Machine-readable facts about exercise A of session 5, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session5-a-moverule
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - implement an interface, and read the compiler error when the promise is not kept, as LShape does with MoveRule
+  - give a piece a way of moving by holding a rule object instead of inheriting it, as Knight holds an LShape
+  - notice what the compiler no longer catches once behaviour is held, a Knight whose constructor forgets addRule
+not_yet_introduced:
+  - instanceof and pattern matching
+  - sealed classes and permits
+  - default and static methods in interfaces
+  - lambdas and functional interfaces
+  - enums
+  - exceptions
+  - collections and generics
+  - unit tests
+  - design patterns and their names
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseA: "a prediction of what A_MoveRule/Demo prints is written down; A_MoveRule/rules/LShape.java implements MoveRule and allows exactly the knight's L, two squares along one axis and one along the other, with no path to check and no use of the board; A_MoveRule/Knight.java extends ChessPiece, adds an LShape and answers N to getLetter; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1, 2 and 3
+  - interfaces, implements, and @Override on a method that implements an interface method
+  - every member of an interface being public, and an interface having no constructor and no instance fields
+  - "composition: a field whose type is an interface, and an array of them"
+  - a subpackage, and the import line it makes necessary, at the level session 2 read in chapter 8

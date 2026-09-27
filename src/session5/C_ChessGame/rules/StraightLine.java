@@ -43,8 +43,9 @@ public class StraightLine implements MoveRule {
         }
 
         // Walk the squares strictly between the two ends: all must be empty.
-        // The target square itself may hold an enemy piece, which is a
-        // capture, and the board is the one that checks whose piece it is.
+        // The target square itself may hold a piece, which is a capture.
+        // When a piece asks, ChessPiece.isLegalMove has already refused a
+        // target of its own colour.
         int rowStep = step(fromRow, toRow);
         int colStep = step(fromCol, toCol);
         int row = fromRow + rowStep;

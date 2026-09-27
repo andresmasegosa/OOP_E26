@@ -19,9 +19,14 @@ public class Demo {
         board.placePiece(7, 3, new Queen("White"));
         board.placePiece(7, 0, new Rook("White"));
         board.placePiece(0, 4, new Queen("Black"));
+        board.placePiece(4, 0, new Rook("Black"));   // within reach of both white pieces
         board.print();
 
         // The variable has the type Player, and the object is a RandomPlayer.
+        // Put new KeyboardPlayer() on this line instead, with its import line
+        // at the top, and this demo asks you for the moves. Not one other line
+        // changes, because nothing here knows more about the object than that
+        // it is a Player.
         Player white = new RandomPlayer();
 
         System.out.println();
@@ -36,18 +41,10 @@ public class Demo {
         System.out.println("rules allow. The player asked the pieces; look at");
         System.out.println("RandomPlayer.chooseMove and find the line where it does.");
         System.out.println();
-        System.out.println("Run it a few times and you will see one of them put a white piece on");
-        System.out.println("another white piece. A StraightLine allows that, because a rule");
-        System.out.println("answers about geometry and a clear path and nothing else. That you");
-        System.out.println("may not capture your own piece is the board's rule, and a player");
-        System.out.println("cannot ask the board about it.");
-
-        // ONE LINE. Uncomment the next line and comment out the declaration of
-        // white above, and this demo asks you for the moves instead. Not one
-        // other line changes, because nothing here knows more about the object
-        // than that it is a Player.
-        //
-        // Player white = new KeyboardPlayer();
+        System.out.println("Run it a few times. Now and then a move takes the black rook on (4,0),");
+        System.out.println("but only by chance, because a RandomPlayer does not look for captures.");
+        System.out.println("No move ever lands on a white piece. ChessPiece.isLegalMove refuses");
+        System.out.println("that before it asks the rules.");
 
         // --- One line that does not compile --------------------------------
         //
@@ -61,5 +58,11 @@ public class Demo {
         //
         // A Player variable is fine, as white above shows. What cannot exist
         // is an object that is a Player and nothing more specific.
+
+        // --- EXERCISE B --------------------------------------------------
+        //
+        // Exercise B, in EXERCISES.md next to this file, is a player of your
+        // own, CapturePlayer, in players/ next to RandomPlayer. It goes on the
+        // line that declares white, in the place of the RandomPlayer.
     }
 }

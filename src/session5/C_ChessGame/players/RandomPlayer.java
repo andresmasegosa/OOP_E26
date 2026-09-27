@@ -17,11 +17,10 @@ import java.util.Random;
  * it does not prefer a capture, and it does not know whose turn it is. That
  * is enough to play a whole game by itself, which is what Demo.main shows.
  *
- * It still gets refused sometimes, and on purpose. ChessPiece.isLegalMove
- * answers about the piece's rules, and the rule that you may not capture a
- * piece of your own colour is not there, it is in ChessBoard.movePiece. A
- * player cannot ask about a rule that lives in the board. Watch a game and you
- * will see the refusals; who checks what is exercise 3's business.
+ * It is never refused. ChessPiece.isLegalMove refuses a target that holds a
+ * piece of the mover's own colour before it asks the rules, so every move a
+ * RandomPlayer proposes is one the board accepts. Who checks what is exercise
+ * 2's business.
  *
  * Its whole state is one Random, written on one line. KeyboardPlayer's whole
  * state is one Scanner, written on one line. Two classes, the same job, and

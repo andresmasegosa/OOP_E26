@@ -25,7 +25,7 @@ import session5.C_ChessGame.rules.MoveRule;
  * constructor still has to be called, so the compiler names both. The rule
  * is no longer abstract, because isLegalMove has a body again, so a piece
  * that calls super and forgets addRule compiles and simply never moves.
- * That is what composition costs, and exercise 2 makes you meet it.
+ * That is what composition costs, and exercise A makes you meet it.
  *
  * There is no switch in this class, and none anywhere in this session.
  * Session 3 took the last two out: the letter is getLetter, answered by each
@@ -43,7 +43,7 @@ public abstract class ChessPiece {
     private int row = -1;       // (-1,-1) until a board places the piece
     private int col = -1;
     // The ways this piece is allowed to move, filled in by addRule. Four is
-    // enough for every piece of this game and of exercise 2; a fifth would
+    // enough for every piece of this game and of exercise 1; a fifth would
     // crash here, and session 6 gives us the tool that takes the number away.
     private MoveRule[] rules = new MoveRule[4];
     private int ruleCount = 0;
@@ -71,15 +71,21 @@ public abstract class ChessPiece {
     }
 
     /**
-     * May this piece move to (toRow, toCol) on that board? One yes among
-     * the rules is enough. Nothing in this method knows which rules a piece
-     * holds, or how many, and that is why it never has to change again.
+     * May this piece move to (toRow, toCol) on that board? One check comes
+     * first. A piece may not end on a piece of its own colour, whatever its
+     * rules say, so no rule has to check it. Then one yes among the rules is
+     * enough. Nothing in the loop knows which rules a piece holds, or how
+     * many, and that is why it does not change when a piece gets a new rule.
      *
-     * What this method does NOT decide: whether the target holds a piece of
-     * your own color, and whose turn it is. ChessBoard.movePiece keeps the
-     * first and ChessGame.takeTurn keeps the second.
+     * What this method does NOT decide is whose turn it is. ChessGame.takeTurn
+     * keeps that. ChessBoard.movePiece checks the colour of the target as
+     * well, as it has since session 2.
      */
     public boolean isLegalMove(ChessBoard board, int toRow, int toCol) {
+        ChessPiece target = board.getPieceAt(toRow, toCol);
+        if (target != null && target.isWhite() == isWhite()) {
+            return false;               // one of my own pieces stands there
+        }
         for (int i = 0; i < ruleCount; i++) {
             if (rules[i].allows(board, row, col, toRow, toCol)) {
                 return true;
@@ -88,7 +94,7 @@ public abstract class ChessPiece {
         return false;
     }
 
-    /** How many ways this piece can move. Exercise 2 counts with it. */
+    /** How many ways this piece can move. Step A's demo prints it. */
     public int countRules() {
         return ruleCount;
     }

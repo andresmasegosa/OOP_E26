@@ -5,8 +5,8 @@ import session5.C_ChessGame.players.RandomPlayer;
 
 /**
  * Starts the game. Every folder of this session has a class called Demo, and
- * this is the one EXERCISES.md means when it says Demo or Demo.main, the
- * class session5.C_ChessGame.Demo.
+ * this is the one the EXERCISES.md of this folder means when it says Demo or
+ * Demo.main, the class session5.C_ChessGame.Demo.
  *
  * Two games run here, and the only difference between them is the two
  * arguments on one line. The first is played by two programs and needs no
@@ -16,16 +16,16 @@ import session5.C_ChessGame.players.RandomPlayer;
 public class Demo {
 
     public static void main(String[] args) {
-        // --- EXERCISE 2: your cost line for the Amazon goes here, under the
+        // --- EXERCISE 1: your cost line for the Amazon goes here, under the
         //     three lines of sessions 1, 2 and 3.
 
         // --- Two machines ---------------------------------------------------
         // A different game every run, and it ends by itself when a king is
         // captured. Two players this bad can take a long time to find a king,
         // so it may run for a hundred moves or more; scroll, or stop it and
-        // run it again. Watch for the refusals along the way: a RandomPlayer
-        // only knows the rules that live in the pieces, and the rule that you
-        // may not capture your own piece lives in the board.
+        // run it again. No move is refused. A RandomPlayer only proposes what
+        // its pieces allow, and ChessPiece.isLegalMove never allows a piece to
+        // end on one of its own.
 
         System.out.println("Two RandomPlayers. Nobody is at the keyboard.");
         System.out.println("This can run for a while: neither of them is trying to win.");

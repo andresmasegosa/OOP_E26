@@ -24,7 +24,8 @@ import session5.A_MoveRule.ChessBoard;
  *     numbers, not as a piece. A rule does not know whose rule it is, which is
  *     what lets two pieces share one.
  *   - What the rule does NOT answer: whether the target holds a piece of your
- *     own colour, and whose turn it is. The board and the game keep those.
+ *     own colour, and whose turn it is. ChessPiece.isLegalMove refuses the
+ *     first before it asks any rule, and the game keeps the second.
  */
 public interface MoveRule {
 

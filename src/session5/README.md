@@ -45,8 +45,11 @@ bring it.
 ## In class
 
 - The two wishes from session 3, on the table.
-- Live coding of the path `A_` to `B_`, and the game rebuilt in `C_ChessGame`.
-- Exercises, in [EXERCISES.md](EXERCISES.md).
+- Step `A_` in live coding, and then exercise A. Step `B_`, and then exercise B.
+- The game rebuilt in `C_ChessGame`, and then exercises 1, 2 and 3.
+
+Each folder has its own exercise sheet, [`A_MoveRule/EXERCISES.md`](A_MoveRule/EXERCISES.md),
+[`B_Player/EXERCISES.md`](B_Player/EXERCISES.md) and [`C_ChessGame/EXERCISES.md`](C_ChessGame/EXERCISES.md).
 
 ## Files
 
@@ -68,7 +71,8 @@ bring it.
 - **`King`, `Queen`, `Rook` and `Bishop` lost their `isLegalMove`.** Each one now says its name,
   its letter and its ways of moving, and holds no method that decides anything.
 - **`ChessPiece.isLegalMove` has a body again**, the same body for every piece: ask the rules,
-  and one yes is enough. `getLetter` is still abstract, as session 3 left it.
+  and one yes is enough. Before it asks them, it refuses a target that holds a piece of the
+  mover's own colour. `getLetter` is still abstract, as session 3 left it.
 - **`ChessGame` lost the keyboard and gained two players.** `ChessGame.movePiece` is private now,
   so a move can only be made by coming through `ChessGame.takeTurn`, where the turn is checked.
 - **The scripted game is gone.** `Demo.main` plays a game between two `RandomPlayer` objects

@@ -14,9 +14,8 @@ import java.util.Scanner;
  * are the whole of one class, and the game does not know they exist. What
  * the game knows is that it has a Player and can ask it for a move.
  *
- * Its whole state is one Scanner. It shares no field with ScriptedPlayer,
- * and like ScriptedPlayer it never looks at the board it is handed: the
- * human looks at the picture the game has just printed.
+ * Its whole state is one Scanner. It never looks at the board it is handed:
+ * the person looks at the picture the game has just printed.
  */
 public class KeyboardPlayer implements Player {
 

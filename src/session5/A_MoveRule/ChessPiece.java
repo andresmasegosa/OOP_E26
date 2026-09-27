@@ -27,7 +27,7 @@ public abstract class ChessPiece {
     private int row = -1;
     private int col = -1;
     // The ways this piece is allowed to move, filled in by addRule. Four is
-    // enough for every piece of this game and of exercise 2; a fifth would
+    // enough for every piece of this game and of exercise 1; a fifth would
     // crash here, and session 6 gives us the tool that takes the number away.
     private MoveRule[] rules = new MoveRule[4];
     private int ruleCount = 0;
@@ -55,9 +55,17 @@ public abstract class ChessPiece {
      * every subclass wrote its own. Here it has a body again, and the body
      * is the same for every piece: ask the rules, and one yes is enough.
      *
+     * One check comes first, before any rule is asked. A piece may not end
+     * on a piece of its own colour, whatever its rules say, so no rule has
+     * to check it.
+     *
      * Nothing in this method knows which rules they are, or how many.
      */
     public boolean isLegalMove(ChessBoard board, int toRow, int toCol) {
+        ChessPiece target = board.getPieceAt(toRow, toCol);
+        if (target != null && target.isWhite() == isWhite()) {
+            return false;               // one of my own pieces stands there
+        }
         for (int i = 0; i < ruleCount; i++) {
             if (rules[i].allows(board, row, col, toRow, toCol)) {
                 return true;

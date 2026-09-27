@@ -1,0 +1,29 @@
+# Machine-readable facts about exercise B of session 5, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session5-b-player
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - extend a class that implements an interface, and see that the subclass has the interface's type too, as CapturePlayer has Player's through RandomPlayer
+  - build on the superclass with super, as CapturePlayer.chooseMove asks RandomPlayer.chooseMove
+  - change which class stands behind an interface by changing one line, the declaration of white in Demo.main
+not_yet_introduced:
+  - instanceof and pattern matching
+  - sealed classes and permits
+  - default and static methods in interfaces
+  - lambdas and functional interfaces
+  - enums
+  - exceptions
+  - collections and generics
+  - unit tests
+  - design patterns and their names
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseB: "a prediction of what B_Player/Demo prints is written down; B_Player/players/CapturePlayer.java extends RandomPlayer, and CapturePlayer.chooseMove asks super.chooseMove for a move a bounded number of times, answers with the first one whose target square holds an enemy piece, answers with the last move it got when none does, and answers null when super.chooseMove does; it is declared as white in B_Player/Demo.main, with its import line, and every move the demo prints ends on (4,0), the square of the black rook; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1, 2 and 3
+  - interfaces, implements, and @Override on a method that implements an interface method
+  - an interface as a parameter type, a return type and the type of a variable
+  - a subclass of a provided class calling super.method(...), as CapturePlayer does with RandomPlayer
+  - java.util.Random, as used by the provided RandomPlayer
+  - a subpackage, and the import line it makes necessary, at the level session 2 read in chapter 8
