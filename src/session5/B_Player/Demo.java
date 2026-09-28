@@ -32,6 +32,10 @@ public class Demo {
         System.out.println();
         System.out.println("Asking the player three times, as White:");
         for (int i = 0; i < 3; i++) {
+            // chooseMove may answer null, which means the player stops (see
+            // the contract in players/Player.java). Here the answer is only
+            // printed, so a null shows as "null". Check for null before you
+            // call a method on the move.
             Move move = white.chooseMove(board, "White");
             System.out.println("  " + move);
         }
