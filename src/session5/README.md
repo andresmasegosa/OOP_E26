@@ -50,6 +50,7 @@ bring it.
 
 Each folder has its own exercise sheet, [`A_MoveRule/EXERCISES.md`](A_MoveRule/EXERCISES.md),
 [`B_Player/EXERCISES.md`](B_Player/EXERCISES.md) and [`C_ChessGame/EXERCISES.md`](C_ChessGame/EXERCISES.md).
+Each folder also has its own `EXERCISE.yml`, which the AI tutor reads together with the sheet.
 
 ## Files
 

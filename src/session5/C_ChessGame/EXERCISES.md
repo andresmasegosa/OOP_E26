@@ -45,8 +45,8 @@ you have to do. The tips are there if you need them.
 
 ## Exercise 2 — a player that plays better
 
-1. Before you write any code, read the javadoc of `Player.chooseMove`, in `players/Player.java`,
-   and answer these three questions in writing.
+1. Before you write any code, read `players/Player.java` and answer these three questions in
+   writing.
    - May `Player.chooseMove` return `null`, and what happens if it does?
    - Who checks that a move is legal? Name every class and method that takes part.
    - Is a player that proposes an illegal move asked again, or does it lose its turn?
