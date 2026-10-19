@@ -1,0 +1,47 @@
+# Machine-readable facts about exercise A of session 7, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session7-a-objectmethods
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - override equals(Object) so that two different objects with the same values are equal, as Person.equals does for two people with the same first name, last name and age
+  - build hashCode from exactly the fields that equals compares, as Person.hashCode leaves out the middle name
+  - override toString so that printing an object shows its values, as a Person prints as Anders Madsen, 48
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch
+  - unit tests
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseA: "a prediction of what A_ObjectMethods/Demo prints is written down; A_ObjectMethods/Person.java overrides equals(Object), hashCode and toString, each with @Override; Person.equals answers true exactly when the first name, the last name and the age are the same, whatever the middle names; Person.hashCode is built from the fields Person.equals compares and never from the middle name; Person.toString gives the name and then the age with no double space, Anders Madsen, 48 and Anders M Madsen, 48; A_ObjectMethods/Demo prints the two people in that shape, then They are equal with the same number for the hash codes of person1 and person2; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 5, interfaces, implements and composition included
+  - Object as the superclass of every class, and its methods equals, hashCode and toString, overridden with @Override
+  - equals(Object other) written with == for the same object, getClass() or instanceof without a variable name, a cast to the class, and a comparison of the fields
+  - == on references set against equals, and printing an object, which calls its toString
+  - hashCode kept consistent with equals, and the helpers java.util.Objects.equals and java.util.Objects.hash
+  - a generic class of your own with one type parameter T, used with a type argument such as <Giraffe>, and the diamond <>
+  - an array of T made as (T[]) new Object[n], with the unchecked warning javac gives for it
+  - a raw type, a generic class used with no type argument, recognised as the Object version and avoided
+  - Integer and the other wrapper classes as type arguments, with autoboxing at the level of the section Autoboxing Fundamentals in chapter 12
+  - List, ArrayList, LinkedList, Set, HashSet, Map and HashMap from java.util, with the interface as the type of the variable
+  - "their common methods: add, get, set, remove, size, isEmpty, contains and indexOf on a List; add, remove, size and contains on a Set; put, get, getOrDefault, containsKey, remove, size, keySet and values on a Map"
+  - a for-each loop over a List, a Set, the keySet() of a Map and its values()
+  - a class of your own that implements Comparator for one type, such as Comparator<Person>, in its own file, and Collections.sort(list, comparator)
+  - Collections.sort(list) on Strings and Integers, which already know their order
+  - String.compareTo and Integer.compare inside a compare method
+  - import lines for java.util classes, one class per line
+  - reading the message of an exception that stops the program, such as ClassCastException or NullPointerException, without try and catch

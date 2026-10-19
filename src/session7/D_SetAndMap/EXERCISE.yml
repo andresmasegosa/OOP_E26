@@ -1,0 +1,47 @@
+# Machine-readable facts about exercise D of session 7, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session7-d-setandmap
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - make a HashSet keep one copy of equal objects by writing equals and hashCode together, as Card does for the Set<Card> of part 3
+  - look up a value in a Map with a key built a second time, as part 2 of Demo.main finds a birth year with a new President
+  - count how often each element of a list appears with a Map<Card, Integer>, as Demo.main does for the cards of the hand
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch
+  - unit tests
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseD: "a prediction of what D_SetAndMap/Demo prints is written down, with every size and value and the cards of part 1 in any order; D_SetAndMap/Card.java overrides equals(Object) and hashCode so that two cards with the same name are equal and have the same hash code, and part 3 of the demo prints Cards in the set: 4; D_SetAndMap/Demo.main counts how many times each card of hand appears in a Map<Card, Integer> and prints 3 as the count of the Ace of Hearts, in a line of the student's own wording; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 5, interfaces, implements and composition included
+  - Object as the superclass of every class, and its methods equals, hashCode and toString, overridden with @Override
+  - equals(Object other) written with == for the same object, getClass() or instanceof without a variable name, a cast to the class, and a comparison of the fields
+  - == on references set against equals, and printing an object, which calls its toString
+  - hashCode kept consistent with equals, and the helpers java.util.Objects.equals and java.util.Objects.hash
+  - a generic class of your own with one type parameter T, used with a type argument such as <Giraffe>, and the diamond <>
+  - an array of T made as (T[]) new Object[n], with the unchecked warning javac gives for it
+  - a raw type, a generic class used with no type argument, recognised as the Object version and avoided
+  - Integer and the other wrapper classes as type arguments, with autoboxing at the level of the section Autoboxing Fundamentals in chapter 12
+  - List, ArrayList, LinkedList, Set, HashSet, Map and HashMap from java.util, with the interface as the type of the variable
+  - "their common methods: add, get, set, remove, size, isEmpty, contains and indexOf on a List; add, remove, size and contains on a Set; put, get, getOrDefault, containsKey, remove, size, keySet and values on a Map"
+  - a for-each loop over a List, a Set, the keySet() of a Map and its values()
+  - a class of your own that implements Comparator for one type, such as Comparator<Person>, in its own file, and Collections.sort(list, comparator)
+  - Collections.sort(list) on Strings and Integers, which already know their order
+  - String.compareTo and Integer.compare inside a compare method
+  - import lines for java.util classes, one class per line
+  - reading the message of an exception that stops the program, such as ClassCastException or NullPointerException, without try and catch

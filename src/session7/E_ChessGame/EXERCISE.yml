@@ -1,0 +1,49 @@
+# Machine-readable facts about exercises 1, 2 and 3 of session 7, in this folder, read by AI assistants
+# together with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session7-e-chessgame
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - keep objects in a List field instead of an array and a counter, and loop over it with for-each, as ChessPiece keeps its rules in a List<MoveRule>
+  - give a class of your own a toString and collect its objects in a List that is printed in one line, as ChessGame prints the captured pieces as [Black Rook, White Knight]
+  - use a class of your own as the key of a HashMap by writing its equals and hashCode, as Position is the key of the Map<Position, ChessPiece> that replaces the array inside ChessBoard
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch
+  - unit tests
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise1: "E_ChessGame/ChessPiece.java keeps its rules in a List<MoveRule>, with no array of rules and no field ruleCount; ChessPiece.addRule adds the rule to the list and ChessPiece.isLegalMove loops over the rules in the list and answers true when one of them allows the move; E_ChessGame/Demo plays a game to the end, as before; the Discussion answer is written down"
+  exercise2: "E_ChessGame/ChessPiece.java overrides toString so that a piece prints as its colour and its type, such as Black Rook; E_ChessGame/ChessGame.java keeps every captured piece in a List<ChessPiece> and prints the list when the game ends; E_ChessGame/Demo ends its game with a line such as Captured: [Black Rook, White Knight], naming the pieces captured in that game; the Discussion answer is written down"
+  exercise3: "E_ChessGame/Position.java holds a row and a column and overrides equals(Object) and hashCode so that two positions with the same row and column are equal and have the same hash code; E_ChessGame/ChessBoard.java keeps its pieces in a Map<Position, ChessPiece> instead of the array, and its public methods getPieceAt, placePiece, movePiece and print keep their signatures and what they do, so that a moved piece is drawn on its new square only; E_ChessGame/Demo draws the board with all sixteen pieces and plays a game to the end; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 5, interfaces, implements and composition included
+  - Object as the superclass of every class, and its methods equals, hashCode and toString, overridden with @Override
+  - equals(Object other) written with == for the same object, getClass() or instanceof without a variable name, a cast to the class, and a comparison of the fields
+  - == on references set against equals, and printing an object, which calls its toString
+  - hashCode kept consistent with equals, and the helpers java.util.Objects.equals and java.util.Objects.hash
+  - a generic class of your own with one type parameter T, used with a type argument such as <Giraffe>, and the diamond <>
+  - an array of T made as (T[]) new Object[n], with the unchecked warning javac gives for it
+  - a raw type, a generic class used with no type argument, recognised as the Object version and avoided
+  - Integer and the other wrapper classes as type arguments, with autoboxing at the level of the section Autoboxing Fundamentals in chapter 12
+  - List, ArrayList, LinkedList, Set, HashSet, Map and HashMap from java.util, with the interface as the type of the variable
+  - "their common methods: add, get, set, remove, size, isEmpty, contains and indexOf on a List; add, remove, size and contains on a Set; put, get, getOrDefault, containsKey, remove, size, keySet and values on a Map"
+  - a for-each loop over a List, a Set, the keySet() of a Map and its values()
+  - a class of your own that implements Comparator for one type, such as Comparator<Person>, in its own file, and Collections.sort(list, comparator)
+  - Collections.sort(list) on Strings and Integers, which already know their order
+  - String.compareTo and Integer.compare inside a compare method
+  - import lines for java.util classes, one class per line
+  - reading the message of an exception that stops the program, such as ClassCastException or NullPointerException, without try and catch

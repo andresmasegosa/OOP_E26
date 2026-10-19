@@ -1,0 +1,47 @@
+# Machine-readable facts about exercise C of session 7, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session7-c-list
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - keep objects in a List declared with the interface and built with a class, as Demo.main keeps cards in an ArrayList and people in a LinkedList
+  - predict what remove by index and indexOf do to a List, and where an element added twice ends up after a sort, as Demo.main does with its five cards
+  - write a class that implements Comparator for one type and sort a list with it, as AgeOrder implements Comparator<Person> next to StringAlphabeticalOrder
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch
+  - unit tests
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseC: "a prediction of what C_List/Demo prints is written down; C_List/AgeOrder.java implements Comparator<Person>, and AgeOrder.compare answers a negative number when the first person is younger, zero for the same age and a positive number when the first person is older; C_List/Demo.main sorts people with an AgeOrder before they are printed, and Demo prints Jakob, 21 first, Anders, 23 second and Mads, 28 last; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 5, interfaces, implements and composition included
+  - Object as the superclass of every class, and its methods equals, hashCode and toString, overridden with @Override
+  - equals(Object other) written with == for the same object, getClass() or instanceof without a variable name, a cast to the class, and a comparison of the fields
+  - == on references set against equals, and printing an object, which calls its toString
+  - hashCode kept consistent with equals, and the helpers java.util.Objects.equals and java.util.Objects.hash
+  - a generic class of your own with one type parameter T, used with a type argument such as <Giraffe>, and the diamond <>
+  - an array of T made as (T[]) new Object[n], with the unchecked warning javac gives for it
+  - a raw type, a generic class used with no type argument, recognised as the Object version and avoided
+  - Integer and the other wrapper classes as type arguments, with autoboxing at the level of the section Autoboxing Fundamentals in chapter 12
+  - List, ArrayList, LinkedList, Set, HashSet, Map and HashMap from java.util, with the interface as the type of the variable
+  - "their common methods: add, get, set, remove, size, isEmpty, contains and indexOf on a List; add, remove, size and contains on a Set; put, get, getOrDefault, containsKey, remove, size, keySet and values on a Map"
+  - a for-each loop over a List, a Set, the keySet() of a Map and its values()
+  - a class of your own that implements Comparator for one type, such as Comparator<Person>, in its own file, and Collections.sort(list, comparator)
+  - Collections.sort(list) on Strings and Integers, which already know their order
+  - String.compareTo and Integer.compare inside a compare method
+  - import lines for java.util classes, one class per line
+  - reading the message of an exception that stops the program, such as ClassCastException or NullPointerException, without try and catch

@@ -25,6 +25,7 @@ prepare before class, and an `EXERCISES.md`.
 | [session3](src/session3/README.md) | Inheritance and abstract classes: a class for every piece |
 | [session4](src/session4/README.md) | Study session: practise the material from sessions 1–3 |
 | [session5](src/session5/README.md) | Interfaces and object-oriented design: what a class promises |
+| [session7](src/session7/README.md) | Generics and collections: lists, sets and maps, and the game on them |
 
 The graded assignments are packages under `src/` as well, starting with
 [assignment1](src/assignment1/README.md).
