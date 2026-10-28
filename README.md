@@ -16,7 +16,8 @@ game as we learn better tools: classes and encapsulation, inheritance and
 interfaces, collections, tests, exceptions and design patterns.
 
 Each session is a package under `src/`, with a `README.md` that says what to
-prepare before class, and an `EXERCISES.md`.
+prepare before class, and an `EXERCISES.md`. From session 8 on, a session's
+tests are under `test/`, in the same packages.
 
 | Session | Contents |
 |---|---|
@@ -26,6 +27,7 @@ prepare before class, and an `EXERCISES.md`.
 | [session4](src/session4/README.md) | Study session: practise the material from sessions 1–3 |
 | [session5](src/session5/README.md) | Interfaces and object-oriented design: what a class promises |
 | [session7](src/session7/README.md) | Generics and collections: lists, sets and maps, and the game on them |
+| [session8](src/session8/README.md) | Unit tests: tests of your own, test first, and tests for the game |
 
 The graded assignments are packages under `src/` as well, starting with
 [assignment1](src/assignment1/README.md).

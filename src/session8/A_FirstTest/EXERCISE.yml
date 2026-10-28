@@ -1,0 +1,44 @@
+# Machine-readable facts about exercise A of session 8, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session8-a-firsttest
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - write a test method marked @Test that builds an object, calls one method and checks the answer with assertEquals, as BankAccountTest.withdraw01 checks that withdrawing 25 from 100 leaves 75
+  - run the tests of a class and read a failing assertion, as BankAccountTest.withdraw01 fails with expected <76> but was <75> when the expected value is wrong
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch, throw, and assertThrows
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - the JUnit features beyond @Test, @BeforeEach and the five assertions below, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseA: "a prediction of which of the three provided tests of test/session8/A_FirstTest/BankAccountTest pass is written down; test/session8/A_FirstTest/BankAccountTest.java has a test method withdraw01, marked @Test, that opens a BankAccount with 100, withdraws 25 and checks with assertEquals that getBalance answers 75, with the expected value first; the four tests of BankAccountTest are green; the message of the red test with 76 has been read and 75 put back; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 7, interfaces, composition, the Object methods, generics and the collections included
+  - a test class of your own under test/, in the same package as the class it tests, with public void methods marked @Test from org.junit.jupiter.api
+  - a test folder, test/, next to src/ and marked in IntelliJ as Test Sources Root, with JUnit added to the project
+  - static imports of the assertion methods of org.junit.jupiter.api.Assertions, one per line, such as import static org.junit.jupiter.api.Assertions.assertEquals
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, and reading the message of a failing assertion, such as expected <76> but was <75>
+  - a field set by a method marked @BeforeEach, which JUnit calls before every test so that each test starts from a new object
+  - running the tests of a class in IntelliJ with the green arrow, and reading green and red
+  - a black-box test, written from what a method's Javadoc promises without reading its body
+  - test-driven development, in which a test is written and run before the code it asks for, a test that does not compile counts as red, and just enough code is written to make it green
+  - the underscore in a number literal, such as 500_000

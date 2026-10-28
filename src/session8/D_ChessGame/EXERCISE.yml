@@ -1,0 +1,47 @@
+# Machine-readable facts about exercises 1, 2 and 3 of session 8, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session8-d-chessgame
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - write unit tests of a class of the game on a board set up by the test, as ChessPieceTest checks ChessPiece.isLegalMove for a rook that moves along a row, not diagonally, not over a piece and not onto its own colour
+  - test a class that keeps its objects in a collection, as ChessBoardTest checks that ChessBoard, with its Map<Position, ChessPiece>, refuses a taken square, empties the square a piece leaves and keeps the piece that captured
+  - add a piece by test-driven development, one rule per test, as each test of CentaurTest is written before the rule of Centaur that makes it green
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces
+  - streams
+  - enums
+  - exceptions, try and catch, throw, and assertThrows
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - the JUnit features beyond @Test, @BeforeEach and the five assertions below, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise1: "test/session8/D_ChessGame/ChessPieceTest.java has three more tests marked @Test besides rookMovesAlongARow, each on the empty board of setUp with a white rook on (4, 4): with assertFalse, isLegalMove refuses (6, 6), refuses (4, 0) with a black knight on (4, 2), and refuses (4, 2) with a white knight on (4, 2); the four tests are green; the Discussion answer is written down"
+  exercise2: "test/session8/D_ChessGame/ChessBoardTest.java has three tests marked @Test: placePiece answers false for a taken square and getPieceAt still answers the first piece; after movePiece the square the piece left answers null from getPieceAt; after a capture getPieceAt on the square answers the piece that captured; the three tests are green; the Discussion answer is written down"
+  exercise3: "test/session8/D_ChessGame/CentaurTest.java has three tests marked @Test, each with a white Centaur on (4, 4) of an empty board: centaurMovesOneSquareAlongARow, isLegalMove allows (4, 5) and refuses (4, 6); centaurMovesOneSquareDiagonally, it allows (5, 5) and refuses (6, 6); centaurJumpsLikeAKnight, it allows (6, 5); src/session8/D_ChessGame/Centaur.java extends ChessPiece, is drawn with the letter C and adds in its constructor the rules StraightLine(1), Diagonal(1) and LShape, or rules that allow the same moves; the three tests are green; the student says each rule was added after the test that asks for it; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 7, interfaces, composition, the Object methods, generics and the collections included
+  - a test class of your own under test/, in the same package as the class it tests, with public void methods marked @Test from org.junit.jupiter.api
+  - a test folder, test/, next to src/ and marked in IntelliJ as Test Sources Root, with JUnit added to the project
+  - static imports of the assertion methods of org.junit.jupiter.api.Assertions, one per line, such as import static org.junit.jupiter.api.Assertions.assertEquals
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, and reading the message of a failing assertion, such as expected <76> but was <75>
+  - a field set by a method marked @BeforeEach, which JUnit calls before every test so that each test starts from a new object
+  - running the tests of a class in IntelliJ with the green arrow, and reading green and red
+  - a black-box test, written from what a method's Javadoc promises without reading its body
+  - test-driven development, in which a test is written and run before the code it asks for, a test that does not compile counts as red, and just enough code is written to make it green
+  - the underscore in a number literal, such as 500_000
