@@ -21,7 +21,7 @@ public class BankAccount {
         if (amount <= 0) {
             throw new NegativeAmountException();
         }
-        if (amount >= balance) {
+        if (amount > balance) {
             int deficit = amount - balance;
             throw new InsufficientFundsException(deficit);
         }

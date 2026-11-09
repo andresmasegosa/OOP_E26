@@ -22,8 +22,8 @@ public class BankAccount {
             String msg = "Amount must be positive.";
             throw new IllegalArgumentException(msg);
         }
-        if (amount >= balance) {
-            String msg = "Amount must be less than balance.";
+        if (amount > balance) {
+            String msg = "Amount must not exceed balance.";
             throw new IllegalArgumentException(msg);
         }
         balance = balance - amount;
