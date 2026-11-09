@@ -1,0 +1,52 @@
+# Machine-readable facts about exercise B of session 9, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session9-b-customexceptions
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - write an exception class of your own that extends RuntimeException and holds data, as InsufficientFundsException holds the deficit and answers it with getDeficit
+  - catch each class of exception in its own catch block, as Demo prints one message for a NegativeAmountException and another for an InsufficientFundsException
+  - test that a method throws, with assertThrows, as BankAccountTest.withdrawTooMuch checks the deficit of the exception that withdraw throws
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces, beyond the () -> that assertThrows takes before the code that should throw
+  - streams
+  - design patterns and their names
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - finally, try-with-resources, and one catch for several classes with |, as in catch (A | B e)
+  - nested try blocks, catching an exception to throw it again, and an exception made with another as its cause
+  - checked exceptions, throws in the header of a method, and the difference between Exception and RuntimeException; every exception of this session extends RuntimeException
+  - printStackTrace and the other methods of Throwable beyond getMessage
+  - switch expressions and the arrow form of switch, case X ->, and yield
+  - the methods an enum inherits from Enum, such as ordinal and compareTo, and EnumSet and EnumMap
+  - an enum that implements an interface, or that has a body or an abstract method for each value
+  - the JUnit features beyond @Test, @BeforeEach, the five assertions below and assertThrows, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame, assertDoesNotThrow and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseB: "a prediction of what Demo prints is written down; src/session9/B_CustomExceptions/LargeDepositException.java extends RuntimeException, holds an amount set by its constructor and answers it with getAmount; BankAccount.deposit throws it for an amount over 100 000 and leaves the balance as it was; Demo.main deposits 250 000 inside a try and prints You must justify the origin of 250000 kr. in its catch; test/session9/B_CustomExceptions/BankAccountTest.java has a test largeDeposit, marked @Test, that keeps the exception assertThrows answers for a deposit of 250 000, checks with assertEquals that it holds 250 000 and that the balance is still 100; the four tests of BankAccountTest are green; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 8, interfaces, composition, the Object methods, generics, the collections and unit tests with JUnit included
+  - throw with an exception object, which stops the method at once and goes on in the nearest catch block for that exception, up the chain of calls
+  - try and catch, with one catch block for each class of exception, and getMessage on the exception caught
+  - IllegalArgumentException, thrown for an argument that a method refuses, with a message
+  - an exception class of your own that extends RuntimeException, with fields, a constructor and getters, and a constructor that passes a message on with super(message)
+  - reading a stack trace, the exception and the chain of method calls that threw it
+  - assertThrows(SomeException.class, () -> call), with () -> written as JUnit's way to pass the code that should throw, and keeping the exception that assertThrows answers to check what it holds
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8
+  - an enum with a list of values, its values compared with == or equals, and printed by their names
+  - a switch over an enum, with case, break and default, as in session 2
+  - an enum with a private field, a constructor and a getter, as Planet, and values(), from the reading
+  - the underscore in a number literal, such as 250_000
