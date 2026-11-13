@@ -29,6 +29,7 @@ tests are under `test/`, in the same packages.
 | [session7](src/session7/README.md) | Generics and collections: lists, sets and maps, and the game on them |
 | [session8](src/session8/README.md) | Unit tests: tests of your own, test first, and tests for the game |
 | [session9](src/session9/README.md) | Error handling and enums: exceptions of your own, enums, and the game with both |
+| [session10](src/session10/README.md) | Design patterns I: Strategy and Observer, and the game with both |
 
 The graded assignments are packages under `src/` as well, starting with
 [assignment1](src/assignment1/README.md).

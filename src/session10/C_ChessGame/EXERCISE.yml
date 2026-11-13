@@ -1,0 +1,51 @@
+# Machine-readable facts about exercises 1 and 2 of session 10, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session10-c-chessgame
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - name a pattern in code that already exists, by its interface, the classes that implement it and the class that holds one
+  - turn a decision a class makes on its own into a strategy, and test the strategy alone, as WinRule decides when a move wins the game
+  - turn printing into events that listeners hear, as GameListener lets MovePrinter and MoveCounter follow a game that ChessGame plays without knowing them
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces, beyond the () -> that assertThrows takes before the code that should throw; a strategy or a listener is always a class of its own
+  - streams
+  - design patterns other than Strategy and Observer, such as Builder, Decorator, Visitor, Factory Method and Singleton, and their names
+  - the listener and event classes of Java's own libraries, such as java.util.Observer, PropertyChangeListener and the listeners of Swing
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - finally, try-with-resources, and one catch for several classes with |, as in catch (A | B e)
+  - nested try blocks, catching an exception to throw it again, and an exception made with another as its cause
+  - checked exceptions, throws in the header of a method, and the difference between Exception and RuntimeException; every exception of the course so far extends RuntimeException
+  - printStackTrace and the other methods of Throwable beyond getMessage
+  - switch expressions and the arrow form of switch, case X ->, and yield
+  - the methods an enum inherits from Enum, such as ordinal and compareTo, and EnumSet and EnumMap
+  - an enum that implements an interface, or that has a body or an abstract method for each value, so a strategy is never written as an enum
+  - the JUnit features beyond @Test, @BeforeEach, the five assertions below and assertThrows, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame, assertDoesNotThrow and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object; AccountListener.notify(double, double) only shares its name with Object.notify()
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise1: "src/session10/C_ChessGame/rules/WinRule.java is an interface with boolean wins(ChessPiece piece, ChessPiece captured) and String reason(); rules/KingCapture.java implements it, answers true only when captured is not null and is a king, and answers the reason the other king is off the board; rules/FirstCapture.java implements it, answers true when captured is not null, and answers the reason it made the first capture; ChessGame keeps a WinRule set by a third parameter of its constructor, ChessGame.movePiece asks it after each move instead of checking for PieceType.KING itself, and ChessGame.play prints the winner, wins:, the reason of the rule and a full stop; Demo passes a new KingCapture(); test/session10/C_ChessGame/rules/KingCaptureTest.java, in the package session10.C_ChessGame.rules, has a test winsOnlyWhenAKingIsCaptured, marked @Test, that checks that a white rook capturing a black king wins, and that capturing a black knight or nothing does not; the twelve tests are green; a run of Demo with a FirstCapture ended after the first capture with a line such as WHITE wins: it made the first capture.; Demo, back on KingCapture, prints a line such as WHITE wins: the other king is off the board.; the Discussion answer is written down"
+  exercise2: "src/session10/C_ChessGame/listeners/GameListener.java is an interface with void moveMade(ChessPiece piece, Move move, ChessPiece captured); ChessGame keeps a List of GameListener and has addListener, and ChessGame.movePiece calls moveMade on each listener after a move and prints no move or capture itself; listeners/MovePrinter.java implements GameListener and prints a move as WHITE ROOK moves (7,0) -> (5,0) and a capture as WHITE QUEEN captures BLACK QUEEN on (0,3)!, as ChessGame printed them; listeners/MoveCounter.java implements GameListener, counts the calls to moveMade and answers the count with getMoves; Demo adds a MovePrinter and a MoveCounter to the game and, after ChessGame.play, prints The game took, the count and moves.; Demo prints every move as before, then the winner and the captured pieces, then a line such as The game took 3 moves.; the twelve tests are green; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 9, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException and enums included
+  - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
+  - the Strategy pattern, an interface for a behaviour that varies, one class for each variant, and a class that holds one, or a list of them, in a field, gets it from outside, often in its constructor, and hands the work to it, as BankAccount hands the interest to its InterestStrategy
+  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.notify
+  - the words strategy, listener, observer and subject, as the slides use them
+  - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9
+  - the underscore in a number literal, such as 1_500_000

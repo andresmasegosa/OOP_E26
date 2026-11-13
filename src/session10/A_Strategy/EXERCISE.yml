@@ -1,0 +1,49 @@
+# Machine-readable facts about exercise A of session 10, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session10-a-strategy
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - give a class a behaviour that varies as a strategy, an interface with one class for each variant, held in a field and passed in the constructor, as BankAccount holds an InterestStrategy
+  - hand the work to the strategy instead of asking which kind of object this is, as BankAccount.accrueInterest calls InterestStrategy.getInterest
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces, beyond the () -> that assertThrows takes before the code that should throw; a strategy or a listener is always a class of its own
+  - streams
+  - design patterns other than Strategy and Observer, such as Builder, Decorator, Visitor, Factory Method and Singleton, and their names
+  - the listener and event classes of Java's own libraries, such as java.util.Observer, PropertyChangeListener and the listeners of Swing
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item)
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - finally, try-with-resources, and one catch for several classes with |, as in catch (A | B e)
+  - nested try blocks, catching an exception to throw it again, and an exception made with another as its cause
+  - checked exceptions, throws in the header of a method, and the difference between Exception and RuntimeException; every exception of the course so far extends RuntimeException
+  - printStackTrace and the other methods of Throwable beyond getMessage
+  - switch expressions and the arrow form of switch, case X ->, and yield
+  - the methods an enum inherits from Enum, such as ordinal and compareTo, and EnumSet and EnumMap
+  - an enum that implements an interface, or that has a body or an abstract method for each value, so a strategy is never written as an enum
+  - the JUnit features beyond @Test, @BeforeEach, the five assertions below and assertThrows, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame, assertDoesNotThrow and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object; AccountListener.notify(double, double) only shares its name with Object.notify()
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseA: "a prediction of what Demo prints is written down; src/session10/A_Strategy/AccountFeeStrategy.java is an interface with the method double calculateFee(double balance); SavingsAccountFee and CheckingAccountFee implement it and answer 100 and 200; BankAccount keeps an AccountFeeStrategy in a field set by a third parameter of its constructor, after the InterestStrategy, and BankAccount.applyFee takes the fee from the balance by asking the strategy, with no if or switch on the kind of account; Demo.main gives the savings account a SavingsAccountFee and the checking account a CheckingAccountFee, applies the fee to both at the end and prints the two balances again, so the last two lines are Savings: 950.0 and Checking: 800.001; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 9, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException and enums included
+  - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
+  - the Strategy pattern, an interface for a behaviour that varies, one class for each variant, and a class that holds one, or a list of them, in a field, gets it from outside, often in its constructor, and hands the work to it, as BankAccount hands the interest to its InterestStrategy
+  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.notify
+  - the words strategy, listener, observer and subject, as the slides use them
+  - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9
+  - the underscore in a number literal, such as 1_500_000
