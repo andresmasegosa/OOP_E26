@@ -25,7 +25,7 @@ public class BankAccount {
         double oldBalance = this.balance;
         this.balance = this.balance + amount;
         for (AccountListener listener : this.listeners) {
-            listener.notify(this.balance, oldBalance);
+            listener.balanceChanged(oldBalance, this.balance);
         }
     }
 }

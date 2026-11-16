@@ -4,7 +4,7 @@ package session10.A_Strategy;
 public class SavingsAccountInterest implements InterestStrategy {
 
     @Override
-    public double getInterest(double balance) {
+    public double calculateInterest(double balance) {
         return balance * 0.05;
     }
 }

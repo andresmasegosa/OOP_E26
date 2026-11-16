@@ -6,7 +6,7 @@ status: active            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - give a class a behaviour that varies as a strategy, an interface with one class for each variant, held in a field and passed in the constructor, as BankAccount holds an InterestStrategy
-  - hand the work to the strategy instead of asking which kind of object this is, as BankAccount.accrueInterest calls InterestStrategy.getInterest
+  - hand the work to the strategy instead of asking which kind of object this is, as BankAccount.accrueInterest calls InterestStrategy.calculateInterest
 not_yet_introduced:
   - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
   - records, sealed classes and permits
@@ -35,14 +35,14 @@ not_yet_introduced:
   - contracts, preconditions and postconditions
   - code coverage tools
   - build tools such as Maven or Gradle
-  - threads, synchronized, and the wait, notify and notifyAll methods of Object; AccountListener.notify(double, double) only shares its name with Object.notify()
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object
 done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
   exerciseA: "a prediction of what Demo prints is written down; src/session10/A_Strategy/AccountFeeStrategy.java is an interface with the method double calculateFee(double balance); SavingsAccountFee and CheckingAccountFee implement it and answer 100 and 200; BankAccount keeps an AccountFeeStrategy in a field set by a third parameter of its constructor, after the InterestStrategy, and BankAccount.applyFee takes the fee from the balance by asking the strategy, with no if or switch on the kind of account; Demo.main gives the savings account a SavingsAccountFee and the checking account a CheckingAccountFee, applies the fee to both at the end and prints the two balances again, so the last two lines are Savings: 950.0 and Checking: 800.001; the Discussion answer is written down"
 allowed_concepts:
   - everything from sessions 1 to 9, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException and enums included
   - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
   - the Strategy pattern, an interface for a behaviour that varies, one class for each variant, and a class that holds one, or a list of them, in a field, gets it from outside, often in its constructor, and hands the work to it, as BankAccount hands the interest to its InterestStrategy
-  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.notify
+  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.balanceChanged
   - the words strategy, listener, observer and subject, as the slides use them
   - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
   - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9

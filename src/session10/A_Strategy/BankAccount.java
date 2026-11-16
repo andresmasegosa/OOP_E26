@@ -28,6 +28,6 @@ public class BankAccount {
     }
 
     public void accrueInterest() {
-        this.balance = this.balance + interestStrategy.getInterest(this.balance);
+        this.balance = this.balance + interestStrategy.calculateInterest(this.balance);
     }
 }

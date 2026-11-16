@@ -35,14 +35,14 @@ not_yet_introduced:
   - contracts, preconditions and postconditions
   - code coverage tools
   - build tools such as Maven or Gradle
-  - threads, synchronized, and the wait, notify and notifyAll methods of Object; AccountListener.notify(double, double) only shares its name with Object.notify()
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object
 done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
-  exerciseB: "a prediction of what Demo prints is written down; src/session10/B_Observer/SkatMonitor.java implements AccountListener; SkatMonitor.notify finds the deposit as the new balance minus the old one and, for a deposit of more than 1 000 000, prints SKAT alert: a deposit of, the amount and kr.; BankAccount is not changed; at the end of Demo.main a third BankAccount has the BankStatistics and a SkatMonitor as listeners, gets deposits of 500 000, 1 500 000 and 50 000, and the total bank balance is printed again, so the last two lines are SKAT alert: a deposit of 1500000.0 kr. and Total Bank Balance: 2054000.0; the Discussion answer is written down"
+  exerciseB: "a prediction of what Demo prints is written down; src/session10/B_Observer/SkatMonitor.java implements AccountListener; SkatMonitor.balanceChanged finds the deposit as the new balance minus the old one and, for a deposit of more than 1 000 000, prints SKAT alert: a deposit of, the amount and kr.; BankAccount is not changed; at the end of Demo.main a third BankAccount has the BankStatistics and a SkatMonitor as listeners, gets deposits of 500 000, 1 500 000 and 50 000, and the total bank balance is printed again, so the last two lines are SKAT alert: a deposit of 1500000.0 kr. and Total Bank Balance: 2054000.0; the Discussion answer is written down"
 allowed_concepts:
   - everything from sessions 1 to 9, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException and enums included
   - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
   - the Strategy pattern, an interface for a behaviour that varies, one class for each variant, and a class that holds one, or a list of them, in a field, gets it from outside, often in its constructor, and hands the work to it, as BankAccount hands the interest to its InterestStrategy
-  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.notify
+  - the Observer pattern, a listener interface, and a subject that keeps a List of listeners, adds one with an addListener method and calls each one when something happens, as BankAccount.deposit calls AccountListener.balanceChanged
   - the words strategy, listener, observer and subject, as the slides use them
   - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
   - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9

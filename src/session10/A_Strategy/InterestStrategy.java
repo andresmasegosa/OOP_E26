@@ -6,5 +6,5 @@ package session10.A_Strategy;
  */
 public interface InterestStrategy {
 
-    double getInterest(double balance);
+    double calculateInterest(double balance);
 }

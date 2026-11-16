@@ -13,7 +13,7 @@ public class BankStatistics implements AccountListener {
     }
 
     @Override
-    public void notify(double newBalance, double oldBalance) {
+    public void balanceChanged(double oldBalance, double newBalance) {
         double difference = newBalance - oldBalance;
         totalBankBalance += difference;
     }
