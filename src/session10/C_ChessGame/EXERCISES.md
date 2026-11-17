@@ -1,75 +1,78 @@
 # Session 10 — Exercises 1 and 2, the game
 
-The game is the one from session 9. Its eleven tests are in `test/session10/C_ChessGame`, and
-they stay green after each exercise. Each exercise is its numbered steps. The tips are there if
-you need them.
+This is the chess game from session 9. In `Demo`, both players are now a `GreedyPlayer`, so both
+of them capture pieces. The eleven tests in `test/session10/C_ChessGame` should still pass after
+each exercise. The tips are there if you need them.
 
-## Exercise 1 — the win rule as a strategy
+## Exercise 1 — `MoveRule` as a strategy
 
-1. In the `rules` folder, write `WinRule.java`, an interface with two methods.
-   `WinRule.wins(ChessPiece piece, ChessPiece captured)` answers whether the move that `piece` has
-   just made wins the game. `captured` is the piece it took, or null when it took nothing.
-   `WinRule.reason()` answers the words that `ChessGame.play` prints between `wins: ` and the full
-   stop.
-2. In `rules`, write `KingCapture.java`, a `WinRule` that wins when the captured piece is a king,
-   with the reason `the other king is off the board`. Give `ChessGame` a `WinRule` in its
-   constructor, after the two players. After each move, `ChessGame.movePiece` asks it whether the
-   move wins. `ChessGame.play` prints its reason. In `Demo`, the game gets a `new KingCapture()`.
-3. In `test/session10/C_ChessGame/rules`, write `KingCaptureTest` with the test
-   `winsOnlyWhenAKingIsCaptured`. A white rook that captures a black king wins. One that captures a
-   black knight does not, and neither does one that captures nothing.
-4. In `rules`, write `FirstCapture.java`, a `WinRule` in which the first capture wins, with the
-   reason `it made the first capture`. Run `Demo` once with a `new FirstCapture()`, and then put
-   `new KingCapture()` back.
+Since session 5, every piece has a list of `MoveRule` objects, and `ChessPiece.isLegalMove` checks
+whether one of these rules allows the move. This is the Strategy pattern, although we did not call
+it that in session 5. In this exercise you look at this code as an example of the pattern, and then
+you extend it with a new kind of move.
 
-   You are done when the twelve tests are green, the run with `FirstCapture` ended after the
-   first capture with a line such as `WHITE wins: it made the first capture.`, and `Demo` again
-   prints a line such as `WHITE wins: the other king is off the board.`
+### Part 1 — the pattern in the existing code
 
-### Tips
+- Read `ChessPiece.java` and the classes in the `rules` folder. Write down the role that each of
+  them has in the Strategy pattern. Slide 12 shows these roles for `A_Strategy`.
+- Compare the game's code with `BankAccount` and `InterestStrategy` in `A_Strategy`, and write
+  down the differences.
 
-- `InterestStrategy` in `A_Strategy` is the model. `ChessGame` holds its `WinRule` as `BankAccount`
-  holds its `InterestStrategy`.
-- `test/session10/C_ChessGame/rules` does not exist yet. In IntelliJ, right-click
-  `test/session10/C_ChessGame` and choose New, then Package, so that the test is in the package of
-  `KingCapture`, `session10.C_ChessGame.rules`.
-- A test of `KingCapture` needs no board and no game. Make the pieces with `new`, as
-  `ChessPieceTest` does.
+You do not need to write any code in this part.
 
-### Discussion
+### Part 2 — a new move rule
 
-1. Before this exercise, the game already had two strategies. Which are they, and which class hands
-   its work to each?
+`StraightLine` and `Diagonal` have the distance as a parameter, so the same class can be used by
+different pieces. The rook uses `new StraightLine(7)` and the king uses `new StraightLine(1)`.
+`LShape` has no parameter. It only checks the knight's jump, two squares in one direction and one
+square in the other. Some chess variants have pieces that jump in the same way, but with other
+distances. The camel, for example, moves three squares in one direction and one in the other.
 
-## Exercise 2 — the moves as events
+- Replace `LShape` with a new rule `Leap` that works for any jump of this kind. Use it for the
+  knight and for the centaur.
+- In `test/session10/C_ChessGame/rules`, write a test class `LeapTest` with a test
+  `camelLeapsThreeAndOne` that checks the camel's move on an empty board.
 
-1. In a new folder `listeners`, write `GameListener.java`, an interface with one method,
-   `void moveMade(ChessPiece piece, Move move, ChessPiece captured)`. `captured` is the piece the
-   move took, or null.
-2. Give `ChessGame` a list of listeners and a method `ChessGame.addListener`. After each move,
-   `ChessGame.movePiece` calls `GameListener.moveMade` on every listener, instead of printing the
-   move itself.
-3. In `listeners`, write `MovePrinter.java`, a `GameListener` that prints the two kinds of line
-   that `ChessGame.movePiece` printed, one for a move and one for a capture. In `Demo`, add a
-   `MovePrinter` to the game.
-4. In `listeners`, write `MoveCounter.java`, a `GameListener` that counts the moves and answers the
-   count with `MoveCounter.getMoves`. In `Demo`, add one to the game, and after `ChessGame.play`
-   print `The game took 3 moves.` with its count.
-
-   You are done when `Demo` prints every move as before, then the winner and the captured pieces,
-   then a line such as `The game took 3 moves.`, `ChessGame.movePiece` prints no move itself, and
-   the twelve tests are green.
+You are done when `LShape.java` is deleted, `ChessPiece.java` has not changed, the twelve tests
+pass and `Demo` still plays a game to the end.
 
 ### Tips
 
-- `B_Observer` is the model. `ChessGame` keeps its listeners as `BankAccount` does.
-- The two `System.out.println` calls of `ChessGame.movePiece` that print a move and a capture can
-  move into `MovePrinter.moveMade`. There the piece taken is `captured`, and its square is
-  `move.getToRow()` and `move.getToCol()`.
-- A `ChessPiece` prints as its colour and its type, and a `Move` prints as `(7,3) -> (4,3)`.
-- `Demo` keeps the `MoveCounter` in a variable, to ask it for the count after the game.
+- `StraightLine` is an example of a rule with a parameter.
+- `CentaurTest.centaurJumpsLikeAKnight` tests only one of the knight's jumps, two rows and one
+  column. A jump of one row and two columns is also a knight's jump.
 
 ### Discussion
 
-1. Before this exercise, which class would you have changed to count the moves? Which class did you
-   change in step 4?
+1. `BankAccount` gets its strategy from outside, in its constructor. A piece gets its rules from
+   its own subclass, through `ChessPiece.addRule`. What are the advantages and disadvantages of
+   each way?
+
+## Exercise 2 — game statistics with listeners
+
+At the moment, `ChessGame` prints each move, but no other class is told about the moves. In this
+exercise you use the Observer pattern to change this, and you write two listeners that keep
+statistics about the game.
+
+- Create a folder `listeners` with an interface `GameListener`. Then change `ChessGame` so that it
+  notifies its listeners after each move.
+- Write a listener `CaptureCounter` that counts how many pieces each player has captured. At the
+  end of the game, `Demo` prints the two numbers, for example `Captures: WHITE 6, BLACK 8`.
+- Write a listener `Scoreboard` that keeps a score for each player. When a player captures a
+  piece, the player gets as many points as the piece is worth (`PieceType.getValue`). Capturing
+  the king ends the game, so the king gives no points. After each capture, except the capture of
+  the king, `Scoreboard` prints the score, for example `Score: WHITE 9, BLACK 0`.
+
+You are done when `Demo` prints the score lines during the game and the `Captures:` line at the
+end. The two numbers in the `Captures:` line add up to the number of pieces in the `Captured:`
+line, and the twelve tests still pass.
+
+### Tips
+
+- Use `B_Observer` as an example.
+- Both listeners need to know which piece moved and which piece was captured, if any.
+
+### Discussion
+
+1. Which classes did you change to add `Scoreboard`? Which classes would you change to add a third
+   statistic, for example the longest series of moves without a capture?
