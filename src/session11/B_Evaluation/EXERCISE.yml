@@ -1,0 +1,53 @@
+# Machine-readable facts about exercise B of session 11, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session11-b-evaluation
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - add an operation to the classes of an expression as a new visitor, without changing any node class, as EvaluateVisitor works out the value of the expression
+  - keep what a visitor needs from one visit to the next in a field of the visitor, set in one visit method and used in another, as EvaluateVisitor remembers whether the next number is added or subtracted
+  - use what only one class of node has inside its own visit method, without a cast and without instanceof, as EvaluateVisitor.visitInteger calls IntegerNode.getValue
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces, beyond the () -> that assertThrows takes before the code that should throw; a strategy, a listener or a visitor is always a class of its own
+  - streams
+  - design patterns other than Strategy, Observer and Visitor, such as Builder, Decorator, Composite, Iterator, Factory Method and Singleton, and their names
+  - the listener and event classes of Java's own libraries, such as java.util.Observer, PropertyChangeListener and the listeners of Swing
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item), so a visitor never returns its result through a type parameter, as in <R> R accept(NodeVisitor<R> visitor)
+  - overloading the visit methods, one visit(SumNode) next to another visit(IntegerNode); each visit method is named after its class, as visitSum and visitInteger
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next, and Iterable implemented by your own classes
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - finally, try-with-resources, and one catch for several classes with |, as in catch (A | B e)
+  - nested try blocks, catching an exception to throw it again, and an exception made with another as its cause
+  - checked exceptions, throws in the header of a method, and the difference between Exception and RuntimeException; every exception of the course so far extends RuntimeException
+  - printStackTrace and the other methods of Throwable beyond getMessage
+  - switch expressions and the arrow form of switch, case X ->, and yield
+  - the methods an enum inherits from Enum, such as ordinal and compareTo, and EnumSet and EnumMap
+  - an enum that implements an interface, or that has a body or an abstract method for each value
+  - the JUnit features beyond @Test, @BeforeEach, the five assertions below and assertThrows, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame, assertDoesNotThrow and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exerciseB: "a prediction of what Demo prints and of the value of each expression is written down; src/session11/B_Evaluation/EvaluateVisitor.java implements NodeVisitor, keeps the value in a field and returns it from getResult, keeps in another field whether the next number is added or subtracted, which visitSum and visitSubtraction set and visitInteger uses with IntegerNode.getValue, and does nothing in visitEqual; no visitor uses instanceof or a cast, and no node class has changed; Demo.main uses a new EvaluateVisitor for each of the two expressions and prints each expression again followed by its value, so the last two lines are 3 + 2 - 1 + 5 = 9 and 10 - 4 - 3 = 3; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 10, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException, enums, and the Strategy and Observer patterns included
+  - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
+  - the Visitor pattern, a visitor interface with one visit method for each class of element, named after that class, an abstract accept method in the element class that every subclass writes again to call the visit method meant for it, and each operation as a class that implements the visitor interface, as CountOperationsVisitor implements NodeVisitor
+  - double dispatch, the two calls that pick the code to run, node.accept(visitor) and then visitor.visitSum(this), as the slides show them
+  - a class that holds the elements and passes a visitor to each of them, as MathExpression.accept does
+  - the words visitor, element, accept and double dispatch, as the slides use them
+  - Integer.parseInt and its NumberFormatException, and String.trim and String.split with a space, as IntegerNode and MathExpression use them
+  - IllegalArgumentException, thrown for an argument that a method refuses, with a message
+  - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9
