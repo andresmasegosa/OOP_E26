@@ -1,0 +1,57 @@
+# Machine-readable facts about exercises 1 and 2 of session 11, in this folder, read by AI assistants together
+# with the contract in /AGENTS.md. Students may read it too. There is nothing
+# secret here.
+id: session11-c-chessgame
+status: active            # active | closed, changed only by the teaching team
+type: practice            # demonstration | practice | assessed
+objectives:
+  - put the Visitor pattern on a hierarchy that already exists, with a visitor interface that has one visit method for each rule class, an accept method in MoveRule and in each rule, and a method in ChessPiece that passes a visitor to each of its rules
+  - find the moves of a piece with a visitor whose visit methods use what only their rule has, the distance of a StraightLine or a Diagonal and the two distances of a Leap, without instanceof and without a cast
+  - use one visitor from other classes, a player that chooses among the moves found and a listener that announces check, together with the Observer pattern of session 10
+not_yet_introduced:
+  - pattern matching, including instanceof followed by a variable name, as in other instanceof Person person
+  - records, sealed classes and permits
+  - lambdas, method references and functional interfaces, beyond the () -> that assertThrows takes before the code that should throw; a strategy, a listener or a visitor is always a class of its own
+  - streams
+  - design patterns other than Strategy, Observer and Visitor, such as Builder, Decorator, Composite, Iterator, Factory Method and Singleton, and their names
+  - the listener and event classes of Java's own libraries, such as java.util.Observer, PropertyChangeListener and the listeners of Swing
+  - wildcards (?, ? extends, ? super) and bounded type parameters (<T extends Something>)
+  - generic methods with a type parameter of their own, such as static <T> void show(T item), so a visitor never returns its result through a type parameter, as in <R> R accept(NodeVisitor<R> visitor)
+  - overloading the visit methods, one visit(SumNode) next to another visit(IntegerNode); each visit method is named after its class, as visitSum and visitInteger
+  - Comparable implemented by your own classes, and the sorted collections that rely on it, TreeSet and TreeMap
+  - anonymous classes, inner classes and nested classes
+  - Iterator objects and their methods hasNext and next, and Iterable implemented by your own classes
+  - writing default or static methods in an interface, and the static helpers of Comparator such as Comparator.comparing
+  - unmodifiable collections and their factories, List.of, Set.of, Map.of and Arrays.asList
+  - var
+  - finally, try-with-resources, and one catch for several classes with |, as in catch (A | B e)
+  - nested try blocks, catching an exception to throw it again, and an exception made with another as its cause
+  - checked exceptions, throws in the header of a method, and the difference between Exception and RuntimeException; every exception of the course so far extends RuntimeException
+  - printStackTrace and the other methods of Throwable beyond getMessage
+  - switch expressions and the arrow form of switch, case X ->, and yield
+  - the methods an enum inherits from Enum, such as ordinal and compareTo, and EnumSet and EnumMap
+  - an enum that implements an interface, or that has a body or an abstract method for each value
+  - the JUnit features beyond @Test, @BeforeEach, the five assertions below and assertThrows, such as @BeforeAll, @AfterEach, @AfterAll, @Disabled, @DisplayName, @Nested, @ParameterizedTest, assertAll, assertSame, assertDoesNotThrow and assertArrayEquals
+  - mocks, stubs and other test doubles, and mocking libraries
+  - the Java assert statement in production code, and the -ea flag
+  - contracts, preconditions and postconditions
+  - code coverage tools
+  - build tools such as Maven or Gradle
+  - threads, synchronized, and the wait, notify and notifyAll methods of Object
+done_when:                # what a complete attempt shows; the tutor confirms against this, not against taste
+  exercise1: "src/session11/C_ChessGame/rules/RuleVisitor.java is an interface with visitStraightLine(StraightLine rule), visitDiagonal(Diagonal rule) and visitLeap(Leap rule); MoveRule has a method accept(RuleVisitor visitor), and StraightLine, Diagonal and Leap write it, each calling its own visit method with this; StraightLine and Diagonal have a getter for their maximum distance, and Leap has getters for its two distances; ChessPiece has a method acceptRules(RuleVisitor visitor) that passes the visitor to each of its rules; MoveFinder implements RuleVisitor and keeps the given addSquare, and its three visit methods find every square the rule allows, going along each of the four lines of a StraightLine or a Diagonal square by square until addSquare returns false or the distance of the rule is reached, and trying the eight jumps of a Leap; no visitor uses instanceof or a cast; RandomPlayer.chooseMove collects the moves of all the pieces of its colour, with a MoveFinder for each piece, and picks one at random, returning null only when there is none; test/session11/C_ChessGame/rules/MoveFinderTest.java, in the package session11.C_ChessGame.rules, has the tests knightInTheCornerHasTwoMoves and rookStopsAtThePiecesInItsWay, marked @Test, which check 2 moves for a knight on (0,0) of an empty board and 11 moves for a rook on (4,4) with a piece of its own colour on (4,6) and an enemy piece on (1,4); the fourteen tests pass; Demo ends with a winner; the Discussion answer is written down"
+  exercise2: "src/session11/C_ChessGame/listeners/CheckAnnouncer.java implements GameListener, gets the board in its constructor, and in moveMade uses a MoveFinder on every piece of the colour that has just moved, and prints Check! when one of the moves found ends on the square of the other king; Demo adds a CheckAnnouncer to the game, with ChessGame.getBoard; Demo prints Check! during the game, and the fourteen tests still pass; the Discussion answer is written down"
+allowed_concepts:
+  - everything from sessions 1 to 10, interfaces, composition, the Object methods, generics, the collections, unit tests with JUnit, exceptions of your own that extend RuntimeException, enums, and the Strategy and Observer patterns included
+  - the idea of a design pattern, a named solution to a problem that comes back, with a name, an intent and the problem it solves, as on the slides
+  - the Visitor pattern, a visitor interface with one visit method for each class of element, named after that class, an abstract accept method in the element class that every subclass writes again to call the visit method meant for it, and each operation as a class that implements the visitor interface, as CountOperationsVisitor implements NodeVisitor
+  - double dispatch, the two calls that pick the code to run, node.accept(visitor) and then visitor.visitSum(this), as the slides show them
+  - a class that holds the elements and passes a visitor to each of them, as MathExpression.accept does in A_Visitor and ChessPiece.acceptRules does in the game
+  - a class that plays a role in two patterns, as MoveRule is the strategy of a piece since session 5 and an element of RuleVisitor today
+  - arrays with one or two dimensions and a for-each loop over them, such as int[][] directions = {{1, 0}, {-1, 0}}, as session 1 used arrays, and break to leave a loop
+  - List.addAll and Random.nextInt, as RandomPlayer uses them
+  - the words visitor, element, accept and double dispatch, as the slides use them
+  - Integer.parseInt and its NumberFormatException, and String.trim and String.split with a space, as IntegerNode and MathExpression use them
+  - IllegalArgumentException, thrown for an argument that a method refuses, with a message
+  - null for nothing, as ChessBoard.getPieceAt answers null for an empty square
+  - assertEquals(expected, actual), assertTrue, assertFalse, assertNull and assertNotNull, @Test and @BeforeEach, as in session 8, and assertThrows, as in session 9

@@ -22,7 +22,7 @@ exercise. After that comes the game.
 |---|---|
 | [`A_Visitor`](A_Visitor/) | the Visitor pattern, operations on the nodes of an expression, each in a class of its own |
 | [`B_Evaluation`](B_Evaluation/) | one more operation on the same expression, its value |
-| [`C_ChessGame`](C_ChessGame/) | the game from session 10, with a visitor |
+| [`C_ChessGame`](C_ChessGame/) | the game from session 10, with a visitor that finds the moves of each piece |
 
 Each folder has its own `EXERCISES.md` and `EXERCISE.yml`. The tests of `C_ChessGame` are in
 `test/session11`, in a folder with the same name.
