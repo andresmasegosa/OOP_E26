@@ -14,7 +14,7 @@ you extend it with a new kind of move.
 ### Part 1 — the pattern in the existing code
 
 - Read `ChessPiece.java` and the classes in the `rules` folder. Write down the role that each of
-  them has in the Strategy pattern. Slide 12 shows these roles for `A_Strategy`.
+  them has in the Strategy pattern. Slide 9 shows these roles for `A_Strategy`.
 - Compare the game's code with `BankAccount` and `InterestStrategy` in `A_Strategy`, and write
   down the differences.
 
