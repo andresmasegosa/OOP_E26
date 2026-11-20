@@ -2,7 +2,7 @@
 # assistants together with the contract in /AGENTS.md. Students may read it
 # too — there is nothing secret here.
 id: session1-procedural-chess
-status: active            # active | closed — changed only by the teaching team
+status: closed            # active | closed — changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - modify a working procedural program and measure what each change costs
