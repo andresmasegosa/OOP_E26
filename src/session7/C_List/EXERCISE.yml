@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session7-c-list
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - keep objects in a List declared with the interface and built with a class, as Demo.main keeps cards in an ArrayList and people in a LinkedList
