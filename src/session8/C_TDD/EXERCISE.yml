@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session8-c-tdd
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - write a class by test-driven development, one test at a time and each test before the code it asks for, as BadmintonPlayer is written after newPlayer, wonMatch and lostMatch in BadmintonPlayerTest
