@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session10-c-chessgame
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - name the roles of a pattern in code that already exists, the interface, the classes that implement it and the class that holds them, and compare them with the same pattern on the slides

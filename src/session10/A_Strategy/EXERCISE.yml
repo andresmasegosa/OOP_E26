@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session10-a-strategy
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - give a class a behaviour that varies as a strategy, an interface with one class for each variant, held in a field and passed in the constructor, as BankAccount holds an InterestStrategy
