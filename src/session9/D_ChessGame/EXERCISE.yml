@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session9-d-chessgame
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - replace a String that can only hold a few values with an enum across a program and its tests, as Color replaces the colour of every piece, player and test of the game
