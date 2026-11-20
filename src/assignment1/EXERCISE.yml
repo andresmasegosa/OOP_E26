@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: assignment1-flat-share
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: assessed            # demonstration | practice | assessed
 objectives:
   - rebuild a program without objects as classes and objects, keeping what it prints
