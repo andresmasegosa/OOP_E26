@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session5-c-chessgame
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - read what an interface promises, in players/Player.java, and write code against somebody else's contract
