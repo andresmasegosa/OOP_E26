@@ -2,7 +2,7 @@
 # with the contract in /AGENTS.md. Students may read it too. There is nothing
 # secret here.
 id: session11-b-evaluation
-status: active            # active | closed, changed only by the teaching team
+status: closed            # active | closed, changed only by the teaching team
 type: practice            # demonstration | practice | assessed
 objectives:
   - add an operation to the classes of an expression as a new visitor, without changing any node class, as EvaluateVisitor works out the value of the expression
