@@ -146,7 +146,7 @@ these steps.
   workout.
 - Write a class `EntranceScreen` that implements `PlaceListener`, and make your member class
   implement it too. Their `placeFreed` methods print the `Screen` line and the `To Omar` line of
-  the results below.
+  the results below, respectively.
 - In `Main.main`, task 4 adds a screen and then Omar as listeners of Spinning. Then Freja cancels
   Spinning, and after that Omar books Spinning, as in task 2.
 
