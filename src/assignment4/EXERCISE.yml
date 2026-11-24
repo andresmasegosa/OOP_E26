@@ -5,9 +5,9 @@ id: assignment4-gym-exam-format
 status: active            # active | closed, changed only by the teaching team
 type: assessed            # demonstration | practice | assessed
 objectives:
-  - rewrite a small program without objects as an object-oriented program of your own design, keeping its results in every exercise
+  - rewrite a small program without objects as an object-oriented program of your own design, keeping its results
   - keep each object's data inside it and change it only through the object's own methods, so that a refused booking changes nothing
-  - use inheritance for the types of membership, so that what they share is written once and a new type is one more subclass
+  - add three types of membership with inheritance, so that what they share is written once and a new type is one more subclass
   - use collections, an exception class of your own and unit tests with JUnit in your own program, and justify each collection in a comment
   - add a feature with the Observer pattern, with the interface and the methods the sheet gives, and say which class is the subject and which are its observers
   - justify your design choices in comments in the code

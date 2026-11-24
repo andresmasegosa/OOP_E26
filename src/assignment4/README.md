@@ -3,16 +3,18 @@
 ## What you do
 
 At a gym, members book places in workouts such as spinning and yoga. `GymBookings.java` keeps the
-members, the workouts and the bookings. It works, but it is written without objects, like the
-festival program of assignment 2. Its `main` does three tasks, and each task prints a result.
+members and the workouts, and it does the bookings. It works, but it is written without objects,
+like the festival program of assignment 2. Its `main` does three tasks, and each task prints a
+result.
 
 1. Task 1 lists the members.
-2. Task 2 has the members book Monday's workouts. Some of the bookings are refused.
+2. Task 2 has the members book Monday's workouts. One of the bookings is refused.
 3. Task 3 prints what each member pays for the month.
 
-You write this program again with objects, in four exercises that follow the order of the exam,
-and in exercise 4 you add one task to it. Each exercise starts from a copy of your solution to the
-one before, so you hand in four versions of the program.
+You write this program again with objects, in four exercises that follow the order of the exam.
+Exercise 2 adds three types of membership to the program, and exercise 4 adds one task. Each
+exercise starts from a copy of your solution to the one before, so you hand in four versions of the
+program.
 
 ## The rules
 
@@ -41,18 +43,18 @@ does not work, start the next one from the last exercise that works. Each exerci
 
 ## Assessment criteria
 
-Your code is assessed on how well it follows the object-oriented concepts of the course. In every
-exercise, tasks 1 to 3 give the same results as `GymBookings`, with the same bookings refused and
-the same bills, but their lines do not have to look the same. They can also list the members and
-the workouts in another order. A program that gives the same results but is not object-oriented is
-not valid.
+Your code is assessed on how well it follows the object-oriented concepts of the course. In
+exercise 1, tasks 1 to 3 give the same results as `GymBookings`, with the same booking refused and
+the same bills. Exercise 2 changes the bills of task 3 and shows the new ones, and exercises 3 and
+4 keep them. Your lines do not have to look the same as the lines of `GymBookings` or of this
+sheet, and they can list the members and the workouts in another order. A program that gives the
+right results but is not object-oriented is not valid.
 
 These are the minimum requirements in every exercise.
 
 - The members and the workouts are objects, and each object keeps its own data. Nothing outside an
   object can change that data directly.
-- A workout never has more members than places, and never has the same member twice. A booking that
-  is refused changes nothing.
+- A workout never has more bookings than places. A booking that is refused changes nothing.
 - Each class does the work that belongs to its own data. `Main.main` tells the story, and the
   objects do the work.
 
@@ -64,12 +66,14 @@ update its comment.
 
 Go to `GymBookings.main`, and read the code of the three tasks and the methods they call.
 
-- Create the classes you think you need. Then, under the three comments in `Main.main` of
-  `exercise1`, write the code that does tasks 1 to 3 with objects of your classes. It gives the
-  same results as `GymBookings`.
+- Create the classes you think you need. As a suggestion, you can write three classes. `Member` is
+  one member of the gym and works out the member's bill. `Workout` is one workout, with its places,
+  and it accepts or refuses each booking. `Gym` has the members and the workouts of the gym. You
+  are free to choose other classes if you think they are better.
+- Under the three comments in `Main.main` of `exercise1`, write the code that does tasks 1 to 3
+  with objects of your classes. It gives the same results as `GymBookings`.
 - Do not use inheritance or write interfaces of your own in this exercise, because exercise 2 is
-  about inheritance. You can use everything else from the course, collections included. Until
-  exercise 2, the type of membership can be a field, and a `switch` or an `if` on it is fine.
+  about inheritance. You can use everything else from the course, collections included.
 - Start each class you create with a comment that says what the class is for and why you created
   it. Do the same for the classes you create in the other exercises.
 
@@ -77,13 +81,28 @@ Go to `GymBookings.main`, and read the code of the three tasks and the methods t
 
 Copy your exercise 1 into the package `assignment4.exercise2`.
 
-- In `GymBookings` the type of membership, basic, premium or student, is a letter, and
-  `GymBookings.bill` and `GymBookings.describe` use a `switch` on the letter. Use inheritance for
-  the types of membership. What all types share goes in one superclass, written once. Each type is
-  a subclass that adds only what makes it different, such as how it works out the bill. No `switch`
-  or `if` on the type of membership is left.
+In this exercise the gym has three types of membership, and what a member pays depends on the
+type. A basic member pays 60 kr for each workout booked in the month, which is what every member
+pays in `GymBookings`. A premium member pays 300 kr a month, for any number of workouts. A student
+member pays 50 kr for each workout, but never more than 80 kr a month. Freja is a premium member,
+Omar is a basic member and Sofie is a student member.
+
+- Use inheritance for the types of membership. What all types share goes in one superclass, written
+  once, and your member class can be that superclass. Each type is a subclass that adds only what
+  makes it different, such as how it works out the bill. Do not use a `switch` or an `if` on the
+  type of membership.
 - In a comment at the top of your superclass, say what you put in it and what you left to the
   subclasses, and why.
+
+Tasks 1 and 2 do not change. These are the results of task 3 in this exercise.
+
+```
+Task 3. The bills
+  Freja: booked 1, pays 300 kr
+  Omar: booked 1, pays 60 kr
+  Sofie: booked 2, pays 80 kr
+  Total: 440 kr
+```
 
 ## Exercise 3 — collections, exceptions and unit tests
 
@@ -111,24 +130,25 @@ these steps.
 - Write an interface `PlaceListener` with one method, `void placeFreed(Workout workout)`, where
   `Workout` is your workout class.
 - Give your workout class a list of `PlaceListener` objects and a method `addListener` that adds
-  one. Also give it a method `cancel` that takes a member. If the member has a place, `cancel`
-  removes the member from the workout and prints the `Omar cancelled Spinning` line of the results
-  below. Then it calls `placeFreed` on every listener, in the order they were added. If the member
-  has no place, `cancel` changes nothing.
+  one. Also give it a method `cancel` that takes a member. `cancel` gives the member's place back,
+  so the workout has one more free place and the member has booked one workout less. It prints the
+  `Freja cancelled Spinning` line of the results below, and then it calls `placeFreed` on every
+  listener, in the order they were added. You can assume that the member has a place in the
+  workout.
 - Write a class `EntranceScreen` that implements `PlaceListener`, and make your member class
-  implement it too. Their `placeFreed` methods print the `Screen` line and the `To Mikkel` line of
+  implement it too. Their `placeFreed` methods print the `Screen` line and the `To Omar` line of
   the results below.
-- In `Main.main`, task 4 adds a screen and then Mikkel as listeners of Spinning. Then Omar cancels
-  Spinning, and after that Mikkel books Spinning, as in task 2.
+- In `Main.main`, task 4 adds a screen and then Omar as listeners of Spinning. Then Freja cancels
+  Spinning, and after that Omar books Spinning, as in task 2.
 
 These are the results of task 4.
 
 ```
 Task 4. A free place
-  Omar cancelled Spinning
+  Freja cancelled Spinning
   Screen: a place is free in Spinning
-  To Mikkel: a place is free in Spinning
-  Mikkel booked Spinning
+  To Omar: a place is free in Spinning
+  Omar booked Spinning
 ```
 
 - In a comment at the top of `Main.java` in `assignment4.exercise4`, say which class is the subject
