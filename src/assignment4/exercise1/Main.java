@@ -4,8 +4,10 @@ package assignment4.exercise1;
  * Assignment 4, exercise 1, your program. Write it with objects.
  *
  * Main.main does the tasks of GymBookings.main again, in the same order, with
- * objects of the classes you write. Write each class in its own file in this
- * folder. Main.main tells the story, and your objects do the work.
+ * objects of your classes. Member, Workout and Gym are in this folder as a
+ * suggestion, and you can change them or write other classes. Write each class
+ * in its own file in this folder. Main.main tells the story, and your objects
+ * do the work.
  */
 public class Main {
 

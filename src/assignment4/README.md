@@ -31,15 +31,19 @@ exercises even if it takes you longer.
 2. Run `GymBookings`, in `assignment4/base`, and look at what each task prints. In
    `GymBookings.main`, each task starts with a comment, `Task 1`, `Task 2` and `Task 3`. Leave
    `GymBookings.java` as it is.
-3. Do exercise 1 in the package `assignment4.exercise1`, where `Main.java` already is.
+3. Do exercise 1 in the package `assignment4.exercise1`, where `Main.java` and the skeletons of
+   three classes already are.
 
-To start exercises 2, 3 and 4, create the package of the exercise in `assignment4`, and copy into it
-all the `.java` files of the exercise before, all at once. For exercise 4, do the same with the
-tests of exercise 3, in the `test` folder. Then check that each copied file starts with the package
-of its new folder, for example `package assignment4.exercise2;`, and that no file mentions another
-exercise, in an import or in the code. Leave the files you copied from as they are. If an exercise
-does not work, start the next one from the last exercise that works. Each exercise has its own
-`Main`, so check that you run the `Main` of the exercise you are working on.
+The packages of the four exercises, `assignment4.exercise1` to `assignment4.exercise4`, are already
+there, each with its own `Main.java`. To start exercises 2, 3 and 4, copy into the package of the
+exercise all the `.java` files of the exercise before apart from `Main.java`, all at once. Then copy
+the code inside `Main.main` of the exercise before into `Main.main` of the new exercise. For
+exercise 4, also copy the tests of exercise 3 into a new package `assignment4.exercise4` in the
+`test` folder. Then check that each copied file starts with the package of its new folder, for
+example `package assignment4.exercise2;`, and that no file mentions another exercise, in an import
+or in the code. Leave the files you copied from as they are. If an exercise does not work, start the
+next one from the last exercise that works. Each exercise has its own `Main`, so check that you run
+the `Main` of the exercise you are working on.
 
 ## Assessment criteria
 
@@ -66,16 +70,19 @@ update its comment.
 
 Go to `GymBookings.main`, and read the code of the three tasks and the methods they call.
 
-- Create the classes you think you need. As a suggestion, you can write three classes. `Member` is
-  one member of the gym and works out the member's bill. `Workout` is one workout, with its places,
-  and it accepts or refuses each booking. `Gym` has the members and the workouts of the gym. You
-  are free to choose other classes if you think they are better.
+- The package `exercise1` has a skeleton of three classes, as a suggestion. `Member` is one member
+  of the gym and works out the member's bill. `Workout` is one workout, with its places, and it
+  accepts or refuses each booking. `Gym` has the members and the workouts of the gym. Each skeleton
+  shows where the fields go and gives some of the methods, with empty bodies. Add the fields and
+  the other methods you need, and write the code of every method. The design is still yours, so you
+  can change the skeletons, or write other classes instead if you think they are better.
 - Under the three comments in `Main.main` of `exercise1`, write the code that does tasks 1 to 3
   with objects of your classes. It gives the same results as `GymBookings`.
 - Do not use inheritance or write interfaces of your own in this exercise, because exercise 2 is
   about inheritance. You can use everything else from the course, collections included.
-- Start each class you create with a comment that says what the class is for and why you created
-  it. Do the same for the classes you create in the other exercises.
+- Start each class with a comment that says what the class is for and why it is in your program.
+  In the skeletons, your comment replaces the one that is there. Do the same for the classes you
+  create in the other exercises.
 
 ## Exercise 2 — inheritance
 
@@ -109,8 +116,10 @@ Task 3. The bills
 Copy your exercise 2 into the package `assignment4.exercise3`.
 
 - Use collections for the groups of objects your program keeps, and do not use arrays, apart from
-  `String[] args` in `Main.main`. Each time you use a collection, think about whether it should be a
-  `List`, a `Set` or a `Map`, and justify your choice in a comment.
+  `String[] args` in `Main.main`. If you already used collections in exercise 1 or 2, you do not
+  need to change them. If your program still uses arrays, replace them with collections now. For
+  every collection in your program, think about whether it should be a `List`, a `Set` or a `Map`,
+  and justify your choice in a comment.
 - Write at least one exception class of your own that extends `RuntimeException`, and throw it
   where your program refuses something. Give it a message that says what went wrong, and say in a
   comment why you throw it there.
@@ -151,9 +160,9 @@ Task 4. A free place
   Omar booked Spinning
 ```
 
-- In a comment at the top of `Main.java` in `assignment4.exercise4`, say which class is the subject
-  and which classes are its observers. Also say why your workout class would not change if the gym
-  added a new kind of listener.
+- In the comment at the top of `Main.java` in `assignment4.exercise4`, in place of the one that is
+  there, say which class is the subject and which classes are its observers. Also say why your
+  workout class would not change if the gym added a new kind of listener.
 - The tests you copied from exercise 3 still pass.
 
 ## What you hand in
