@@ -172,8 +172,4 @@ four exercise folders. `assignment4_test.zip` has your folder `assignment4` from
 must compile. If a task does not work, leave it out of `Main.main`, and if a test does not compile,
 delete it.
 
-Mads, the TA, gives each exercise from 0 to 3 points, as in the exam, and writes why. 3 means only
-minor problems, 2 means some problems, 1 means some serious problems, and 0 means nothing done or
-many serious problems. An exercise whose comments do not give your reasons gets at most 2 points,
-and an exercise whose program is not object-oriented gets 0. The points are feedback, and there is
-no mark.
+Mads, the TA, gives you written feedback on each exercise. There are no points and no mark.
